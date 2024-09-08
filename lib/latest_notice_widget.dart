@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/data.dart';
+import 'package:student_tawsel/homepage/tacher_class.dart';
 
 class LatestNoticesCard extends StatelessWidget {
-  const LatestNoticesCard({super.key});
+  const LatestNoticesCard({super.key, this.itemssize});
+  final int? itemssize;
+
+  _getCardcount() {
+    if (itemssize != null) {
+      return itemssize;
+    } else {
+      return teacherData.length;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,13 +20,13 @@ class LatestNoticesCard extends StatelessWidget {
         ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: teacher_data.length,
+          itemCount: _getCardcount(),
           itemBuilder: (context, index) {
             return LatestNoticesCardContent(
-              name: teacher_data[index]['name']!,
-              profession: teacher_data[index]['profession']!,
-              message: teacher_data[index]['message']!,
-              additionalInfo: teacher_data[index]['additionalInfo']!,
+              name: teacherData[index].name,
+              profession: teacherData[index].profession,
+              message: teacherData[index].message,
+              additionalInfo: teacherData[index].additionalInfo,
             );
           },
         ),

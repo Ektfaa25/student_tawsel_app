@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/data.dart';
+
+import 'package:student_tawsel/homepage/student_class.dart';
+import 'package:student_tawsel/student_subject_page.dart';
 
 class MyChildrenCardWidget extends StatelessWidget {
   final int? itemssize;
+ 
 
   const MyChildrenCardWidget({
     super.key,
     this.itemssize,
+   
   });
-  _getCardcount() {
+
+  int _getCardCount() {
     if (itemssize != null) {
-      return itemssize;
+      return itemssize!;
     } else {
-      return student_data.length;
+      return studentData.length;
     }
   }
 
@@ -25,13 +30,24 @@ class MyChildrenCardWidget extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 25,
         ),
-        itemCount: _getCardcount(),
+        itemCount: _getCardCount(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return StudentCard(
-            name: student_data[index]['name']!,
-            level: student_data[index]['level']!,
-            imagePath: student_data[index]['imagePath']!,
+          final student = studentData[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => StudentSubject(student:student),
+                ),
+              );
+            },
+            child: StudentCard(
+              name: student.name,
+              level: student.level,
+              imagePath: student.imagePath,
+            ),
           );
         });
   }
@@ -77,7 +93,7 @@ class StudentCard extends StatelessWidget {
               ClipOval(
                 child: Container(
                   color: Colors.grey[300],
-                  child: Image.asset("assets/smiling-face-of-a-child-2 1.png",
+                  child: Image.asset(imagePath,
                       width: 58, height: 56, fit: BoxFit.contain),
                 ),
               ),

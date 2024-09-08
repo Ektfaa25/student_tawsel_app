@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/carousel_widget.dart';
 import 'package:student_tawsel/latest_notice_widget.dart';
-import 'package:student_tawsel/children__card_widget.dart';
-import 'package:student_tawsel/viewall_children_page.dart';
+import 'package:student_tawsel/children/children__card_widget.dart';
+import 'package:student_tawsel/view_all_notices_page.dart';
+import 'package:student_tawsel/children/view_all_children_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -39,9 +40,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             CarouselWidget(),
             MyChildrenLine(),
-            MyChildrenCardWidget(itemssize: 2),
+            MyChildrenCardWidget(
+              itemssize: 2,
+            ),
             LatestNoticesLine(),
-            LatestNoticesCard(),
+            LatestNoticesCard(itemssize: 2),
           ],
         ),
       ),
@@ -64,33 +67,11 @@ class AppBarUserContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: 96,
-              height: 92,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: Colors.white,
-                  width: 2,
-                ),
-              ),
-            ),
-            ClipOval(
-              child: Container(
-                color: Colors.grey[300],
-                child: Image.asset("assets/smiling-face-of-a-child-2 1.png",
-                    width: 75, height: 77, fit: BoxFit.contain),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(width: 13),
-        const Column(
+        AvatarWidget(),
+        SizedBox(width: 13),
+        Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -113,6 +94,39 @@ class AppBarUserContent extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ],
+    );
+  }
+}
+
+class AvatarWidget extends StatelessWidget {
+  const AvatarWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          width: 96,
+          height: 92,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white,
+              width: 2,
+            ),
+          ),
+        ),
+        ClipOval(
+          child: Container(
+            color: Colors.grey[300],
+            child: Image.asset("assets/smiling-face-of-a-child-2 1.png",
+                width: 75, height: 77, fit: BoxFit.contain),
+          ),
         ),
       ],
     );
@@ -188,7 +202,11 @@ class LatestNoticesLine extends StatelessWidget {
             style: TextButton.styleFrom(
               foregroundColor: const Color(0xff2F2E2E),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const ViewAllNotices();
+              }));
+            },
             child: const Text("View all",
                 style: TextStyle(
                   fontFamily: "Inter",

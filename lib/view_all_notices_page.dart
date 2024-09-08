@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/carousel_widget.dart';
-import 'package:student_tawsel/children__card_widget.dart';
-import 'package:student_tawsel/home_page.dart';
+import 'package:student_tawsel/chat/chat.dart';
 
-class ViewAllChildren extends StatelessWidget {
-  const ViewAllChildren({super.key});
+import 'package:student_tawsel/homepage/home_page.dart';
+import 'package:student_tawsel/latest_notice_widget.dart';
+
+class ViewAllNotices extends StatelessWidget {
+  const ViewAllNotices({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +31,30 @@ class ViewAllChildren extends StatelessWidget {
           ),
         ],
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CarouselWidget(),
-            Padding(
+            const CarouselWidget(),
+            const Padding(
               padding:
                   EdgeInsets.only(left: 17, right: 27, top: 24, bottom: 13),
-              child: Text("My Children",
+              child: Text("Latest Notices",
                   style: TextStyle(
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w700,
                       fontSize: 20,
                       color: Colors.black)),
             ),
-            MyChildrenCardWidget(),
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Chat()),
+                  );
+                },
+                child: const LatestNoticesCard()),
           ],
         ),
       ),

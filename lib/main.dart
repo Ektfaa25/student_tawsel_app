@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/home_page.dart';
+import 'package:student_tawsel/homepage/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,14 +8,12 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Student Tawsel App',
-      theme: ThemeData(),
-      home: HomePage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Student Tawsel App',
+        theme: ThemeData(),
+        home: const HomePage());
   }
 }

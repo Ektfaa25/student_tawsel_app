@@ -29,13 +29,13 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                 _currentIndex = index;
               });
             },
-            children: List.generate(images.length, (index) {
+            children: List.generate(imageAssets.length, (index) {
               return Container(
                 padding: const EdgeInsets.only(left: 2, right: 2),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(19),
                   child: Image.asset(
-                    images[index],
+                    imageAssets[index].imagePath,
                     width: 355,
                     height: 161,
                     fit: BoxFit.cover,
@@ -48,7 +48,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
         const SizedBox(height: 14),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(images.length, (index) {
+          children: List.generate(imageAssets.length, (index) {
             return Container(
               width: 8,
               height: 8,
