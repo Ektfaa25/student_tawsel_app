@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/result/result_data.dart';
 
 class ExamsPage extends StatelessWidget {
@@ -17,9 +19,9 @@ class ExamsPage extends StatelessWidget {
         ),
         toolbarHeight: 139,
         automaticallyImplyLeading: false,
-        title: const Text(
-          "Exams",
-          style: TextStyle(
+        title: Text(
+          S.of(context).exams,
+          style: const TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.bold,
             fontSize: 32,
@@ -47,9 +49,9 @@ class ExamsPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {},
-                  child: const Text(
-                    "Offline",
-                    style: TextStyle(
+                  child: Text(
+                    S.of(context).offline,
+                    style: const TextStyle(
                         fontFamily: "Inter",
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -70,9 +72,9 @@ class ExamsPage extends StatelessWidget {
                     backgroundColor: WidgetStatePropertyAll(Color(0xff182243)),
                   ),
                   onPressed: () {},
-                  child: const Text(
-                    "Online",
-                    style: TextStyle(
+                  child:  Text(
+                     S.of(context).online,
+                    style: const TextStyle(
                         fontFamily: "Inter",
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

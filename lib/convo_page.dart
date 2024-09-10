@@ -4,7 +4,6 @@ import 'package:student_tawsel/homepage/home_page.dart';
 
 class Conversation extends StatelessWidget {
   final String name;
-
   final String profession;
 
   const Conversation({

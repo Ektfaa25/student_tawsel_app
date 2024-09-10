@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:student_tawsel/generated/l10n.dart';
+
 class AttendancePage extends StatelessWidget {
   const AttendancePage({super.key});
 
@@ -19,9 +21,9 @@ class AttendancePage extends StatelessWidget {
           backgroundColor: const Color(0xff182243),
           elevation: 0,
           centerTitle: true,
-          title: const Text(
-            "Attendance",
-            style: TextStyle(
+          title: Text(
+            S.of(context).attendance,
+            style: const TextStyle(
               fontFamily: "Inter",
               fontWeight: FontWeight.bold,
               fontSize: 32,

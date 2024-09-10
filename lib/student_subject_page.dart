@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:student_tawsel/assignments_page.dart';
 import 'package:student_tawsel/attendance_page.dart';
 import 'package:student_tawsel/exams_online_page.dart';
-
+import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/homepage/home_page.dart';
 import 'package:student_tawsel/homepage/student_class.dart';
 import 'package:student_tawsel/result/results_page.dart';
@@ -11,12 +12,11 @@ import 'package:student_tawsel/time_table_page.dart';
 
 class StudentSubject extends StatelessWidget {
   StudentSubject({
-    super.key,
+    Key? key,
     required this.student,
-  });
-
+  }) : super(key: key);
   final Student student;
-  List<String> images = [
+  final List<String> images = [
     "assets/science.png",
     "assets/english.png",
     "assets/arabic.png",
@@ -28,25 +28,6 @@ class StudentSubject extends StatelessWidget {
     "assets/french.png",
   ];
 
-  List<String> subject = [
-    "Science",
-    "English",
-    "Arabic",
-    "Math",
-    "Drawing",
-    "Computer",
-    "Account",
-    "Math",
-    "French",
-  ];
-  final List<String> menuItems = [
-    'Teachers',
-    'Attendance',
-    'Assignments',
-    'Time Table',
-    'Exams',
-    'Results'
-  ];
   final List<String> menuImgs = [
     "assets/icon _group_.png",
     "assets/ icon _iris scan_.png",
@@ -58,6 +39,25 @@ class StudentSubject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> menuItems = [
+      S.of(context).menuTeachers,
+      S.of(context).menuAttendance,
+      S.of(context).menuAssignments,
+      S.of(context).menuTimeTable,
+      S.of(context).menuExams,
+      S.of(context).menuResults,
+    ];
+    final List<String> subjects = [
+      S.of(context).subjectScience,
+      S.of(context).subjectEnglish,
+      S.of(context).subjectArabic,
+      S.of(context).subjectMath,
+      S.of(context).subjectDrawing,
+      S.of(context).subjectComputer,
+      S.of(context).subjectAccount,
+      S.of(context).subjectMath,
+      S.of(context).subjectFrench,
+    ];
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -158,9 +158,9 @@ class StudentSubject extends StatelessWidget {
                     backgroundColor: WidgetStatePropertyAll(Color(0xff182243)),
                   ),
                   onPressed: () {},
-                  child: const Text(
-                    "Subjects",
-                    style: TextStyle(
+                  child: Text(
+                    S.of(context).subjects,
+                    style: const TextStyle(
                         fontFamily: "Inter",
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -182,9 +182,9 @@ class StudentSubject extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {},
-                  child: const Text(
-                    "Tracking",
-                    style: TextStyle(
+                  child: Text(
+                    S.of(context).tracking,
+                    style: const TextStyle(
                         fontFamily: "Inter",
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -211,7 +211,7 @@ class StudentSubject extends StatelessWidget {
                       child: Image.asset(images[index]),
                     ),
                     const SizedBox(height: 10),
-                    Text(subject[index],
+                    Text(subjects[index],
                         style: const TextStyle(
                             fontFamily: "Inter",
                             fontSize: 14,

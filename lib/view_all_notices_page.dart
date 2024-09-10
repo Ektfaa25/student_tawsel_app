@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:student_tawsel/carousel_widget.dart';
 import 'package:student_tawsel/chat/chat.dart';
 
+import 'package:student_tawsel/generated/l10n.dart';
+
 import 'package:student_tawsel/homepage/home_page.dart';
 import 'package:student_tawsel/latest_notice_widget.dart';
 
@@ -37,11 +39,11 @@ class ViewAllNotices extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CarouselWidget(),
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 17, right: 27, top: 24, bottom: 13),
-              child: Text("Latest Notices",
-                  style: TextStyle(
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 17, right: 27, top: 24, bottom: 13),
+              child: Text(S.of(context).latestNotices,
+                  style: const TextStyle(
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w700,
                       fontSize: 20,

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 
+import 'package:student_tawsel/generated/l10n.dart';
+
 import 'package:student_tawsel/result/result_data.dart';
 
 class ResultsPage extends StatefulWidget {
   const ResultsPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<ResultsPage> createState() => _ResultsPageState();
 }
 
 class _ResultsPageState extends State<ResultsPage> {
-  @override
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
@@ -29,6 +30,7 @@ class _ResultsPageState extends State<ResultsPage> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     List<Exam> passExams = filterExams(exams, 'Pass');
     List<Exam> failExams = filterExams(exams, 'Fail');
@@ -44,9 +46,9 @@ class _ResultsPageState extends State<ResultsPage> {
         ),
         toolbarHeight: 139,
         automaticallyImplyLeading: false,
-        title: const Text(
-          "Results",
-          style: TextStyle(
+        title: Text(
+          S.of(context).results,
+          style: const TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.bold,
             fontSize: 32,
@@ -100,7 +102,7 @@ class _ResultsPageState extends State<ResultsPage> {
                       ),
                       backgroundColor: _currentPage == 0
                           ? const Color(0xff2AF62A)
-                          : Colors.red // Button color
+                          : Colors.red 
                       ),
                   onPressed: () {
                     if (_currentPage < 1) {
@@ -111,7 +113,10 @@ class _ResultsPageState extends State<ResultsPage> {
                       );
                     }
                   },
-                  child: Text(_currentPage == 0 ? 'Pass' : 'Fail',
+                  child: Text(
+                      _currentPage == 0
+                          ? S.of(context).btnpass
+                          : S.of(context).btnfail,
                       style: const TextStyle(
                         fontFamily: "Inter",
                         fontWeight: FontWeight.bold,
@@ -174,7 +179,7 @@ class ExamCardWidget extends StatelessWidget {
           elevation: 4,
           color: const Color(0xffF6F6F6),
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(const Radius.circular(10)),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           child: Padding(
             padding: const EdgeInsets.all(16),

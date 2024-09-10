@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/carousel_widget.dart';
 import 'package:student_tawsel/children/children__card_widget.dart';
+
+import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/homepage/home_page.dart';
 
 class ViewAllChildren extends StatelessWidget {
@@ -35,11 +37,11 @@ class ViewAllChildren extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CarouselWidget(),
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 17, right: 27, top: 24, bottom: 13),
-              child: Text("My Children",
-                  style: TextStyle(
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 17, right: 27, top: 24, bottom: 13),
+              child: Text(S.of(context).myChildren,
+                  style: const TextStyle(
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w700,
                       fontSize: 20,

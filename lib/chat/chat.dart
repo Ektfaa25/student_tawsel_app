@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:student_tawsel/convo_page.dart';
+import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/homepage/tacher_class.dart';
 
 class Chat extends StatelessWidget {
@@ -22,9 +24,9 @@ class Chat extends StatelessWidget {
         ),
         backgroundColor: const Color(0xff182243),
         elevation: 0,
-        title: const Text(
-          "Chat",
-          style: TextStyle(
+        title: Text(
+          S.of(context).chat,
+          style: const TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.bold,
             fontSize: 32,

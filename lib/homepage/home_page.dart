@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+
 import 'package:student_tawsel/carousel_widget.dart';
+import 'package:student_tawsel/generated/l10n.dart';
+
 import 'package:student_tawsel/latest_notice_widget.dart';
 import 'package:student_tawsel/children/children__card_widget.dart';
+
 import 'package:student_tawsel/view_all_notices_page.dart';
 import 'package:student_tawsel/children/view_all_children_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final Function(Locale) onLocaleChange;
+  const HomePage({super.key, required this.onLocaleChange});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  bool isEnglish = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +35,19 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         title: const AppBarUserContent(),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(19),
-            child: Image.asset("assets/icon _settings_.png"),
+          IconButton(
+              onPressed: () {},
+              icon: Image.asset("assets/icon _settings_.png")),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isEnglish = !isEnglish;
+                final newLocale =
+                    isEnglish ? const Locale('en') : const Locale('ar');
+                widget.onLocaleChange(newLocale);
+              });
+            },
+            icon: const Icon(Icons.language, color: Colors.white, size: 30),
           ),
         ],
       ),
@@ -60,24 +76,29 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class AppBarUserContent extends StatelessWidget {
+class AppBarUserContent extends StatefulWidget {
   const AppBarUserContent({
     super.key,
   });
 
   @override
+  State<AppBarUserContent> createState() => _AppBarUserContentState();
+}
+
+class _AppBarUserContentState extends State<AppBarUserContent> {
+  @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
-        AvatarWidget(),
-        SizedBox(width: 13),
+        const AvatarWidget(),
+        const SizedBox(width: 13),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Mohamed',
-              style: TextStyle(
+              S.of(context).profileName,
+              style: const TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
@@ -85,8 +106,8 @@ class AppBarUserContent extends StatelessWidget {
               ),
             ),
             Text(
-              'mohamed@gmail.com',
-              style: TextStyle(
+              S.of(context).profileEmail,
+              style: const TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
@@ -148,8 +169,8 @@ class MyChildrenLine extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text("My Children",
-              style: TextStyle(
+          Text(S.of(context).myChildren,
+              style: const TextStyle(
                   fontFamily: "Inter",
                   fontWeight: FontWeight.w700,
                   fontSize: 20,
@@ -163,8 +184,8 @@ class MyChildrenLine extends StatelessWidget {
                 return const ViewAllChildren();
               }));
             },
-            child: const Text("View all",
-                style: TextStyle(
+            child: Text(S.of(context).viewAll,
+                style: const TextStyle(
                   fontFamily: "Inter",
                   decoration: TextDecoration.underline,
                   fontSize: 12,
@@ -192,8 +213,8 @@ class LatestNoticesLine extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text("Latest Notices",
-              style: TextStyle(
+          Text(S.of(context).latestNotices,
+              style: const TextStyle(
                   fontFamily: "Inter",
                   fontWeight: FontWeight.w700,
                   fontSize: 20,
@@ -207,8 +228,8 @@ class LatestNoticesLine extends StatelessWidget {
                 return const ViewAllNotices();
               }));
             },
-            child: const Text("View all",
-                style: TextStyle(
+            child: Text(S.of(context).viewAll,
+                style: const TextStyle(
                   fontFamily: "Inter",
                   decoration: TextDecoration.underline,
                   fontSize: 12,
