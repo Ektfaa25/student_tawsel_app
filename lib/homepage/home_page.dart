@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
         title: const AppBarUserContent(),
         actions: [
           IconButton(
-              padding: EdgeInsets.all(17),
+              padding: const EdgeInsets.all(19),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return SettingsPage(
@@ -48,16 +48,18 @@ class _HomePageState extends State<HomePage> {
               icon: Image.asset("assets/icon _settings_.png")),
         ],
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            CarouselWidget(),
-            MyChildrenLine(),
-            MyChildrenCardWidget(
+            const CarouselWidget(),
+            MyChildrenLine(
+              onLocaleChange: widget.onLocaleChange,
+            ),
+            const MyChildrenCardWidget(
               itemssize: 2,
             ),
-            LatestNoticesLine(),
-            LatestNoticesCard(itemssize: 2),
+            const LatestNoticesLine(),
+            const LatestNoticesCard(itemssize: 2),
           ],
         ),
       ),
@@ -152,8 +154,10 @@ class AvatarWidget extends StatelessWidget {
 }
 
 class MyChildrenLine extends StatelessWidget {
+  final Function(Locale) onLocaleChange;
   const MyChildrenLine({
     super.key,
+    required this.onLocaleChange,
   });
 
   @override
@@ -178,7 +182,9 @@ class MyChildrenLine extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const ViewAllChildren();
+                return ViewAllChildren(
+                  onLocaleChange: onLocaleChange,
+                );
               }));
             },
             child: Text(S.of(context).viewAll,

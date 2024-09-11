@@ -4,9 +4,11 @@ import 'package:student_tawsel/children/children__card_widget.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/homepage/home_page.dart';
+import 'package:student_tawsel/settings_page.dart';
 
 class ViewAllChildren extends StatelessWidget {
-  const ViewAllChildren({super.key});
+  final Function(Locale) onLocaleChange;
+  const ViewAllChildren({super.key, required this.onLocaleChange});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +27,16 @@ class ViewAllChildren extends StatelessWidget {
         elevation: 0,
         title: const AppBarUserContent(),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(19),
-            child: Image.asset("assets/icon _settings_.png"),
-          ),
+          IconButton(
+              padding: const EdgeInsets.all(19),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SettingsPage(
+                    onLocaleChange: onLocaleChange,
+                  );
+                }));
+              },
+              icon: Image.asset("assets/icon _settings_.png")),
         ],
       ),
       body: SingleChildScrollView(
