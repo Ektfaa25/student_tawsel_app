@@ -5,12 +5,14 @@ import 'package:student_tawsel/generated/l10n.dart';
 
 import 'package:student_tawsel/latest_notice_widget.dart';
 import 'package:student_tawsel/children/children__card_widget.dart';
+import 'package:student_tawsel/settings_page.dart';
 
 import 'package:student_tawsel/view_all_notices_page.dart';
 import 'package:student_tawsel/children/view_all_children_page.dart';
 
 class HomePage extends StatefulWidget {
   final Function(Locale) onLocaleChange;
+
   const HomePage({super.key, required this.onLocaleChange});
 
   @override
@@ -18,7 +20,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool isEnglish = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,19 +37,15 @@ class _HomePageState extends State<HomePage> {
         title: const AppBarUserContent(),
         actions: [
           IconButton(
-              onPressed: () {},
+              padding: EdgeInsets.all(17),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SettingsPage(
+                    onLocaleChange: widget.onLocaleChange,
+                  );
+                }));
+              },
               icon: Image.asset("assets/icon _settings_.png")),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                isEnglish = !isEnglish;
-                final newLocale =
-                    isEnglish ? const Locale('en') : const Locale('ar');
-                widget.onLocaleChange(newLocale);
-              });
-            },
-            icon: const Icon(Icons.language, color: Colors.white, size: 30),
-          ),
         ],
       ),
       body: const SingleChildScrollView(

@@ -23,7 +23,7 @@ class TimeTablePage extends StatelessWidget {
           centerTitle: true,
           title: Text(
             S.of(context).timeTable,
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: "Inter",
               fontWeight: FontWeight.bold,
               fontSize: 32,

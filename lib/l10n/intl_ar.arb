@@ -30,5 +30,13 @@
     "offline": "غير متصل",
     "online": "متصل",
     "btnpass": "نجاح",
-    "btnfail": "رسوب"
+    "btnfail": "رسوب",
+    "settings": "الاعدادات",
+    "profile": "الملف الشخصي",
+    "addchild": "اضافة أطفال",
+    "paymentMethods": "طرق الدفع",
+    "language": "اللغة",
+    "privacyPolicy": "سياسة الخصوصية",
+    "contactUs": "اتصل بنا",
+    "logOut": "تسجيل الخروج"
 }

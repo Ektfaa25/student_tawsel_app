@@ -22,13 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addchild": MessageLookupByLibrary.simpleMessage("Add Child"),
         "assignments": MessageLookupByLibrary.simpleMessage("Assignments"),
         "attendance": MessageLookupByLibrary.simpleMessage("Attendance"),
         "btnfail": MessageLookupByLibrary.simpleMessage("Fail"),
         "btnpass": MessageLookupByLibrary.simpleMessage("Pass"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "exams": MessageLookupByLibrary.simpleMessage("Exams"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "latestNotices": MessageLookupByLibrary.simpleMessage("Latest Notices"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "menuAssignments": MessageLookupByLibrary.simpleMessage("Assignments"),
         "menuAttendance": MessageLookupByLibrary.simpleMessage("Attendance"),
         "menuExams": MessageLookupByLibrary.simpleMessage("Exams"),
@@ -38,10 +42,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "myChildren": MessageLookupByLibrary.simpleMessage("My Children"),
         "offline": MessageLookupByLibrary.simpleMessage("Offline"),
         "online": MessageLookupByLibrary.simpleMessage("Online"),
+        "paymentMethods":
+            MessageLookupByLibrary.simpleMessage("Payment Methods"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "profileEmail":
             MessageLookupByLibrary.simpleMessage("mohamed@gmail.com"),
         "profileName": MessageLookupByLibrary.simpleMessage("Mohamed"),
         "results": MessageLookupByLibrary.simpleMessage("Results"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "subjectAccount": MessageLookupByLibrary.simpleMessage("Account"),
         "subjectArabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "subjectComputer": MessageLookupByLibrary.simpleMessage("Computer"),

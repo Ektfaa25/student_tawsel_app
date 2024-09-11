@@ -52,7 +52,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
             return Container(
               width: 8,
               height: 8,
-              margin: const EdgeInsets.symmetric(horizontal: 6),
+              margin: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: _currentIndex == index ? Colors.black : Colors.grey,

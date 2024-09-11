@@ -12,9 +12,9 @@ import 'package:student_tawsel/time_table_page.dart';
 
 class StudentSubject extends StatelessWidget {
   StudentSubject({
-    Key? key,
+    super.key,
     required this.student,
-  }) : super(key: key);
+  });
   final Student student;
   final List<String> images = [
     "assets/science.png",
@@ -29,7 +29,7 @@ class StudentSubject extends StatelessWidget {
   ];
 
   final List<String> menuImgs = [
-    "assets/icon _group_.png",
+    "assets/icongroup.png",
     "assets/ icon _iris scan_.png",
     "assets/ icon _book stack_.png",
     "assets/icon _alarm_.png",
@@ -47,6 +47,7 @@ class StudentSubject extends StatelessWidget {
       S.of(context).menuExams,
       S.of(context).menuResults,
     ];
+   
     final List<String> subjects = [
       S.of(context).subjectScience,
       S.of(context).subjectEnglish,

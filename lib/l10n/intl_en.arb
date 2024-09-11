@@ -30,5 +30,15 @@
     "offline": "Offline",
     "online": "Online",
     "btnpass": "Pass",
-    "btnfail": "Fail"
+    "btnfail": "Fail",
+    "settings": "Settings",
+    "profile": "Profile",
+    "addchild": "Add Child",
+    "paymentMethods": "Payment Methods",
+    "language": "Language",
+    "privacyPolicy": "Privacy Policy",
+    "contactUs": "Contact Us",
+    "logOut": "Log Out"
+
+
 }

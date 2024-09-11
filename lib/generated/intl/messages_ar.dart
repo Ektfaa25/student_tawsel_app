@@ -22,13 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addchild": MessageLookupByLibrary.simpleMessage("اضافة أطفال"),
         "assignments": MessageLookupByLibrary.simpleMessage("الواجبات"),
         "attendance": MessageLookupByLibrary.simpleMessage("الحضور"),
         "btnfail": MessageLookupByLibrary.simpleMessage("رسوب"),
         "btnpass": MessageLookupByLibrary.simpleMessage("نجاح"),
         "chat": MessageLookupByLibrary.simpleMessage("الدردشة"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "exams": MessageLookupByLibrary.simpleMessage("الامتحانات"),
+        "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "latestNotices": MessageLookupByLibrary.simpleMessage("آخر الإشعارات"),
+        "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "menuAssignments": MessageLookupByLibrary.simpleMessage("الواجبات"),
         "menuAttendance": MessageLookupByLibrary.simpleMessage("الحضور"),
         "menuExams": MessageLookupByLibrary.simpleMessage("الامتحانات"),
@@ -38,10 +42,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "myChildren": MessageLookupByLibrary.simpleMessage("أطفالي"),
         "offline": MessageLookupByLibrary.simpleMessage("غير متصل"),
         "online": MessageLookupByLibrary.simpleMessage("متصل"),
+        "paymentMethods": MessageLookupByLibrary.simpleMessage("طرق الدفع"),
+        "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
+        "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "profileEmail":
             MessageLookupByLibrary.simpleMessage("mohamed@gmail.com"),
         "profileName": MessageLookupByLibrary.simpleMessage("محمد"),
         "results": MessageLookupByLibrary.simpleMessage("النتائج"),
+        "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "subjectAccount": MessageLookupByLibrary.simpleMessage("المحاسبة"),
         "subjectArabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "subjectComputer": MessageLookupByLibrary.simpleMessage("الحاسوب"),

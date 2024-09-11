@@ -3,7 +3,6 @@ import 'package:student_tawsel/homepage/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 
-
 void main() {
   runApp(
     const MyApp(),
@@ -18,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale = const Locale('ar');
+  Locale _locale = const Locale('en');
 
   void _changeLocale(Locale newLocale) {
     setState(() {
