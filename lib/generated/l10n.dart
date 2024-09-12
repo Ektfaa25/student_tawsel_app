@@ -449,6 +449,146 @@ class S {
       args: [],
     );
   }
+
+  /// `Password Change`
+  String get passwordchange {
+    return Intl.message(
+      'Password Change',
+      name: 'passwordchange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Password`
+  String get savepassword {
+    return Intl.message(
+      'Save Password',
+      name: 'savepassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forget Password?`
+  String get forgetpassword {
+    return Intl.message(
+      'Forget Password?',
+      name: 'forgetpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get newpassword {
+    return Intl.message(
+      'New Password',
+      name: 'newpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Repeat New Password`
+  String get repeatnewpassword {
+    return Intl.message(
+      'Repeat New Password',
+      name: 'repeatnewpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Old Password`
+  String get oldpassword {
+    return Intl.message(
+      'Old Password',
+      name: 'oldpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message(
+      'Address',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Children`
+  String get children {
+    return Intl.message(
+      'Children',
+      name: 'children',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cart`
+  String get cart {
+    return Intl.message(
+      'Cart',
+      name: 'cart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changepassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changepassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your payment cards`
+  String get yourpaymentcards {
+    return Intl.message(
+      'Your payment cards',
+      name: 'yourpaymentcards',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use as default payment method`
+  String get defaultpaymentmethod {
+    return Intl.message(
+      'Use as default payment method',
+      name: 'defaultpaymentmethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Child`
+  String get child {
+    return Intl.message(
+      'Child',
+      name: 'child',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADD`
+  String get add {
+    return Intl.message(
+      'ADD',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

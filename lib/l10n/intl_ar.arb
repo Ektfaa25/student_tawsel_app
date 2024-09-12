@@ -38,5 +38,19 @@
     "language": "اللغة",
     "privacyPolicy": "سياسة الخصوصية",
     "contactUs": "اتصل بنا",
-    "logOut": "تسجيل الخروج"
+    "logOut": "تسجيل الخروج",
+    "passwordchange": "تغيير كلمة المرور",
+    "savepassword": "حفظ كلمة المرور",
+    "forgetpassword": "نسيت كلمة المرور؟",
+    "newpassword": "كلمة المرور الجديدة",
+    "repeatnewpassword": "تكرار كلمة المرور الجديدة",
+    "oldpassword": "كلمة المرور القديمة",
+    "address": "العنوان",
+    "children": "أطفالي",
+    "cart": "السلة",
+    "changepassword": "تغيير كلمة المرور",
+    "yourpaymentcards": "بطاقات الدفع الخاصة بك",
+    "defaultpaymentmethod": "استخدام كطريقة الدفع الافتراضية",
+    "child": "الطفل",
+    "add": "اضافة"
 }

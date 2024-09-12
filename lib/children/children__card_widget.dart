@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:student_tawsel/homepage/student_class.dart';
-import 'package:student_tawsel/student_subject_page.dart';
+import 'package:student_tawsel/children/student_subject_page.dart';
 
 class MyChildrenCardWidget extends StatelessWidget {
   final int? itemssize;

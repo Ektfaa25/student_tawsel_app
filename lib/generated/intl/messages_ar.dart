@@ -22,14 +22,25 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add": MessageLookupByLibrary.simpleMessage("اضافة"),
         "addchild": MessageLookupByLibrary.simpleMessage("اضافة أطفال"),
+        "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "assignments": MessageLookupByLibrary.simpleMessage("الواجبات"),
         "attendance": MessageLookupByLibrary.simpleMessage("الحضور"),
         "btnfail": MessageLookupByLibrary.simpleMessage("رسوب"),
         "btnpass": MessageLookupByLibrary.simpleMessage("نجاح"),
+        "cart": MessageLookupByLibrary.simpleMessage("السلة"),
+        "changepassword":
+            MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
         "chat": MessageLookupByLibrary.simpleMessage("الدردشة"),
+        "child": MessageLookupByLibrary.simpleMessage("الطفل"),
+        "children": MessageLookupByLibrary.simpleMessage("أطفالي"),
         "contactUs": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
+        "defaultpaymentmethod": MessageLookupByLibrary.simpleMessage(
+            "استخدام كطريقة الدفع الافتراضية"),
         "exams": MessageLookupByLibrary.simpleMessage("الامتحانات"),
+        "forgetpassword":
+            MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "latestNotices": MessageLookupByLibrary.simpleMessage("آخر الإشعارات"),
         "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
@@ -40,15 +51,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuTeachers": MessageLookupByLibrary.simpleMessage("المدرسون"),
         "menuTimeTable": MessageLookupByLibrary.simpleMessage("الجدول الزمني"),
         "myChildren": MessageLookupByLibrary.simpleMessage("أطفالي"),
+        "newpassword":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "offline": MessageLookupByLibrary.simpleMessage("غير متصل"),
+        "oldpassword":
+            MessageLookupByLibrary.simpleMessage("كلمة المرور القديمة"),
         "online": MessageLookupByLibrary.simpleMessage("متصل"),
+        "passwordchange":
+            MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
         "paymentMethods": MessageLookupByLibrary.simpleMessage("طرق الدفع"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "profileEmail":
             MessageLookupByLibrary.simpleMessage("mohamed@gmail.com"),
         "profileName": MessageLookupByLibrary.simpleMessage("محمد"),
+        "repeatnewpassword":
+            MessageLookupByLibrary.simpleMessage("تكرار كلمة المرور الجديدة"),
         "results": MessageLookupByLibrary.simpleMessage("النتائج"),
+        "savepassword": MessageLookupByLibrary.simpleMessage("حفظ كلمة المرور"),
         "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
         "subjectAccount": MessageLookupByLibrary.simpleMessage("المحاسبة"),
         "subjectArabic": MessageLookupByLibrary.simpleMessage("العربية"),
@@ -62,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "teachers": MessageLookupByLibrary.simpleMessage("المعلمين"),
         "timeTable": MessageLookupByLibrary.simpleMessage("الجدول الزمني"),
         "tracking": MessageLookupByLibrary.simpleMessage("التتبع"),
-        "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل")
+        "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+        "yourpaymentcards":
+            MessageLookupByLibrary.simpleMessage("بطاقات الدفع الخاصة بك")
       };
 }

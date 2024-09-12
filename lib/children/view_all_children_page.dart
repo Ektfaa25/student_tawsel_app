@@ -4,7 +4,7 @@ import 'package:student_tawsel/children/children__card_widget.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/homepage/home_page.dart';
-import 'package:student_tawsel/settings_page.dart';
+import 'package:student_tawsel/settings/settings_page.dart';
 
 class ViewAllChildren extends StatelessWidget {
   final Function(Locale) onLocaleChange;

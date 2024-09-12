@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:student_tawsel/carousel_widget.dart';
 import 'package:student_tawsel/generated/l10n.dart';
-
-import 'package:student_tawsel/latest_notice_widget.dart';
+import 'package:student_tawsel/latestnotices/latest_notice_widget.dart';
 import 'package:student_tawsel/children/children__card_widget.dart';
-import 'package:student_tawsel/settings_page.dart';
-
-import 'package:student_tawsel/view_all_notices_page.dart';
+import 'package:student_tawsel/settings/payment_methods_page.dart';
+import 'package:student_tawsel/settings/settings_page.dart';
+import 'package:student_tawsel/latestnotices/view_all_notices_page.dart';
 import 'package:student_tawsel/children/view_all_children_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,6 +24,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 139,
+        flexibleSpace: const AppBarPic(),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(22),

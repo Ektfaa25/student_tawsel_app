@@ -38,7 +38,19 @@
     "language": "Language",
     "privacyPolicy": "Privacy Policy",
     "contactUs": "Contact Us",
-    "logOut": "Log Out"
-
-
+    "logOut": "Log Out",
+    "passwordchange": "Password Change",
+    "savepassword": "Save Password",
+    "forgetpassword": "Forget Password?",
+    "newpassword": "New Password",
+    "repeatnewpassword": "Repeat New Password",
+    "oldpassword": "Old Password",
+    "address": "Address",
+    "children": "Children",
+    "cart": "Cart",
+    "changepassword": "Change Password",
+    "yourpaymentcards": "Your payment cards",
+    "defaultpaymentmethod": "Use as default payment method",
+    "child": "Child",
+    "add": "ADD"
 }

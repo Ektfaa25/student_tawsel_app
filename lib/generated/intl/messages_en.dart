@@ -22,14 +22,25 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add": MessageLookupByLibrary.simpleMessage("ADD"),
         "addchild": MessageLookupByLibrary.simpleMessage("Add Child"),
+        "address": MessageLookupByLibrary.simpleMessage("Address"),
         "assignments": MessageLookupByLibrary.simpleMessage("Assignments"),
         "attendance": MessageLookupByLibrary.simpleMessage("Attendance"),
         "btnfail": MessageLookupByLibrary.simpleMessage("Fail"),
         "btnpass": MessageLookupByLibrary.simpleMessage("Pass"),
+        "cart": MessageLookupByLibrary.simpleMessage("Cart"),
+        "changepassword":
+            MessageLookupByLibrary.simpleMessage("Change Password"),
         "chat": MessageLookupByLibrary.simpleMessage("Chat"),
+        "child": MessageLookupByLibrary.simpleMessage("Child"),
+        "children": MessageLookupByLibrary.simpleMessage("Children"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact Us"),
+        "defaultpaymentmethod": MessageLookupByLibrary.simpleMessage(
+            "Use as default payment method"),
         "exams": MessageLookupByLibrary.simpleMessage("Exams"),
+        "forgetpassword":
+            MessageLookupByLibrary.simpleMessage("Forget Password?"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "latestNotices": MessageLookupByLibrary.simpleMessage("Latest Notices"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log Out"),
@@ -40,8 +51,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuTeachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "menuTimeTable": MessageLookupByLibrary.simpleMessage("Time Table"),
         "myChildren": MessageLookupByLibrary.simpleMessage("My Children"),
+        "newpassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "offline": MessageLookupByLibrary.simpleMessage("Offline"),
+        "oldpassword": MessageLookupByLibrary.simpleMessage("Old Password"),
         "online": MessageLookupByLibrary.simpleMessage("Online"),
+        "passwordchange":
+            MessageLookupByLibrary.simpleMessage("Password Change"),
         "paymentMethods":
             MessageLookupByLibrary.simpleMessage("Payment Methods"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
@@ -49,7 +64,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "profileEmail":
             MessageLookupByLibrary.simpleMessage("mohamed@gmail.com"),
         "profileName": MessageLookupByLibrary.simpleMessage("Mohamed"),
+        "repeatnewpassword":
+            MessageLookupByLibrary.simpleMessage("Repeat New Password"),
         "results": MessageLookupByLibrary.simpleMessage("Results"),
+        "savepassword": MessageLookupByLibrary.simpleMessage("Save Password"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "subjectAccount": MessageLookupByLibrary.simpleMessage("Account"),
         "subjectArabic": MessageLookupByLibrary.simpleMessage("Arabic"),
@@ -63,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),
         "timeTable": MessageLookupByLibrary.simpleMessage("Time Table"),
         "tracking": MessageLookupByLibrary.simpleMessage("Tracking"),
-        "viewAll": MessageLookupByLibrary.simpleMessage("View all")
+        "viewAll": MessageLookupByLibrary.simpleMessage("View all"),
+        "yourpaymentcards":
+            MessageLookupByLibrary.simpleMessage("Your payment cards")
       };
 }

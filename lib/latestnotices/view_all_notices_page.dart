@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/carousel_widget.dart';
 import 'package:student_tawsel/chat/chat.dart';
-
 import 'package:student_tawsel/generated/l10n.dart';
-
 import 'package:student_tawsel/homepage/home_page.dart';
-import 'package:student_tawsel/latest_notice_widget.dart';
+import 'package:student_tawsel/latestnotices/latest_notice_widget.dart';
 
 class ViewAllNotices extends StatelessWidget {
   const ViewAllNotices({super.key});
