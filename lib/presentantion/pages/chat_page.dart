@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:student_tawsel/convo_page.dart';
+import 'package:student_tawsel/presentantion/pages/convo_page.dart';
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/homepage/tacher_class.dart';
+import 'package:student_tawsel/tacher_class.dart';
 
-class Chat extends StatelessWidget {
-  const Chat({
+class ChatPage extends StatelessWidget {
+  const ChatPage({
     super.key,
   });
 
@@ -62,7 +62,7 @@ class Chat extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Conversation(
+                            builder: (context) => ConversationPage(
                               name: teacherData[index].name,
                               profession: teacherData[index].profession,
                             ),

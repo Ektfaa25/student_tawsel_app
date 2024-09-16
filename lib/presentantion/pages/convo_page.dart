@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/chat/chatbubble.dart';
-import 'package:student_tawsel/homepage/home_page.dart';
+import 'package:student_tawsel/presentantion/widgets/chatbubble_widget.dart';
+import 'package:student_tawsel/presentantion/pages/home_page.dart';
 
-class Conversation extends StatelessWidget {
+class ConversationPage extends StatelessWidget {
   final String name;
   final String profession;
 
-  const Conversation({
+  const ConversationPage({
     super.key,
     required this.name,
     required this.profession,
@@ -75,11 +75,11 @@ class Conversation extends StatelessWidget {
                 Expanded(
                   child: ListView(
                     children: const [
-                      ChatBubble(
+                      ChatBubbleWidget(
                         message: "Hello MR Adel",
                         isSentByMe: true,
                       ),
-                      ChatBubble(
+                      ChatBubbleWidget(
                         message: "Hello Sir",
                         isSentByMe: false,
                       ),

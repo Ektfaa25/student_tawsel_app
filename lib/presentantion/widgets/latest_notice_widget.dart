@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/homepage/tacher_class.dart';
+import 'package:student_tawsel/tacher_class.dart';
 
-class LatestNoticesCard extends StatelessWidget {
-  const LatestNoticesCard({super.key, this.itemssize});
+class LatestNoticesCardWidget extends StatelessWidget {
+  const LatestNoticesCardWidget({super.key, this.itemssize});
   final int? itemssize;
 
   _getCardcount() {

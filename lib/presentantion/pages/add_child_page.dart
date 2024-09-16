@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/homepage/home_page.dart';
+import 'package:student_tawsel/presentantion/pages/home_page.dart';
+import 'package:student_tawsel/presentantion/widgets/add_button_widget.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 
-import 'package:student_tawsel/settings/children_page.dart';
-import 'package:student_tawsel/settings/payment_methods_page.dart';
+import 'package:student_tawsel/presentantion/pages/children_page.dart';
+import 'package:student_tawsel/presentantion/pages/payment_methods_page.dart';
 
 class AddChildPage extends StatefulWidget {
   const AddChildPage({super.key});
@@ -39,7 +41,7 @@ class _AddChildPageState extends State<AddChildPage> {
           ),
         ),
         centerTitle: true,
-        flexibleSpace: const AppBarPic(),
+        flexibleSpace: const AppBarBackGroundWidget(),
         backgroundColor: const Color(0xff182243),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -126,55 +128,12 @@ class _AddChildPageState extends State<AddChildPage> {
             )),
 
             //add button
-            AddButton(
+            AddButtonWidget(
                 nameController: nameController,
                 idController: idController,
                 selectedLevel: selectedLevel),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class AddButton extends StatelessWidget {
-  const AddButton({
-    super.key,
-    required this.nameController,
-    required this.idController,
-    required this.selectedLevel,
-  });
-
-  final TextEditingController nameController;
-  final TextEditingController idController;
-  final String? selectedLevel;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 61,
-      width: 300,
-      decoration: const BoxDecoration(
-        color: Color(0xff182243),
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      margin: const EdgeInsets.only(top: 42, left: 48, right: 48, bottom: 20),
-      child: TextButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ChildrenScreen()),
-          );
-        },
-        child: Text(S.of(context).add,
-            style: const TextStyle(
-              fontFamily: "Inter",
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            )),
       ),
     );
   }

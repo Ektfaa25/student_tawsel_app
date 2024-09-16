@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:student_tawsel/homepage/student_class.dart';
-import 'package:student_tawsel/children/student_subject_page.dart';
+import 'package:student_tawsel/student_class.dart';
+import 'package:student_tawsel/presentantion/pages/student_subject_page.dart';
 
 class MyChildrenCardWidget extends StatelessWidget {
   final int? itemssize;
- 
 
   const MyChildrenCardWidget({
     super.key,
     this.itemssize,
-   
   });
 
   int _getCardCount() {
@@ -39,7 +37,7 @@ class MyChildrenCardWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => StudentSubject(student:student),
+                  builder: (context) => StudentSubjectPage(student: student),
                 ),
               );
             },

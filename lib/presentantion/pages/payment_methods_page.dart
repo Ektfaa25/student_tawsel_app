@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/generated/l10n.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 
-import 'package:student_tawsel/settings/visa_card_widget.dart';
-import 'package:student_tawsel/settings/master_card_widget.dart';
+import 'package:student_tawsel/presentantion/widgets/visa_card_widget.dart';
+import 'package:student_tawsel/presentantion/widgets/master_card_widget.dart';
 
 class PaymentMethodsPage extends StatelessWidget {
   const PaymentMethodsPage({super.key});
@@ -13,7 +14,7 @@ class PaymentMethodsPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 139,
-        flexibleSpace: const AppBarPic(),
+        flexibleSpace: const AppBarBackGroundWidget(),
         title: Text(
           S.of(context).paymentMethods,
           style: const TextStyle(
@@ -88,27 +89,6 @@ class PaymentMethodsPage extends StatelessWidget {
         shape: const CircleBorder(),
         child: const Icon(Icons.add, color: Colors.white),
       ),
-    );
-  }
-}
-
-class AppBarPic extends StatelessWidget {
-  const AppBarPic({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Positioned(
-          right: 0,
-          top: 0,
-          child: Image.asset(
-            "assets/pngtreeabstractbluepastelblob.png",
-            height: 200,
-          ),
-        ),
-      ],
     );
   }
 }

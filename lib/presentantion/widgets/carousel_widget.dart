@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/data.dart';
+import 'package:student_tawsel/image_class.dart';
+
 
 class CarouselWidget extends StatefulWidget {
   const CarouselWidget({super.key});

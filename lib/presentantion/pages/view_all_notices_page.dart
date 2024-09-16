@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/carousel_widget.dart';
-import 'package:student_tawsel/children/children__card_widget.dart';
+import 'package:student_tawsel/presentantion/pages/chat_page.dart';
+import 'package:student_tawsel/presentantion/widgets/carousel_widget.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/homepage/home_page.dart';
-import 'package:student_tawsel/settings/settings_page.dart';
+import 'package:student_tawsel/presentantion/pages/home_page.dart';
+import 'package:student_tawsel/presentantion/widgets/latest_notice_widget.dart';
 
-class ViewAllChildren extends StatelessWidget {
-  final Function(Locale) onLocaleChange;
-  const ViewAllChildren({super.key, required this.onLocaleChange});
+class ViewAllNoticesPage extends StatelessWidget {
+  const ViewAllNoticesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +26,10 @@ class ViewAllChildren extends StatelessWidget {
         elevation: 0,
         title: const AppBarUserContent(),
         actions: [
-          IconButton(
-              padding: const EdgeInsets.all(19),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SettingsPage(
-                    onLocaleChange: onLocaleChange,
-                  );
-                }));
-              },
-              icon: Image.asset("assets/icon _settings_.png")),
+          Padding(
+            padding: const EdgeInsets.all(19),
+            child: Image.asset("assets/icon _settings_.png"),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -48,14 +41,21 @@ class ViewAllChildren extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(
                   left: 17, right: 27, top: 24, bottom: 13),
-              child: Text(S.of(context).myChildren,
+              child: Text(S.of(context).latestNotices,
                   style: const TextStyle(
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w700,
                       fontSize: 20,
                       color: Colors.black)),
             ),
-            GestureDetector(child: const MyChildrenCardWidget()),
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ChatPage()),
+                  );
+                },
+                child: const LatestNoticesCardWidget()),
           ],
         ),
       ),

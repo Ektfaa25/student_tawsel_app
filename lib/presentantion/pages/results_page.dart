@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/presentantion/widgets/exam_list_widget.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
 
-import 'package:student_tawsel/result/result_data.dart';
+import 'package:student_tawsel/exam_class.dart';
 
 class ResultsPage extends StatefulWidget {
   const ResultsPage({
@@ -69,10 +70,10 @@ class _ResultsPageState extends State<ResultsPage> {
                 });
               },
               children: [
-                ExamListPage(
+                ExamListWidget(
                   exams: passExams,
                 ),
-                ExamListPage(
+                ExamListWidget(
                   exams: failExams,
                 ),
               ],
@@ -125,37 +126,6 @@ class _ResultsPageState extends State<ResultsPage> {
                       )),
                 ),
               ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ExamListPage extends StatelessWidget {
-  final List<Exam> exams;
-
-  const ExamListPage({
-    super.key,
-    required this.exams,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: exams.length,
-              itemBuilder: (context, index) {
-                return ExamCardWidget(
-                  exam: exams[index],
-                );
-              },
             ),
           ),
         ],

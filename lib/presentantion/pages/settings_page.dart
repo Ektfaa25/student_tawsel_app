@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/settings/add_child_page.dart';
-import 'package:student_tawsel/settings/payment_methods_page.dart';
-import 'package:student_tawsel/settings/profile_page.dart';
+import 'package:student_tawsel/presentantion/pages/add_child_page.dart';
+import 'package:student_tawsel/presentantion/pages/payment_methods_page.dart';
+import 'package:student_tawsel/presentantion/pages/profile_page.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 
 class SettingsPage extends StatefulWidget {
   final Function(Locale) onLocaleChange;
@@ -21,7 +22,7 @@ class _SettingsPageState extends State<SettingsPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 139,
-        flexibleSpace: const AppBarPic(),
+        flexibleSpace: const AppBarBackGroundWidget(),
         backgroundColor: const Color(0xff182243),
         automaticallyImplyLeading: false,
         title: Text(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ChatBubble extends StatelessWidget {
+class ChatBubbleWidget extends StatelessWidget {
   final String message;
   final bool isSentByMe;
 
-  const ChatBubble({
+  const ChatBubbleWidget({
     super.key,
     required this.message,
     required this.isSentByMe,

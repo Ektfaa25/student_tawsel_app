@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/homepage/home_page.dart';
-import 'package:student_tawsel/settings/children_page.dart';
-import 'package:student_tawsel/settings/password_change_widget.dart';
+import 'package:student_tawsel/presentantion/pages/home_page.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
+import 'package:student_tawsel/presentantion/pages/children_page.dart';
+import 'package:student_tawsel/presentantion/widgets/password_change_widget.dart';
 
-import 'package:student_tawsel/settings/payment_methods_page.dart';
+import 'package:student_tawsel/presentantion/pages/payment_methods_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -15,7 +16,7 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           toolbarHeight: 139,
-          flexibleSpace: const AppBarPic(),
+          flexibleSpace: const AppBarBackGroundWidget(),
           backgroundColor: const Color(0xff182243),
           automaticallyImplyLeading: false,
           title: const AppBarUserContent(),
@@ -40,7 +41,7 @@ class ProfilePage extends StatelessWidget {
               title: S.of(context).children,
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const ChildrenScreen();
+                  return const ChildrenPage();
                 }));
               },
             ),

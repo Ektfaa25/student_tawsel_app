@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/carousel_widget.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
+import 'package:student_tawsel/presentantion/widgets/carousel_widget.dart';
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/latestnotices/latest_notice_widget.dart';
-import 'package:student_tawsel/children/children__card_widget.dart';
-import 'package:student_tawsel/settings/payment_methods_page.dart';
-import 'package:student_tawsel/settings/settings_page.dart';
-import 'package:student_tawsel/latestnotices/view_all_notices_page.dart';
-import 'package:student_tawsel/children/view_all_children_page.dart';
+import 'package:student_tawsel/presentantion/widgets/latest_notice_widget.dart';
+import 'package:student_tawsel/presentantion/widgets/children__card_widget.dart';
+import 'package:student_tawsel/presentantion/pages/payment_methods_page.dart';
+import 'package:student_tawsel/presentantion/pages/settings_page.dart';
+import 'package:student_tawsel/presentantion/pages/view_all_notices_page.dart';
+import 'package:student_tawsel/presentantion/pages/view_all_children_page.dart';
 
 class HomePage extends StatefulWidget {
   final Function(Locale) onLocaleChange;
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         toolbarHeight: 139,
-        flexibleSpace: const AppBarPic(),
+        flexibleSpace: const AppBarBackGroundWidget(),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(22),
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> {
               itemssize: 2,
             ),
             const LatestNoticesLine(),
-            const LatestNoticesCard(itemssize: 2),
+            const LatestNoticesCardWidget(itemssize: 2),
           ],
         ),
       ),
@@ -181,7 +182,7 @@ class MyChildrenLine extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ViewAllChildren(
+                return ViewAllChildrenPage(
                   onLocaleChange: onLocaleChange,
                 );
               }));
@@ -227,7 +228,7 @@ class LatestNoticesLine extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const ViewAllNotices();
+                return const ViewAllNoticesPage();
               }));
             },
             child: Text(S.of(context).viewAll,
