@@ -37,7 +37,10 @@ class MyChildrenCardWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => StudentSubjectPage(student: student),
+                  builder: (context) => StudentSubjectPage(
+                    student: student.name,
+                    subject: '',
+                  ),
                 ),
               );
             },

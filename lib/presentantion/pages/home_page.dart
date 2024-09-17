@@ -4,7 +4,6 @@ import 'package:student_tawsel/presentantion/widgets/carousel_widget.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/widgets/latest_notice_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/children__card_widget.dart';
-import 'package:student_tawsel/presentantion/pages/payment_methods_page.dart';
 import 'package:student_tawsel/presentantion/pages/settings_page.dart';
 import 'package:student_tawsel/presentantion/pages/view_all_notices_page.dart';
 import 'package:student_tawsel/presentantion/pages/view_all_children_page.dart';

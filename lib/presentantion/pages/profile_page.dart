@@ -5,7 +5,6 @@ import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.
 import 'package:student_tawsel/presentantion/pages/children_page.dart';
 import 'package:student_tawsel/presentantion/widgets/password_change_widget.dart';
 
-import 'package:student_tawsel/presentantion/pages/payment_methods_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

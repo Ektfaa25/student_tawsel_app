@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/presentantion/widgets/button_selection_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/exam_card_widget.dart';
-import 'package:student_tawsel/exam_class.dart';
 
 class ExamsOnlinePage extends StatelessWidget {
   const ExamsOnlinePage({super.key});
@@ -33,17 +31,20 @@ class ExamsOnlinePage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color(0xff182243),
       ),
-      body: Column(
+      body: const Column(
         children: [
-          ButtonSelectionWidget(
-            btnSelectone: "Offline",
-            btnSelecttwo: "Online",
-            isSelectedfirst: false,
-          ),
-          const SizedBox(
+          // ButtonSelectionWidget(
+
+          //   btnSelectone: S.of(context).offline,
+          //   btnSelecttwo: S.of(context).online,
+          //   isSelectedfirst: false,
+
+          //   subject: "",
+          // ),
+          SizedBox(
             height: 26,
           ),
-          const ExamCardWidget(),
+          ExamCardWidget(),
         ],
       ),
     );

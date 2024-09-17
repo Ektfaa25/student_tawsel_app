@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 
+import 'package:student_tawsel/presentantion/pages/announcements_page.dart';
+import 'package:student_tawsel/presentantion/pages/tracking_page.dart';
+import 'package:student_tawsel/presentantion/pages/videos_page.dart';
+import 'package:student_tawsel/student_class.dart';
+
 class ButtonSelectionWidget extends StatelessWidget {
+  final String student;
+
+  final String subject;
   final String btnSelectone;
   final String btnSelecttwo;
   bool isSelectedfirst = false;
 
   ButtonSelectionWidget({
-    Key? key,
+    super.key,
     required this.btnSelectone,
     required this.btnSelecttwo,
     required this.isSelectedfirst,
-  }) : super(key: key);
+    required this.student,
+    required this.subject,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +29,7 @@ class ButtonSelectionWidget extends StatelessWidget {
         width: 151,
         height: 56,
         margin: const EdgeInsets.all(15),
-        child: ElevatedButton(
+        child: TextButton(
             style: ButtonStyle(
               shape: WidgetStatePropertyAll(
                 RoundedRectangleBorder(
@@ -44,36 +54,74 @@ class ButtonSelectionWidget extends StatelessWidget {
                       isSelectedfirst ? Colors.white : const Color(0xff3F3D3D),
                 ))),
       ),
-      Container(
-        width: 151,
+      SizedBox(
+        width: 160,
         height: 56,
-        margin: const EdgeInsets.all(8),
-        child: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: isSelectedfirst
-                  ? const WidgetStatePropertyAll(Colors.white)
-                  : const WidgetStatePropertyAll(Color(0xff182243)),
-              shape: WidgetStatePropertyAll(
-                RoundedRectangleBorder(
-                  side: BorderSide(
-                    color: isSelectedfirst
-                        ? const Color(0xff182243)
-                        : Colors.transparent,
-                  ),
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+        child: TextButton(
+          style: ButtonStyle(
+            backgroundColor: isSelectedfirst
+                ? const WidgetStatePropertyAll(Colors.white)
+                : const WidgetStatePropertyAll(Color(0xff182243)),
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(
+                side: BorderSide(
+                  width: 1.5,
+                  color: isSelectedfirst
+                      ? const Color(0xff182243)
+                      : Colors.transparent,
                 ),
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
               ),
             ),
-            onPressed: () {},
-            child: Text(
-              btnSelecttwo,
-              style: TextStyle(
-                fontFamily: "Inter",
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: isSelectedfirst ? const Color(0xff3F3D3D) : Colors.white,
-              ),
-            )),
+          ),
+          onPressed: () {
+            switch (btnSelecttwo) {
+              case "Submitted":
+                break;
+              case "Online":
+                break;
+              case "Announcements":
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AnnouncementsPage(
+                              subject: subject,
+                              student: student,
+                            )));
+                break;
+              case "Videos":
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => VideosPage(
+                              subject: subject,
+                              student: student,
+                            )));
+                break;
+
+              case "Tracking":
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TrackingPage(
+                              subject: subject,
+                              student: student,
+                            )));
+                break;
+
+              default:
+            }
+          },
+          child: Text(
+            btnSelecttwo,
+            style: TextStyle(
+              fontFamily: "Inter",
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: isSelectedfirst ? const Color(0xff3F3D3D) : Colors.white,
+            ),
+          ),
+        ),
       ),
     ]);
   }

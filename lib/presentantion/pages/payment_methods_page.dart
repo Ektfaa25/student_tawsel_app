@@ -59,7 +59,7 @@ class PaymentMethodsPage extends StatelessWidget {
                 Text(S.of(context).defaultpaymentmethod,
                     style: const TextStyle(
                         fontFamily: "Tajawal",
-                        color: const Color(0xff222222),
+                        color: Color(0xff222222),
                         fontSize: 14)),
               ],
             ),

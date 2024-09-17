@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/popup_menu_data.dart';
 import 'package:student_tawsel/presentantion/pages/assignments_page.dart';
 import 'package:student_tawsel/presentantion/pages/attendance_page.dart';
 import 'package:student_tawsel/presentantion/pages/exams_online_page.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/pages/home_page.dart';
+import 'package:student_tawsel/presentantion/pages/student_subject_chapters_page.dart';
 import 'package:student_tawsel/presentantion/widgets/button_selection_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/pop_up_menu_widget.dart';
 import 'package:student_tawsel/student_class.dart';
@@ -12,43 +14,16 @@ import 'package:student_tawsel/presentantion/pages/teachers_page.dart';
 import 'package:student_tawsel/presentantion/pages/time_table_page.dart';
 
 class StudentSubjectPage extends StatelessWidget {
-  StudentSubjectPage({
+  const StudentSubjectPage({
     super.key,
     required this.student,
+    required this.subject,
   });
-  final Student student;
-  final List<String> images = [
-    "assets/science.png",
-    "assets/english.png",
-    "assets/arabic.png",
-    "assets/math.png",
-    "assets/drawing.png",
-    "assets/computer.png",
-    "assets/account.png",
-    "assets/math2.png",
-    "assets/french.png",
-  ];
-
-  final List<String> menuImgs = [
-    "assets/icongroup.png",
-    "assets/ icon _iris scan_.png",
-    "assets/ icon _book stack_.png",
-    "assets/icon _alarm_.png",
-    "assets/ icon _page edit_.png",
-    "assets/icon _printer alt_.png",
-  ];
+  final String student;
+  final String subject;
 
   @override
   Widget build(BuildContext context) {
-    final List<String> menuItems = [
-      S.of(context).menuTeachers,
-      S.of(context).menuAttendance,
-      S.of(context).menuAssignments,
-      S.of(context).menuTimeTable,
-      S.of(context).menuExams,
-      S.of(context).menuResults,
-    ];
-
     final List<String> subjects = [
       S.of(context).subjectScience,
       S.of(context).subjectEnglish,
@@ -60,6 +35,7 @@ class StudentSubjectPage extends StatelessWidget {
       S.of(context).subjectMath,
       S.of(context).subjectFrench,
     ];
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -79,7 +55,7 @@ class StudentSubjectPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                student.name,
+                student,
                 style: const TextStyle(
                   fontFamily: "Inter",
                   fontWeight: FontWeight.bold,
@@ -91,15 +67,17 @@ class StudentSubjectPage extends StatelessWidget {
           ],
         ),
         actions: [
-          PopUpMenuWidget(menuItems: menuItems, menuImgs: menuImgs),
+          PopUpMenuWidget(menuItems: menuItems(context), menuImgs: menuImgs),
         ],
       ),
       body: Column(
         children: [
           ButtonSelectionWidget(
+            student: student,
+            subject: subject,
             isSelectedfirst: true,
-            btnSelectone: 'Subjects',
-            btnSelecttwo: 'Tracking',
+            btnSelectone: S.of(context).subjects,
+            btnSelecttwo: S.of(context).tracking,
           ),
           const SizedBox(height: 68),
           Expanded(
@@ -111,7 +89,13 @@ class StudentSubjectPage extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
-                    print("subject pressde");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StudentSubjectChaptersPage(
+                                  subject: subjects[index],
+                                  student: student,
+                                )));
                   },
                   child: Column(
                     children: [

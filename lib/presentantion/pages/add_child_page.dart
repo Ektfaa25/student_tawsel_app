@@ -4,8 +4,6 @@ import 'package:student_tawsel/presentantion/pages/home_page.dart';
 import 'package:student_tawsel/presentantion/widgets/add_button_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 
-import 'package:student_tawsel/presentantion/pages/children_page.dart';
-import 'package:student_tawsel/presentantion/pages/payment_methods_page.dart';
 
 class AddChildPage extends StatefulWidget {
   const AddChildPage({super.key});
@@ -166,7 +164,7 @@ Widget _createformfield({
               fontSize: 12, fontFamily: "Tajawal", color: Color(0xff9B9B9B)),
           labelText: label,
           suffixIcon:
-              label == "Phone" ? null : Icon(Icons.check, color: Colors.green),
+              label == "Phone" ? null : const Icon(Icons.check, color: Colors.green),
           border: const OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.all(
