@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/presentantion/pages/chat_page.dart';
+import 'package:student_tawsel/presentantion/pages/settings_page.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_user_content_wodget.dart';
 import 'package:student_tawsel/presentantion/widgets/carousel_widget.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/pages/home_page.dart';
 import 'package:student_tawsel/presentantion/widgets/latest_notice_widget.dart';
 
+// this page is for viewing all notices
 class ViewAllNoticesPage extends StatelessWidget {
-  const ViewAllNoticesPage({super.key});
+  final Function(Locale) onLocaleChange;
+  const ViewAllNoticesPage({super.key, required this.onLocaleChange});
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +28,18 @@ class ViewAllNoticesPage extends StatelessWidget {
         ),
         backgroundColor: const Color(0xff182243),
         elevation: 0,
-        title: const AppBarUserContent(),
+        title: const AppBarUserContentWidget(),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(19),
-            child: Image.asset("assets/icon _settings_.png"),
-          ),
+          IconButton(
+              padding: const EdgeInsets.all(19),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SettingsPage(
+                    onLocaleChange: onLocaleChange,
+                  );
+                }));
+              },
+              icon: Image.asset("assets/icon _settings_.png")),
         ],
       ),
       body: SingleChildScrollView(
@@ -37,6 +47,7 @@ class ViewAllNoticesPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //this widget is for the carousel that dispalys images
             const CarouselWidget(),
             Padding(
               padding: const EdgeInsets.only(
@@ -55,6 +66,7 @@ class ViewAllNoticesPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const ChatPage()),
                   );
                 },
+                //this widget is for the latest notices list
                 child: const LatestNoticesCardWidget()),
           ],
         ),

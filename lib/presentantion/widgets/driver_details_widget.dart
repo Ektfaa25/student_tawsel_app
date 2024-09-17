@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/presentantion/pages/home_page.dart';
+import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 
 class DriverDetailsWidget extends StatelessWidget {
   const DriverDetailsWidget({super.key});

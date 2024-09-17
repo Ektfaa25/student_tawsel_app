@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_user_content_wodget.dart';
 import 'package:student_tawsel/presentantion/widgets/carousel_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/children__card_widget.dart';
 
@@ -6,6 +7,7 @@ import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/pages/home_page.dart';
 import 'package:student_tawsel/presentantion/pages/settings_page.dart';
 
+// this page is for viewing all children
 class ViewAllChildrenPage extends StatelessWidget {
   final Function(Locale) onLocaleChange;
   const ViewAllChildrenPage({super.key, required this.onLocaleChange});
@@ -25,7 +27,7 @@ class ViewAllChildrenPage extends StatelessWidget {
         ),
         backgroundColor: const Color(0xff182243),
         elevation: 0,
-        title: const AppBarUserContent(),
+        title: const AppBarUserContentWidget(),
         actions: [
           IconButton(
               padding: const EdgeInsets.all(19),
@@ -44,6 +46,7 @@ class ViewAllChildrenPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //this widget is for the carousel that dispalys images
             const CarouselWidget(),
             Padding(
               padding: const EdgeInsets.only(
@@ -55,7 +58,8 @@ class ViewAllChildrenPage extends StatelessWidget {
                       fontSize: 20,
                       color: Colors.black)),
             ),
-            GestureDetector(child: const MyChildrenCardWidget()),
+//this widget is for the children cards
+            const MyChildrenCardWidget(),
           ],
         ),
       ),

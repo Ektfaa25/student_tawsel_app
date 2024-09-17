@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/presentantion/pages/home_page.dart';
+import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/driver_details_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/live_location_tracking_widget.dart';
 

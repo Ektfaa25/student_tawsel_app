@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/pages/home_page.dart';
+import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/button_selection_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/live_location_tracking_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/pop_up_menu_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/trips_widget.dart';
-
 
 class TrackingPage extends StatelessWidget {
   final String student;
@@ -69,7 +69,7 @@ class TrackingPage extends StatelessWidget {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             ButtonSelectionWidget(
-                btnSelectone: "Chapters",
+                btnSelectone: "Subjects",
                 btnSelecttwo: "Tracking",
                 isSelectedfirst: false,
                 student: student,

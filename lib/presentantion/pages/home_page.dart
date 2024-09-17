@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_user_content_wodget.dart';
 import 'package:student_tawsel/presentantion/widgets/carousel_widget.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/widgets/latest_notice_widget.dart';
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: const Color(0xff182243),
         elevation: 0,
-        title: const AppBarUserContent(),
+        title: const AppBarUserContentWidget(),
         actions: [
           IconButton(
               padding: const EdgeInsets.all(19),
@@ -50,14 +51,19 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            //this widget is for the carousel that dispalys images
             const CarouselWidget(),
             MyChildrenLine(
               onLocaleChange: widget.onLocaleChange,
             ),
+            //this widget is for the children cards
             const MyChildrenCardWidget(
               itemssize: 2,
             ),
-            const LatestNoticesLine(),
+            LatestNoticesLine(
+              onLocaleChange: widget.onLocaleChange,
+            ),
+            //this widget is for the latest notices list
             const LatestNoticesCardWidget(itemssize: 2),
           ],
         ),
@@ -70,84 +76,6 @@ class _HomePageState extends State<HomePage> {
         child: Image.asset("assets/icon _chat_lines_.png",
             width: 32, height: 35, fit: BoxFit.cover),
       ),
-    );
-  }
-}
-
-class AppBarUserContent extends StatefulWidget {
-  const AppBarUserContent({
-    super.key,
-  });
-
-  @override
-  State<AppBarUserContent> createState() => _AppBarUserContentState();
-}
-
-class _AppBarUserContentState extends State<AppBarUserContent> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const AvatarWidget(),
-        const SizedBox(width: 13),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              S.of(context).profileName,
-              style: const TextStyle(
-                fontFamily: "Inter",
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: Colors.white,
-              ),
-            ),
-            Text(
-              S.of(context).profileEmail,
-              style: const TextStyle(
-                fontFamily: "Inter",
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-class AvatarWidget extends StatelessWidget {
-  const AvatarWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          width: 96,
-          height: 92,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: Colors.white,
-              width: 2,
-            ),
-          ),
-        ),
-        ClipOval(
-          child: Container(
-            color: Colors.grey[300],
-            child: Image.asset("assets/smiling-face-of-a-child-2 1.png",
-                width: 75, height: 77, fit: BoxFit.contain),
-          ),
-        ),
-      ],
     );
   }
 }
@@ -201,8 +129,10 @@ class MyChildrenLine extends StatelessWidget {
 }
 
 class LatestNoticesLine extends StatelessWidget {
+  final Function(Locale) onLocaleChange;
   const LatestNoticesLine({
     super.key,
+    required this.onLocaleChange,
   });
 
   @override
@@ -227,7 +157,9 @@ class LatestNoticesLine extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const ViewAllNoticesPage();
+                return ViewAllNoticesPage(
+                  onLocaleChange: onLocaleChange,
+                );
               }));
             },
             child: Text(S.of(context).viewAll,

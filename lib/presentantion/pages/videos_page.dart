@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/pages/home_page.dart';
+import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/button_selection_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/pop_up_menu_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/video_card_widget.dart';

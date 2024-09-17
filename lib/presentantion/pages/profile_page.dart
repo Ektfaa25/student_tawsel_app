@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/presentantion/pages/home_page.dart';
 import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/presentantion/pages/children_page.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_user_content_wodget.dart';
 import 'package:student_tawsel/presentantion/widgets/password_change_widget.dart';
-
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -18,7 +17,7 @@ class ProfilePage extends StatelessWidget {
           flexibleSpace: const AppBarBackGroundWidget(),
           backgroundColor: const Color(0xff182243),
           automaticallyImplyLeading: false,
-          title: const AppBarUserContent(),
+          title: const AppBarUserContentWidget(),
           centerTitle: true,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(

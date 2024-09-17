@@ -3,6 +3,7 @@ import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/pages/home_page.dart';
 import 'package:student_tawsel/presentantion/widgets/add_button_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
+import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 
 
 class AddChildPage extends StatefulWidget {

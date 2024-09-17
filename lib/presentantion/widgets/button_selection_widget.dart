@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:student_tawsel/presentantion/pages/announcements_page.dart';
+import 'package:student_tawsel/presentantion/pages/student_subject_chapters_page.dart';
+import 'package:student_tawsel/presentantion/pages/student_subject_page.dart';
 import 'package:student_tawsel/presentantion/pages/tracking_page.dart';
 import 'package:student_tawsel/presentantion/pages/videos_page.dart';
 import 'package:student_tawsel/student_class.dart';
@@ -44,7 +46,37 @@ class ButtonSelectionWidget extends StatelessWidget {
                   ? const WidgetStatePropertyAll(Color(0xff182243))
                   : const WidgetStatePropertyAll(Colors.white),
             ),
-            onPressed: () {},
+            onPressed: () {
+              switch (btnSelectone) {
+                case "Assigned":
+                  break;
+                case "Offline":
+                  break;
+                case "Chapters":
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => StudentSubjectChaptersPage(
+                                subject: subject,
+                                student: student,
+                              )));
+                  break;
+                case "Files":
+                  break;
+
+                case "Subjects":
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => StudentSubjectPage(
+                                subject: subject,
+                                student: student,
+                              )));
+                  break;
+
+                default:
+              }
+            },
             child: Text(btnSelectone,
                 style: TextStyle(
                   fontFamily: "Inter",

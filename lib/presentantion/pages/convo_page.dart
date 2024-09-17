@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/chatbubble_widget.dart';
-import 'package:student_tawsel/presentantion/pages/home_page.dart';
 
 class ConversationPage extends StatelessWidget {
   final String name;
