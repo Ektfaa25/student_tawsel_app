@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/popup_menu_data.dart';
-import 'package:student_tawsel/presentantion/pages/home_page.dart';
 import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
-import 'package:student_tawsel/presentantion/widgets/button_selection_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/chapter_details_cards_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/pop_up_menu_widget.dart';
-import 'package:student_tawsel/student_class.dart';
 
 class AnnouncementAssignmentPage extends StatelessWidget {
   final String subject;

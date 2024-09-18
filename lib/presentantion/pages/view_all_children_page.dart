@@ -4,7 +4,6 @@ import 'package:student_tawsel/presentantion/widgets/carousel_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/children__card_widget.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/presentantion/pages/home_page.dart';
 import 'package:student_tawsel/presentantion/pages/settings_page.dart';
 
 // this page is for viewing all children

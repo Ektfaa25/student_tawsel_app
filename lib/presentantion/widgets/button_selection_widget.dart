@@ -5,7 +5,6 @@ import 'package:student_tawsel/presentantion/pages/student_subject_chapters_page
 import 'package:student_tawsel/presentantion/pages/student_subject_page.dart';
 import 'package:student_tawsel/presentantion/pages/tracking_page.dart';
 import 'package:student_tawsel/presentantion/pages/videos_page.dart';
-import 'package:student_tawsel/student_class.dart';
 
 class ButtonSelectionWidget extends StatelessWidget {
   final String student;
@@ -13,7 +12,7 @@ class ButtonSelectionWidget extends StatelessWidget {
   final String subject;
   final String btnSelectone;
   final String btnSelecttwo;
-  bool isSelectedfirst = false;
+  final bool isSelectedfirst;
 
   ButtonSelectionWidget({
     super.key,

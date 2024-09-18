@@ -5,7 +5,6 @@ import 'package:student_tawsel/presentantion/widgets/app_bar_user_content_wodget
 import 'package:student_tawsel/presentantion/widgets/carousel_widget.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/presentantion/pages/home_page.dart';
 import 'package:student_tawsel/presentantion/widgets/latest_notice_widget.dart';
 
 // this page is for viewing all notices

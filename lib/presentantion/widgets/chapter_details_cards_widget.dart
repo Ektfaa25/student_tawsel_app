@@ -31,7 +31,7 @@ class ChapterDetailsCardsWidget extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      AnnouncementAssignmentPage(
+                                      const AnnouncementAssignmentPage(
                                         subject: "",
                                         student: "",
                                       )))

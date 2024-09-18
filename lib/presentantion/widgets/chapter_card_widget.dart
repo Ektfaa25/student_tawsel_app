@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/chapter_data.dart';
 import 'package:student_tawsel/presentantion/pages/student_subject_chapter_details_page.dart';
-import 'package:student_tawsel/student_class.dart';
 
 class ChapterCardWidget extends StatelessWidget {
   final String student;
@@ -35,7 +34,7 @@ class ChapterCardWidget extends StatelessWidget {
             height: 117,
             child: Card(
                 elevation: 4,
-                margin: EdgeInsets.all(2),
+                margin: const EdgeInsets.all(2),
                 color: const Color(0xffF6F6F6),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
