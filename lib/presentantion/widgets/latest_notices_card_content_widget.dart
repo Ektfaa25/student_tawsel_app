@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/core/theme/app_pallete.dart';
 
 class LatestNoticesCardContentWidget extends StatelessWidget {
   final String name;
@@ -17,7 +18,7 @@ class LatestNoticesCardContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color(0xffF6F6F6),
+      color: AppPallete.secondaryColor,
       margin: const EdgeInsets.only(
         left: 18,
         right: 19,
@@ -36,45 +37,35 @@ class LatestNoticesCardContentWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  name,
-                  style: const TextStyle(
-                    fontFamily: "Inter",
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                Text(name,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: const Color(0xff2D2828),
+                        )),
                 const SizedBox(height: 8),
-                Text(
-                  '$profession\n$additionalInfo',
-                  style: const TextStyle(
-                    fontFamily: "Inter",
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+                Text('$profession\n$additionalInfo',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.w400,
+                        )),
               ],
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Message',
-                  style: TextStyle(
-                    fontFamily: "Inter",
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                    decoration: TextDecoration.underline,
-                  ),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w300,
+                      decoration: TextDecoration.underline,
+                      color: const Color(0xff2D2828)),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   message,
-                  style: const TextStyle(
-                      fontFamily: "Inter",
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w400,
                       fontSize: 10,
-                      color: Color(0xff2D2828)),
+                      color: const Color(0xff2D2828)),
                   textAlign: TextAlign.center,
                 ),
               ],

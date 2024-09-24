@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/exam_list_widget.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
@@ -37,27 +38,12 @@ class _ResultsPageState extends State<ResultsPage> {
     List<Exam> failExams = filterExams(exams, 'Fail');
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
-        toolbarHeight: 139,
         automaticallyImplyLeading: false,
+        flexibleSpace: const AppBarBackGroundWidget(),
         title: Text(
           S.of(context).results,
-          style: const TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.bold,
-            fontSize: 32,
-            color: Colors.white,
-          ),
         ),
-        centerTitle: true,
-        backgroundColor: const Color(0xff182243),
       ),
       body: Column(
         children: [
@@ -83,6 +69,7 @@ class _ResultsPageState extends State<ResultsPage> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               decoration: BoxDecoration(
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: Colors.black,
@@ -92,6 +79,7 @@ class _ResultsPageState extends State<ResultsPage> {
                 height: 96,
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
                       color: Colors.black,
@@ -103,8 +91,7 @@ class _ResultsPageState extends State<ResultsPage> {
                       ),
                       backgroundColor: _currentPage == 0
                           ? const Color(0xff2AF62A)
-                          : Colors.red 
-                      ),
+                          : Colors.red),
                   onPressed: () {
                     if (_currentPage < 1) {
                       _pageController.animateToPage(

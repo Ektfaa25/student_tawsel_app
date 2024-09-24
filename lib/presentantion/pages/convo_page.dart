@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/core/theme/app_pallete.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/chatbubble_widget.dart';
 
@@ -15,18 +17,9 @@ class ConversationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 139,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(22),
-              bottomRight: Radius.circular(22),
-            ),
-          ),
-          backgroundColor: const Color(0xff182243),
-          elevation: 0,
+          flexibleSpace: const AppBarBackGroundWidget(),
           title: Row(children: [
             const AvatarWidget(),
             Padding(
@@ -59,7 +52,7 @@ class ConversationPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(10),
             child: Text(
               "25 MAR",
               style: TextStyle(
@@ -108,8 +101,8 @@ class ConversationPage extends StatelessWidget {
                         color: Colors.black,
                         size: 30,
                       ),
-                      suffixIcon:
-                          Icon(Icons.send, color: Colors.black, size: 30),
+                      suffixIcon: Icon(Icons.send,
+                          color: AppPallete.primaryColor, size: 30),
                     ),
                   )),
             ],

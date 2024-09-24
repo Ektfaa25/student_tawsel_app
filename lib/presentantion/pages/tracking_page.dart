@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/generated/l10n.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/button_selection_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/live_location_tracking_widget.dart';
@@ -37,19 +38,9 @@ class TrackingPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 139,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
-        backgroundColor: const Color(0xff182243),
-        elevation: 0,
-        centerTitle: true,
+        flexibleSpace: const AppBarBackGroundWidget(),
         title: Row(children: [
           const AvatarWidget(),
           const SizedBox(width: 10),
@@ -59,7 +50,8 @@ class TrackingPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
                 color: Colors.white,
-              ))
+              )
+              )
         ]),
         actions: [PopUpMenuWidget(menuItems: menuItems, menuImgs: menuImgs)],
       ),

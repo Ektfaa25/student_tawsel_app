@@ -16,7 +16,7 @@ class MyChildrenCardWidget extends StatelessWidget {
     if (itemssize != null) {
       return itemssize!;
     } else {
-      return studentData.length;
+      return Student.studentData.length;
     }
   }
 
@@ -32,7 +32,7 @@ class MyChildrenCardWidget extends StatelessWidget {
         itemCount: _getCardCount(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          final student = studentData[index];
+          final student = Student.studentData[index];
           return GestureDetector(
             onTap: () {
               Navigator.push(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 
 class TimeTablePage extends StatelessWidget {
   const TimeTablePage({super.key});
@@ -8,27 +9,11 @@ class TimeTablePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
           automaticallyImplyLeading: false,
-          toolbarHeight: 139,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(22),
-              bottomRight: Radius.circular(22),
-            ),
-          ),
-          backgroundColor: const Color(0xff182243),
-          elevation: 0,
-          centerTitle: true,
+          flexibleSpace: const AppBarBackGroundWidget(),
           title: Text(
             S.of(context).timeTable,
-            style: const TextStyle(
-              fontFamily: "Inter",
-              fontWeight: FontWeight.bold,
-              fontSize: 32,
-              color: Colors.white,
-            ),
           )),
     );
   }

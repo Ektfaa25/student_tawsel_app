@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/core/theme/app_pallete.dart';
 import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/app_bar_user_content_wodget.dart';
 import 'package:student_tawsel/presentantion/widgets/carousel_widget.dart';
@@ -22,18 +23,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        toolbarHeight: 139,
         flexibleSpace: const AppBarBackGroundWidget(),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
-        backgroundColor: const Color(0xff182243),
-        elevation: 0,
         title: const AppBarUserContentWidget(),
         actions: [
           IconButton(
@@ -71,7 +62,7 @@ class _HomePageState extends State<HomePage> {
 
       //Floating Chat Button
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff182243),
+        backgroundColor: AppPallete.primaryColor,
         onPressed: () {},
         child: Image.asset("assets/icon _chat_lines_.png",
             width: 32, height: 35, fit: BoxFit.cover),
@@ -98,15 +89,13 @@ class MyChildrenLine extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(S.of(context).myChildren,
-              style: const TextStyle(
-                  fontFamily: "Inter",
+              style: TextStyle(
+                  fontFamily: Theme.of(context).textTheme.bodyLarge?.fontFamily,
                   fontWeight: FontWeight.w700,
-                  fontSize: 20,
-                  color: Colors.black)),
+                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                  color: Theme.of(context).textTheme.bodyLarge?.color)),
           TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: const Color(0xff2F2E2E),
-            ),
+            style: TextButton.styleFrom(),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return ViewAllChildrenPage(
@@ -115,11 +104,13 @@ class MyChildrenLine extends StatelessWidget {
               }));
             },
             child: Text(S.of(context).viewAll,
-                style: const TextStyle(
-                  fontFamily: "Inter",
+                style: TextStyle(
+                  fontFamily:
+                      Theme.of(context).textTheme.labelMedium?.fontFamily,
                   decoration: TextDecoration.underline,
-                  fontSize: 12,
+                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
                   fontWeight: FontWeight.w500,
+                  color: Theme.of(context).textTheme.labelMedium?.color,
                 )),
           )
         ],
@@ -146,15 +137,13 @@ class LatestNoticesLine extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(S.of(context).latestNotices,
-              style: const TextStyle(
-                  fontFamily: "Inter",
+              style: TextStyle(
+                  fontFamily: Theme.of(context).textTheme.bodyLarge?.fontFamily,
                   fontWeight: FontWeight.w700,
-                  fontSize: 20,
-                  color: Colors.black)),
+                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                  color: Theme.of(context).textTheme.bodyLarge?.color)),
           TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: const Color(0xff2F2E2E),
-            ),
+            style: TextButton.styleFrom(),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return ViewAllNoticesPage(
@@ -163,11 +152,13 @@ class LatestNoticesLine extends StatelessWidget {
               }));
             },
             child: Text(S.of(context).viewAll,
-                style: const TextStyle(
-                  fontFamily: "Inter",
+                style: TextStyle(
+                  fontFamily:
+                      Theme.of(context).textTheme.labelMedium?.fontFamily,
                   decoration: TextDecoration.underline,
-                  fontSize: 12,
+                  fontSize: Theme.of(context).textTheme.labelMedium?.fontSize,
                   fontWeight: FontWeight.w500,
+                  color: Theme.of(context).textTheme.labelMedium?.color,
                 )),
           )
         ],

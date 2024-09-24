@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/core/theme/app_pallete.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/pages/add_child_page.dart';
 import 'package:student_tawsel/presentantion/pages/payment_methods_page.dart';
@@ -19,28 +20,15 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        toolbarHeight: 139,
-        flexibleSpace: const AppBarBackGroundWidget(),
-        backgroundColor: const Color(0xff182243),
         automaticallyImplyLeading: false,
-        title: Text(
-          S.of(context).settings,
-          style: const TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.bold,
-            fontSize: 32,
-            color: Colors.white,
-          ),
-        ),
+        flexibleSpace: const AppBarBackGroundWidget(),
         centerTitle: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
+        title: Text(S.of(context).settings,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: AppPallete.secondaryColor,
+                  fontWeight: FontWeight.bold,
+                )),
       ),
       body: Column(
         children: [
@@ -116,21 +104,16 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Image.asset(icon)),
       title: title == "Language" || title == "اللغة"
           ? expandedtile()
-          : Text(
-              title,
-              style: const TextStyle(
-                  fontFamily: "Inter",
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xff130F44)),
-            ),
+          : Text(title,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith()),
       trailing: GestureDetector(
           onTap: () {
             expandedtile(
               onLocaleChange: widget.onLocaleChange,
             );
           },
-          child: const Icon(Icons.arrow_forward_ios)),
+          child: Icon(Icons.arrow_forward_ios,
+              color: Theme.of(context).iconTheme.color)),
       onTap: onTap,
     );
   }
@@ -143,15 +126,8 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       tilePadding: const EdgeInsets.symmetric(horizontal: 0),
       showTrailingIcon: false,
-      title: Text(
-        S.of(context).language,
-        style: const TextStyle(
-          fontFamily: "Inter",
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-          color: Color(0xff130F44),
-        ),
-      ),
+      title: Text(S.of(context).language,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith()),
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 18),
@@ -162,12 +138,12 @@ class _SettingsPageState extends State<SettingsPage> {
               ListTile(
                 minTileHeight: 20,
                 contentPadding: EdgeInsets.zero,
-                title: const Text('العربية',
-                    style: TextStyle(
-                        fontFamily: "Inter",
-                        fontSize: 12,
+                title: Text(
+                  'العربية',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff292931))),
+                      ),
+                ),
                 trailing: _selectedLocale.languageCode == 'ar'
                     ? const Icon(Icons.check, color: Colors.green, size: 20)
                     : null,
@@ -180,12 +156,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 minVerticalPadding: 2,
                 minTileHeight: 20,
                 contentPadding: EdgeInsets.zero,
-                title: const Text('English',
-                    style: TextStyle(
-                        fontFamily: "Inter",
-                        fontSize: 12,
+                title: Text(
+                  'English',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff292931))),
+                      ),
+                ),
                 trailing: _selectedLocale.languageCode == 'en'
                     ? const Icon(Icons.check, color: Colors.green, size: 20)
                     : null,

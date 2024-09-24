@@ -8,7 +8,6 @@ import 'package:student_tawsel/presentantion/widgets/button_selection_widget.dar
 import 'package:student_tawsel/presentantion/widgets/chapter_details_cards_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/pop_up_menu_widget.dart';
 
-
 class StudentSubjectChapterDetailsPage extends StatelessWidget {
   final String student;
 
@@ -20,18 +19,8 @@ class StudentSubjectChapterDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 139,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
-        backgroundColor: const Color(0xff182243),
-        elevation: 0,
         title: Row(
           children: [
             const AvatarWidget(),

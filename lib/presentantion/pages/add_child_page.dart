@@ -4,7 +4,6 @@ import 'package:student_tawsel/presentantion/widgets/add_button_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 
-
 class AddChildPage extends StatefulWidget {
   const AddChildPage({super.key});
 
@@ -25,28 +24,13 @@ class _AddChildPageState extends State<AddChildPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 139,
         title: Text(
           S.of(context).child,
-          style: const TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.bold,
-            fontSize: 32,
-            color: Colors.white,
-          ),
         ),
         centerTitle: true,
         flexibleSpace: const AppBarBackGroundWidget(),
-        backgroundColor: const Color(0xff182243),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(23),
@@ -69,26 +53,27 @@ class _AddChildPageState extends State<AddChildPage> {
                 ),
                 _createdropdownfield(
                   label: 'Gender',
+                  context: context,
                   formvalue: selectedGender,
                   items: ['Male', 'Female'],
                   onChanged: (value) => setState(() => selectedGender = value),
                 ),
                 _createdropdownfield(
                   label: 'Level',
+                  context: context,
                   formvalue: selectedLevel,
                   items: ['First', 'Second', 'Third'],
                   onChanged: (value) => setState(() => selectedLevel = value),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Date of Birthday',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff130F44)),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                   ),
                 ),
@@ -97,6 +82,7 @@ class _AddChildPageState extends State<AddChildPage> {
                     _createdropdownfield(
                       formvalue: selectedMonth,
                       hint: 'MM',
+                      context: context,
                       items: List.generate(12, (index) => '${index + 1}'),
                       onChanged: (value) =>
                           setState(() => selectedMonth = value),
@@ -104,12 +90,14 @@ class _AddChildPageState extends State<AddChildPage> {
                     _createdropdownfield(
                       formvalue: selectedDay,
                       hint: 'DD',
+                      context: context,
                       items: List.generate(31, (index) => '${index + 1}'),
                       onChanged: (value) => setState(() => selectedDay = value),
                     ),
                     _createdropdownfield(
                       formvalue: selectedYear,
                       hint: 'YYYY',
+                      context: context,
                       items: List.generate(
                           50, (index) => '${DateTime.now().year - index}'),
                       onChanged: (value) =>
@@ -163,8 +151,9 @@ Widget _createformfield({
           labelStyle: const TextStyle(
               fontSize: 12, fontFamily: "Tajawal", color: Color(0xff9B9B9B)),
           labelText: label,
-          suffixIcon:
-              label == "Phone" ? null : const Icon(Icons.check, color: Colors.green),
+          suffixIcon: label == "Phone"
+              ? null
+              : const Icon(Icons.check, color: Colors.green),
           border: const OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.all(
@@ -180,6 +169,7 @@ Widget _createdropdownfield({
   required ValueChanged<String?> onChanged,
   String? hint,
   String label = '',
+  required BuildContext context,
 }) {
   return Expanded(
     child: Padding(
@@ -194,11 +184,9 @@ Widget _createdropdownfield({
         color: Colors.white,
         child: DropdownButtonFormField(
           decoration: InputDecoration(
-              labelStyle: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  fontFamily: "Tajawal",
-                  color: Color(0xff2D2D2D)),
+              labelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: const Color(0xff2D2D2D),
+                  ),
               labelText: label,
               border: const OutlineInputBorder(
                   borderSide: BorderSide.none,
@@ -206,12 +194,22 @@ Widget _createdropdownfield({
                     Radius.circular(4),
                   ))),
           value: formvalue,
-          hint: hint != null ? Text(hint) : null,
+          hint: hint != null
+              ? Text(
+                  hint,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        color: const Color(0xff2D2D2D),
+                      ),
+                )
+              : null,
           items: items.map((String item) {
             return DropdownMenuItem(
-              value: item,
-              child: Text(item),
-            );
+                value: item,
+                child: Text(item,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xff2D2D2D),
+                        )));
           }).toList(),
           onChanged: onChanged,
         ),

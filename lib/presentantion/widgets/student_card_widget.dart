@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/core/theme/app_pallete.dart';
 
 class StudentCardWidget extends StatelessWidget {
   final String name;
@@ -19,7 +20,7 @@ class StudentCardWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(21),
       ),
-      color: const Color(0xff182243),
+      color: AppPallete.primaryColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -47,25 +48,17 @@ class StudentCardWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          Text(
-            name,
-            style: const TextStyle(
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w700,
-              fontSize: 14,
-              color: Colors.white,
-            ),
-          ),
+          Text(name,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: AppPallete.secondaryColor,
+                  )),
           const SizedBox(height: 10),
-          Text(
-            level,
-            style: const TextStyle(
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w700,
-              fontSize: 11,
-              color: Colors.white,
-            ),
-          ),
+          Text(level,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: AppPallete.secondaryColor,
+                  )),
         ],
       ),
     );

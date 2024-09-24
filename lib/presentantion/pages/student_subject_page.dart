@@ -5,6 +5,7 @@ import 'package:student_tawsel/presentantion/pages/attendance_page.dart';
 import 'package:student_tawsel/presentantion/pages/exams_online_page.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/pages/student_subject_chapters_page.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/button_selection_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/pop_up_menu_widget.dart';
@@ -36,18 +37,9 @@ class StudentSubjectPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 139,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
-        backgroundColor: const Color(0xff182243),
-        elevation: 0,
+        flexibleSpace: const AppBarBackGroundWidget(),
         title: Row(
           children: [
             const AvatarWidget(),
@@ -55,12 +47,7 @@ class StudentSubjectPage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 student,
-                style: const TextStyle(
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(),
               ),
             ),
           ],
@@ -108,11 +95,10 @@ class StudentSubjectPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Text(subjects[index],
-                          style: const TextStyle(
-                              fontFamily: "Inter",
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff3F3D3D))),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith()),
                     ],
                   ),
                 );

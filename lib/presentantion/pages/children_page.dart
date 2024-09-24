@@ -13,25 +13,11 @@ class ChildrenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        toolbarHeight: 139,
         flexibleSpace: const AppBarBackGroundWidget(),
-        backgroundColor: const Color(0xff182243),
         automaticallyImplyLeading: false,
-        title: Text(S.of(context).children,
-            style: const TextStyle(
-              fontFamily: "Inter",
-              fontWeight: FontWeight.bold,
-              fontSize: 32,
-              color: Colors.white,
-            )),
-        centerTitle: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
+        title: Text(
+          S.of(context).children,
         ),
       ),
       body: Column(
@@ -53,11 +39,11 @@ class ChildrenPage extends StatelessWidget {
                       ),
                       elevation: 4,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(11),
+                        borderRadius: BorderRadius.circular(30),
                       ),
                       child: Container(
                         padding: const EdgeInsets.only(
-                            left: 15, right: 12, top: 14, bottom: 17),
+                            left: 15, right: 20, top: 14, bottom: 17),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

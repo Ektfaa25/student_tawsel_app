@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/core/theme/app_pallete.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/presentantion/pages/children_page.dart';
@@ -11,28 +12,19 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
-          toolbarHeight: 139,
           flexibleSpace: const AppBarBackGroundWidget(),
-          backgroundColor: const Color(0xff182243),
           automaticallyImplyLeading: false,
           title: const AppBarUserContentWidget(),
-          centerTitle: true,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(22),
-              bottomRight: Radius.circular(22),
-            ),
-          ),
         ),
         body: Column(children: [
           Expanded(
               child: ListView(children: [
             profileoptionlist(
-              icon: "assets/icongroup.png",
+              icon: "assets/MyProfile.png",
               title: S.of(context).address,
               onTap: () {},
+              context: context,
             ),
             profileoptionlist(
               icon: "assets/icongroup.png",
@@ -42,18 +34,21 @@ class ProfilePage extends StatelessWidget {
                   return const ChildrenPage();
                 }));
               },
+              context: context,
             ),
             profileoptionlist(
-              icon: "assets/icongroup.png",
+              icon: "assets/cart.png",
               title: S.of(context).cart,
               onTap: () {},
+              context: context,
             ),
             profileoptionlist(
-              icon: "assets/icongroup.png",
+              icon: "assets/editpencil.png",
               title: S.of(context).changepassword,
               onTap: () {
                 _changePasswordSheet(context);
               },
+              context: context,
             ),
           ]))
         ]));
@@ -73,6 +68,7 @@ Widget profileoptionlist({
   required String icon,
   required String title,
   required VoidCallback onTap,
+  required BuildContext context,
 }) {
   return ListTile(
     contentPadding: const EdgeInsets.only(left: 18, right: 18, top: 28),
@@ -86,13 +82,10 @@ Widget profileoptionlist({
         child: Image.asset(icon)),
     title: Text(
       title,
-      style: const TextStyle(
-          fontFamily: "Inter",
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-          color: Color(0xff130F44)),
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(),
     ),
-    trailing: const Icon(Icons.arrow_forward_ios),
+    trailing:
+        Icon(Icons.arrow_forward_ios, color: Theme.of(context).iconTheme.color),
     onTap: onTap,
   );
 }

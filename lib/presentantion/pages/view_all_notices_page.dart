@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/presentantion/pages/chat_page.dart';
 import 'package:student_tawsel/presentantion/pages/settings_page.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/app_bar_user_content_wodget.dart';
 import 'package:student_tawsel/presentantion/widgets/carousel_widget.dart';
 
@@ -15,18 +16,9 @@ class ViewAllNoticesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 139,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
-        backgroundColor: const Color(0xff182243),
-        elevation: 0,
+        flexibleSpace: const AppBarBackGroundWidget(),
         title: const AppBarUserContentWidget(),
         actions: [
           IconButton(
@@ -52,11 +44,12 @@ class ViewAllNoticesPage extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 17, right: 27, top: 24, bottom: 13),
               child: Text(S.of(context).latestNotices,
-                  style: const TextStyle(
-                      fontFamily: "Inter",
+                  style: TextStyle(
+                      fontFamily:
+                          Theme.of(context).textTheme.bodyLarge?.fontFamily,
                       fontWeight: FontWeight.w700,
-                      fontSize: 20,
-                      color: Colors.black)),
+                      fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                      color: Theme.of(context).textTheme.bodyLarge?.color)),
             ),
             GestureDetector(
                 onTap: () {

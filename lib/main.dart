@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/core/theme/theme.dart';
 import 'package:student_tawsel/presentantion/pages/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -25,6 +26,15 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  ThemeMode _themeMode = ThemeMode.dark;
+
+  void _toggleTheme() {
+    setState(() {
+      _themeMode =
+          _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,6 +46,9 @@ class _MyAppState extends State<MyApp> {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
+        theme: AppTheme.lightThemeMode, // Light theme defined in AppTheme
+        darkTheme: AppTheme.darkThemeMode, // Dark theme defined in AppTheme
+        themeMode: ThemeMode.system,
         supportedLocales: S.delegate.supportedLocales,
         home: HomePage(onLocaleChange: _changeLocale));
   }

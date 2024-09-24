@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:student_tawsel/presentantion/pages/announcements_page.dart';
+import 'package:student_tawsel/presentantion/pages/student_subject_chapter_details_page.dart';
 import 'package:student_tawsel/presentantion/pages/student_subject_chapters_page.dart';
 import 'package:student_tawsel/presentantion/pages/student_subject_page.dart';
 import 'package:student_tawsel/presentantion/pages/tracking_page.dart';
@@ -14,7 +15,7 @@ class ButtonSelectionWidget extends StatelessWidget {
   final String btnSelecttwo;
   final bool isSelectedfirst;
 
-  ButtonSelectionWidget({
+  const ButtonSelectionWidget({
     super.key,
     required this.btnSelectone,
     required this.btnSelecttwo,
@@ -61,6 +62,14 @@ class ButtonSelectionWidget extends StatelessWidget {
                               )));
                   break;
                 case "Files":
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              StudentSubjectChapterDetailsPage(
+                                subject: subject,
+                                student: student,
+                              )));
                   break;
 
                 case "Subjects":

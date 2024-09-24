@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:student_tawsel/generated/l10n.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
+import 'package:student_tawsel/presentantion/widgets/button_selection_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/exam_card_widget.dart';
 
 class ExamsOnlinePage extends StatelessWidget {
@@ -9,38 +11,22 @@ class ExamsOnlinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
-        toolbarHeight: 139,
         automaticallyImplyLeading: false,
+        flexibleSpace: const AppBarBackGroundWidget(),
         title: Text(
           S.of(context).exams,
-          style: const TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.bold,
-            fontSize: 32,
-            color: Colors.white,
-          ),
         ),
-        centerTitle: true,
-        backgroundColor: const Color(0xff182243),
       ),
-      body: const Column(
+      body: Column(
         children: [
-          // ButtonSelectionWidget(
-
-          //   btnSelectone: S.of(context).offline,
-          //   btnSelecttwo: S.of(context).online,
-          //   isSelectedfirst: false,
-
-          //   subject: "",
-          // ),
+          ButtonSelectionWidget(
+            btnSelectone: S.of(context).offline,
+            btnSelecttwo: S.of(context).online,
+            isSelectedfirst: false,
+            subject: "",
+            student: '',
+          ),
           SizedBox(
             height: 26,
           ),

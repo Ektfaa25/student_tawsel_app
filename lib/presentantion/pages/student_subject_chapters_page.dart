@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/popup_menu_data.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 
 import 'package:student_tawsel/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/button_selection_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/chapter_card_widget.dart';
 import 'package:student_tawsel/presentantion/widgets/pop_up_menu_widget.dart';
-
 
 class StudentSubjectChaptersPage extends StatelessWidget {
   final String student;
@@ -18,18 +18,9 @@ class StudentSubjectChaptersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 139,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
-        backgroundColor: const Color(0xff182243),
-        elevation: 0,
+        flexibleSpace: const AppBarBackGroundWidget(),
         title: Row(
           children: [
             const AvatarWidget(),

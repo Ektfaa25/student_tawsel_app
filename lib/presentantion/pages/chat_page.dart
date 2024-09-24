@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:student_tawsel/presentantion/pages/convo_page.dart';
 import 'package:student_tawsel/generated/l10n.dart';
+import 'package:student_tawsel/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/tacher_class.dart';
 
 class ChatPage extends StatelessWidget {
@@ -12,28 +13,13 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 139,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(22),
-            bottomRight: Radius.circular(22),
-          ),
-        ),
-        backgroundColor: const Color(0xff182243),
-        elevation: 0,
+        centerTitle: true,
+        flexibleSpace: const AppBarBackGroundWidget(),
         title: Text(
           S.of(context).chat,
-          style: const TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.bold,
-            fontSize: 32,
-            color: Colors.white,
-          ),
         ),
-        centerTitle: true,
       ),
       body: ListView.builder(
         physics: const NeverScrollableScrollPhysics(),
@@ -102,34 +88,50 @@ class ChatPage extends StatelessWidget {
                           teacherData[index].name,
                           style: const TextStyle(
                             fontFamily: "Inter",
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black,
                           ),
+                          // style: Theme.of(context)
+                          //     .textTheme
+                          //     .bodyMedium
+                          //     ?.copyWith(
+                          //       fontWeight: FontWeight.w500,
+                          //     )
                         ),
                       ],
                     ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        teacherData[index].profession,
-                        style: const TextStyle(
-                          fontFamily: "Inter",
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          teacherData[index].profession,
+                          style: const TextStyle(
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 47),
-                      const Text(
-                        "24  Mar",
-                        style: TextStyle(
-                          fontFamily: "Inter",
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                        const SizedBox(height: 47),
+                        const Text(
+                          "24  Mar",
+                          style: TextStyle(
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black,
+                          ),
+                          // style:
+                          //     Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          //           fontWeight: FontWeight.w500,
+                          //         )
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
