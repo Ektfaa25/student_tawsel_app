@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:student_tawsel/core/theme/app_pallete.dart';
 import 'package:student_tawsel/features/auth/persentation/login_page.dart';
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/features/presentantion/pages/add_child_page.dart';
+import 'package:student_tawsel/features/add_child/presentation/add_child_page.dart';
 import 'package:student_tawsel/features/presentantion/pages/payment_methods_page.dart';
 import 'package:student_tawsel/features/presentantion/pages/profile_page.dart';
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_back_ground_widget.dart';

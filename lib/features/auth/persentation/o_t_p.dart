@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/features/presentantion/pages/add_child_page.dart';
+import 'package:student_tawsel/features/add_child/presentation/add_child_page.dart';
 import 'package:student_tawsel/features/presentantion/widgets/button_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/form_field_widget.dart';
 

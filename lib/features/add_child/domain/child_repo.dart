@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:student_tawsel/features/auth/data/child_model.dart';
+import 'package:student_tawsel/features/add_child/data/child_model.dart';
 
 class ChildRepository {
   final _db = FirebaseFirestore.instance;

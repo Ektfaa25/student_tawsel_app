@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/features/presentantion/pages/assignments_page.dart';
+import 'package:student_tawsel/features/presentantion/pages/attendance_page.dart';
+import 'package:student_tawsel/features/presentantion/pages/exams_online_page.dart';
+import 'package:student_tawsel/features/presentantion/pages/results_page.dart';
 import 'package:student_tawsel/features/presentantion/pages/student_subject_page.dart';
+import 'package:student_tawsel/features/presentantion/pages/teachers_page.dart';
+import 'package:student_tawsel/features/presentantion/pages/time_table_page.dart';
 
 class PopUpMenuWidget extends StatelessWidget {
   const PopUpMenuWidget({
@@ -63,5 +69,49 @@ class PopUpMenuWidget extends StatelessWidget {
                 ),
               )),
     );
+  }
+
+  void onSelected(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const TeachersPage()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const AttendancePage()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const AssignmentsPage()),
+        );
+
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const TimeTablePage()),
+        );
+        break;
+      case 4:
+        //exams page implementation done here
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ExamsOnlinePage()),
+        );
+        break;
+      case 5:
+        //results page implementation done here
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ResultsPage()),
+        );
+        break;
+    }
   }
 }

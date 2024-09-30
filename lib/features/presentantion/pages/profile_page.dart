@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:student_tawsel/core/theme/app_pallete.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_back_ground_widget.dart';
-import 'package:student_tawsel/features/presentantion/pages/children_page.dart';
+import 'package:student_tawsel/features/add_child/presentation/children_page.dart';
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_user_content_wodget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/password_change_widget.dart';
 

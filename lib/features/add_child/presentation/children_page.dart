@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/features/auth/data/child_model.dart';
-import 'package:student_tawsel/features/auth/domain/repository/child_repo.dart';
+import 'package:student_tawsel/features/add_child/data/child_model.dart';
+import 'package:student_tawsel/features/add_child/domain/child_repo.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_back_ground_widget.dart';
-import 'package:student_tawsel/child_data.dart';
+
 import 'package:student_tawsel/features/presentantion/widgets/avatar_widget.dart';
 
 class ChildrenPage extends StatefulWidget {

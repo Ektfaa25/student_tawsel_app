@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/features/auth/data/child_model.dart';
-import 'package:student_tawsel/features/auth/domain/repository/child_repo.dart';
+import 'package:student_tawsel/features/add_child/data/child_model.dart';
+import 'package:student_tawsel/features/add_child/domain/child_repo.dart';
 import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/features/presentantion/pages/children_page.dart';
+import 'package:student_tawsel/features/add_child/presentation/children_page.dart';
 
 class ButtonWidget extends StatelessWidget {
   ButtonWidget({

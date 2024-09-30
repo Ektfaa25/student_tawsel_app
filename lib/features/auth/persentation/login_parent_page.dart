@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:student_tawsel/features/auth/domain/repository/firebase_auth.dart';
 import 'package:student_tawsel/features/auth/persentation/login_student_page.dart';
 import 'package:student_tawsel/features/auth/persentation/signup_page.dart';
-import 'package:student_tawsel/features/presentantion/pages/add_child_page.dart';
+import 'package:student_tawsel/features/add_child/presentation/add_child_page.dart';
 import 'package:student_tawsel/features/presentantion/widgets/button_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/form_field_widget.dart';

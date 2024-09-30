@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/popup_menu_data.dart';
-import 'package:student_tawsel/features/presentantion/pages/assignments_page.dart';
-import 'package:student_tawsel/features/presentantion/pages/attendance_page.dart';
-import 'package:student_tawsel/features/presentantion/pages/exams_online_page.dart';
-import 'package:student_tawsel/generated/l10n.dart';
-import 'package:student_tawsel/features/presentantion/pages/student_subject_chapters_page.dart';
+import 'package:student_tawsel/features/auth/data/subject_model.dart';
+import 'package:student_tawsel/features/auth/domain/repository/subject_repo.dart';
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_back_ground_widget.dart';
-import 'package:student_tawsel/features/presentantion/widgets/avatar_widget.dart';
-import 'package:student_tawsel/features/presentantion/widgets/button_selection_widget.dart';
+import 'package:student_tawsel/features/presentantion/widgets/app_bar_user_content_wodget.dart';
+
 import 'package:student_tawsel/features/presentantion/widgets/pop_up_menu_widget.dart';
-import 'package:student_tawsel/features/presentantion/pages/results_page.dart';
-import 'package:student_tawsel/features/presentantion/pages/teachers_page.dart';
-import 'package:student_tawsel/features/presentantion/pages/time_table_page.dart';
+import 'package:student_tawsel/popup_menu_data.dart';
 
 class StudentSubjectPage extends StatelessWidget {
   const StudentSubjectPage({
@@ -24,31 +18,16 @@ class StudentSubjectPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> subjects = [
-      S.of(context).subjectScience,
-      S.of(context).subjectEnglish,
-      S.of(context).subjectArabic,
-      S.of(context).subjectMath,
-      S.of(context).subjectDrawing,
-      S.of(context).subjectComputer,
-      S.of(context).subjectAccount,
-      S.of(context).subjectMath,
-      S.of(context).subjectFrench,
-    ];
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         flexibleSpace: const AppBarBackGroundWidget(),
         title: Row(
           children: [
-            const AvatarWidget(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                student,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(),
-              ),
+            const AppBarUserContentWidget(),
+            Text(
+              student,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(),
             ),
           ],
         ),
@@ -56,45 +35,47 @@ class StudentSubjectPage extends StatelessWidget {
           PopUpMenuWidget(menuItems: menuItems(context), menuImgs: menuImgs),
         ],
       ),
-      body: Column(
-        children: [
-          ButtonSelectionWidget(
-            student: student,
-            subject: subject,
-            isSelectedfirst: true,
-            btnSelectone: S.of(context).subjects,
-            btnSelecttwo: S.of(context).tracking,
-          ),
-          const SizedBox(height: 68),
-          Expanded(
-            child: GridView.builder(
+      body: FutureBuilder<List<SubjectModel>>(
+        future: SubjectRepository().getSubjects(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No subjects available.'));
+          } else {
+            final subjects = snapshot.data!;
+            return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
+                childAspectRatio: 1,
               ),
-              itemCount: images.length,
-              itemBuilder: (BuildContext context, int index) {
+              itemCount: subjects.length,
+              itemBuilder: (context, index) {
+                final subject = subjects[index];
                 return GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => StudentSubjectChaptersPage(
-                                  subject: subjects[index],
-                                  student: student,
-                                )));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => StudentSubjectChaptersPage(
+                    //               subject: subjects[index],
+                    //               student: student,
+                    //             )));
                   },
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(19)),
                         ),
-                        height: 90,
-                        width: 109,
-                        child: Image.asset(images[index]),
+                        child: Image.network(subject.subjectImg,
+                            height: 80, width: 80),
                       ),
                       const SizedBox(height: 10),
-                      Text(subjects[index],
+                      Text(subject.subjectName,
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
@@ -103,54 +84,10 @@ class StudentSubjectPage extends StatelessWidget {
                   ),
                 );
               },
-            ),
-          ),
-        ],
+            );
+          }
+        },
       ),
     );
-  }
-}
-
-void onSelected(BuildContext context, int item) {
-  switch (item) {
-    case 0:
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const TeachersPage()),
-      );
-      break;
-    case 1:
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const AttendancePage()),
-      );
-      break;
-    case 2:
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const AssignmentsPage()),
-      );
-
-      break;
-    case 3:
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const TimeTablePage()),
-      );
-      break;
-    case 4:
-      //exams page implementation done here
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ExamsOnlinePage()),
-      );
-      break;
-    case 5:
-      //results page implementation done here
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ResultsPage()),
-      );
-      break;
   }
 }

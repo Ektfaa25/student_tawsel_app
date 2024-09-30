@@ -10,7 +10,7 @@ import 'package:student_tawsel/features/presentantion/pages/videos_page.dart';
 class ButtonSelectionWidget extends StatelessWidget {
   final String student;
 
-  final String subject;
+  final String? subject;
   final String btnSelectone;
   final String btnSelecttwo;
   final bool isSelectedfirst;
@@ -21,7 +21,7 @@ class ButtonSelectionWidget extends StatelessWidget {
     required this.btnSelecttwo,
     required this.isSelectedfirst,
     required this.student,
-    required this.subject,
+    this.subject,
   });
 
   @override
@@ -57,7 +57,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => StudentSubjectChaptersPage(
-                                subject: subject,
+                                subject: subject!,
                                 student: student,
                               )));
                   break;
@@ -67,7 +67,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) =>
                               StudentSubjectChapterDetailsPage(
-                                subject: subject,
+                                subject: subject!,
                                 student: student,
                               )));
                   break;
@@ -77,7 +77,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => StudentSubjectPage(
-                                subject: subject,
+                                subject: subject!,
                                 student: student,
                               )));
                   break;
@@ -125,7 +125,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => AnnouncementsPage(
-                              subject: subject,
+                              subject: subject!,
                               student: student,
                             )));
                 break;
@@ -134,7 +134,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => VideosPage(
-                              subject: subject,
+                              subject: subject!,
                               student: student,
                             )));
                 break;
@@ -144,7 +144,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => TrackingPage(
-                              subject: subject,
+                              subject: subject!,
                               student: student,
                             )));
                 break;
