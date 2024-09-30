@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39236968102",
+    "project_id": "student-tawsel-c6662",
+    "storage_bucket": "student-tawsel-c6662.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39236968102:android:55d30c1ff55b7832565e67",
+        "android_client_info": {
+          "package_name": "com.studenttawsel.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKgGs-ZQViTxfITLapGkePU9FZkQvcH6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
