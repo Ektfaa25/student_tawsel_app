@@ -24,7 +24,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        flexibleSpace: const AppBarBackGroundWidget(),
+        // flexibleSpace: const AppBarBackGroundWidget(),
         centerTitle: true,
         title: Text(S.of(context).settings,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -46,14 +46,15 @@ class _SettingsPageState extends State<SettingsPage> {
               },
             ),
             settingsoptionlist(
-              icon: "assets/icongroup.png",
-              title: S.of(context).addchild,
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const AddChildPage();
-                }));
-              },
-            ),
+                icon: "assets/icongroup.png",
+                title: S.of(context).addchild,
+                
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return  AddChildPage();
+                  }));
+                },
+                ),
             settingsoptionlist(
               icon: "assets/iconcreditcard.png",
               title: S.of(context).paymentMethods,

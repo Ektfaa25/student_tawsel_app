@@ -18,7 +18,7 @@ class AnnouncementAssignmentPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             automaticallyImplyLeading: false,
-            flexibleSpace: const AppBarBackGroundWidget(),
+            // flexibleSpace: const AppBarBackGroundWidget(),
             title: Row(
               children: [
                 const AvatarWidget(),

@@ -13,7 +13,7 @@ class ExamsOnlinePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        flexibleSpace: const AppBarBackGroundWidget(),
+        // flexibleSpace: const AppBarBackGroundWidget(),
         title: Text(
           S.of(context).exams,
         ),
@@ -25,7 +25,7 @@ class ExamsOnlinePage extends StatelessWidget {
             btnSelecttwo: S.of(context).online,
             isSelectedfirst: false,
             subject: "",
-            student: '',
+          
           ),
           SizedBox(
             height: 26,

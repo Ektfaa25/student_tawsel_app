@@ -10,11 +10,11 @@ import 'package:student_tawsel/features/presentantion/widgets/trips_widget.dart'
 class TrackingPage extends StatelessWidget {
   final String student;
 
-  final String subject;
+  final String ?subject;
   const TrackingPage({
     super.key,
     required this.student,
-    required this.subject,
+     this.subject,
   });
 
   @override
@@ -40,7 +40,7 @@ class TrackingPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        flexibleSpace: const AppBarBackGroundWidget(),
+        // flexibleSpace: const AppBarBackGroundWidget(),
         title: Row(children: [
           const AvatarWidget(),
           const SizedBox(width: 10),
@@ -50,8 +50,7 @@ class TrackingPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
                 color: Colors.white,
-              )
-              )
+              ))
         ]),
         actions: [PopUpMenuWidget(menuItems: menuItems, menuImgs: menuImgs)],
       ),
@@ -63,7 +62,6 @@ class TrackingPage extends StatelessWidget {
                 btnSelectone: "Subjects",
                 btnSelecttwo: "Tracking",
                 isSelectedfirst: false,
-                student: student,
                 subject: subject),
             const LiveLocationTrackingWidget(),
             const SizedBox(height: 30),

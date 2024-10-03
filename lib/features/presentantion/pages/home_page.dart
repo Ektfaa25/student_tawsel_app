@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        flexibleSpace: const AppBarBackGroundWidget(),
+        // flexibleSpace: const AppBarBackGroundWidget(),
         title: const AppBarUserContentWidget(),
         actions: [
           IconButton(

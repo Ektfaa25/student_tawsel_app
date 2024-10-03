@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
         darkTheme: AppTheme.darkThemeMode, // Dark theme defined in AppTheme
         themeMode: ThemeMode.system,
         supportedLocales: S.delegate.supportedLocales,
-        home: SignupPage());
+        home: HomePage(onLocaleChange: _changeLocale));
     // LoginPage());
     //  HomePage(onLocaleChange: _changeLocale));
   }

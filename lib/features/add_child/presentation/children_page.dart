@@ -16,27 +16,28 @@ class ChildrenPage extends StatefulWidget {
 
 class ChildrenPageState extends State<ChildrenPage> {
   final ChildRepository _childRepository = ChildRepository();
-  late Future<List<ChildModel>> _childrenFuture;
+
+  Future<List<ChildModel>>? childrenFuture;
 
   @override
   void initState() {
     super.initState();
     // Fetch the children when the widget is initialized
-    _childrenFuture = _childRepository.getChildren();
+    childrenFuture = _childRepository.getChildren();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: const AppBarBackGroundWidget(),
+        // flexibleSpace: const AppBarBackGroundWidget(),
         automaticallyImplyLeading: false,
         title: Text(
           S.of(context).children,
         ),
       ),
       body: FutureBuilder<List<ChildModel>>(
-        future: _childrenFuture,
+        future: _childRepository.getChildren(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

@@ -46,7 +46,6 @@ class StudentSubjectChapterDetailsPage extends StatelessWidget {
         children: [
           ButtonSelectionWidget(
               subject: subject,
-              student: student,
               btnSelectone: "Files",
               btnSelecttwo: "Videos",
               isSelectedfirst: true),

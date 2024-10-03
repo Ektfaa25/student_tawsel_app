@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/chapter_data.dart';
-import 'package:student_tawsel/features/presentantion/pages/student_subject_chapter_details_page.dart';
+import 'package:student_tawsel/features/subjects/presentation/student_subject_chapter_details_page.dart';
 
 class ChapterCardWidget extends StatelessWidget {
   final String student;

@@ -37,10 +37,10 @@ class OTP extends StatelessWidget {
             ),
             ButtonWidget(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AddChildPage()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) =>  AddChildPage()),
+                // );
               },
               label: "LOGIN",
             ),

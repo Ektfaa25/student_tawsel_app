@@ -44,7 +44,7 @@ class VideosPage extends StatelessWidget {
             btnSelectone: "Files",
             btnSelecttwo: "Videos",
             isSelectedfirst: false,
-            student: student,
+            
             subject: subject,
           ),
           VideoCardWidget(student: student),

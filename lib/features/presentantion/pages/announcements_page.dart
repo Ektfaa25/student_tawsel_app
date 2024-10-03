@@ -19,7 +19,7 @@ class AnnouncementsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          flexibleSpace: const AppBarBackGroundWidget(),
+          // flexibleSpace: const AppBarBackGroundWidget(),
           title: Row(
             children: [
               const AvatarWidget(),
@@ -47,7 +47,7 @@ class AnnouncementsPage extends StatelessWidget {
                 btnSelectone: "Chapters",
                 btnSelecttwo: "Announcement",
                 isSelectedfirst: false,
-                student: student,
+               
                 subject: subject),
             const SizedBox(
               height: 20,

@@ -27,15 +27,9 @@ class ButtonWidget extends StatelessWidget {
           Radius.circular(10),
         ),
       ),
-      margin: const EdgeInsets.only(top: 42, left: 48, right: 48, bottom: 20),
+      margin: const EdgeInsets.only(top: 20, left: 48, right: 48, bottom: 0),
       child: TextButton(
-        onPressed: onPressed
-
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => const ChildrenPage()),
-        // );
-        ,
+        onPressed: onPressed,
         child: Text(label,
             style: const TextStyle(
               fontFamily: "Inter",

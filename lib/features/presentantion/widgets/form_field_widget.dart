@@ -12,6 +12,7 @@ class FormFieldWidget extends StatelessWidget {
   // controller.text = value;
   final TextEditingController controller;
   final String label;
+
   const FormFieldWidget({
     super.key,
     required this.controller,
@@ -39,9 +40,7 @@ class FormFieldWidget extends StatelessWidget {
             labelStyle: const TextStyle(
                 fontSize: 12, fontFamily: "Tajawal", color: Color(0xff9B9B9B)),
             labelText: label,
-            suffixIcon: label == "Phone"
-                ? null
-                : const Icon(Icons.check, color: Colors.green),
+            suffixIcon: iconBasedOnLabel(label),
             border: const OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.all(
@@ -49,5 +48,18 @@ class FormFieldWidget extends StatelessWidget {
                 ))),
       ),
     );
+  }
+
+  iconBasedOnLabel(String label) {
+    switch (label) {
+      case 'email':
+        return const Icon(Icons.check);
+      case 'password':
+        return const Icon(Icons.remove_red_eye);
+      case 'phone':
+        return const Icon(Icons.phone);
+      case 'name':
+        return const Icon(Icons.person);
+    }
   }
 }

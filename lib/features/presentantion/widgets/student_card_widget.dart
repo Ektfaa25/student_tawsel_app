@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/core/theme/app_pallete.dart';
-import 'package:student_tawsel/features/add_child/data/child_model.dart';
-import 'package:student_tawsel/features/add_child/domain/child_repo.dart';
 
 class StudentCardWidget extends StatefulWidget {
   final String name;

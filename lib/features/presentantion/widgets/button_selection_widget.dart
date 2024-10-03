@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:student_tawsel/features/presentantion/pages/announcements_page.dart';
-import 'package:student_tawsel/features/presentantion/pages/student_subject_chapter_details_page.dart';
-import 'package:student_tawsel/features/presentantion/pages/student_subject_chapters_page.dart';
-import 'package:student_tawsel/features/presentantion/pages/student_subject_page.dart';
+import 'package:student_tawsel/features/subjects/presentation/student_subject_chapter_details_page.dart';
+import 'package:student_tawsel/features/subjects/presentation/student_subject_chapters_page.dart';
+import 'package:student_tawsel/features/subjects/presentation/student_subject_page.dart';
 import 'package:student_tawsel/features/presentantion/pages/tracking_page.dart';
 import 'package:student_tawsel/features/presentantion/pages/videos_page.dart';
 
 class ButtonSelectionWidget extends StatelessWidget {
-  final String student;
+  final String? studentname;
 
   final String? subject;
   final String btnSelectone;
@@ -20,7 +20,7 @@ class ButtonSelectionWidget extends StatelessWidget {
     required this.btnSelectone,
     required this.btnSelecttwo,
     required this.isSelectedfirst,
-    required this.student,
+    this.studentname,
     this.subject,
   });
 
@@ -58,7 +58,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => StudentSubjectChaptersPage(
                                 subject: subject!,
-                                student: student,
+                                student: studentname!,
                               )));
                   break;
                 case "Files":
@@ -68,7 +68,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                           builder: (context) =>
                               StudentSubjectChapterDetailsPage(
                                 subject: subject!,
-                                student: student,
+                                student: studentname!,
                               )));
                   break;
 
@@ -77,8 +77,8 @@ class ButtonSelectionWidget extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => StudentSubjectPage(
-                                subject: subject!,
-                                student: student,
+                                name: studentname,
+                                //level: subject!,
                               )));
                   break;
 
@@ -126,7 +126,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => AnnouncementsPage(
                               subject: subject!,
-                              student: student,
+                              student: studentname!,
                             )));
                 break;
               case "Videos":
@@ -135,7 +135,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => VideosPage(
                               subject: subject!,
-                              student: student,
+                              student: studentname!,
                             )));
                 break;
 
@@ -144,8 +144,8 @@ class ButtonSelectionWidget extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => TrackingPage(
-                              subject: subject!,
-                              student: student,
+                              
+                              student: studentname!,
                             )));
                 break;
 

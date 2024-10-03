@@ -13,7 +13,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          flexibleSpace: const AppBarBackGroundWidget(),
+          // flexibleSpace: const AppBarBackGroundWidget(),
           automaticallyImplyLeading: false,
           title: const AppBarUserContentWidget(),
         ),

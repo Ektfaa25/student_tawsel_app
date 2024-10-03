@@ -10,7 +10,8 @@ import 'package:student_tawsel/features/presentantion/widgets/form_field_widget.
 import 'package:student_tawsel/features/presentantion/pages/home_page.dart';
 
 class LoginParentPage extends StatefulWidget {
-  const LoginParentPage({super.key});
+  User? user;
+  LoginParentPage({super.key, this.user});
 
   @override
   State<LoginParentPage> createState() => _LoginStudentPageState();
@@ -25,26 +26,26 @@ class _LoginStudentPageState extends State<LoginParentPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 100,
         backgroundColor: Colors.white,
-        flexibleSpace: const AppBarBackGroundWidget(),
+        flexibleSpace: const AppBarBackGroundWidget(isloginparent: true),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(17),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 20,
-            ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
             const Text("Login",
                 style: TextStyle(
+                  fontFamily: "Inter",
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
                 )),
             const SizedBox(
-              height: 77,
+              height: 47,
             ),
             FormFieldWidget(
               controller: emailController,
@@ -63,7 +64,10 @@ class _LoginStudentPageState extends State<LoginParentPage> {
             const Text(
               "Forgot your Password?",
               style: TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red),
+                  fontFamily: "Inter",
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.red),
             ),
             TextButton(
               onPressed: () {
@@ -72,16 +76,15 @@ class _LoginStudentPageState extends State<LoginParentPage> {
                 }));
               },
               child: const Text(
-                "Don't have an account?",
+                "don't have an account?",
                 style: TextStyle(fontSize: 18, color: Color(0xff101010)),
               ),
             ),
             ButtonWidget(
               onPressed: () {
                 signIn();
-               
               },
-              label: "Login",
+              label: "LOGIN",
             ),
             TextButton(
                 onPressed: () {
@@ -89,15 +92,26 @@ class _LoginStudentPageState extends State<LoginParentPage> {
                     return const LoginStudentPage();
                   }));
                 },
-                child: const Text(
-                  "Login As Student",
-                  style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff09206A)),
+                child: RichText(
+                  text: const TextSpan(
+                      text: "Login as ",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff09206A)),
+                      children: [
+                        TextSpan(
+                          text: "Student?",
+                          style: TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                      ]),
                 )),
+
             const SizedBox(
-              height: 51,
+              height: 31,
             ),
             const Text(
               "Management Education Serves\n   And Buses At Your Home",
@@ -112,15 +126,25 @@ class _LoginStudentPageState extends State<LoginParentPage> {
   void signIn() async {
     String email = emailController.text;
     String password = passwordController.text;
+    User? user = await _auth.signInParent(email, password);
 
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
     print("user signed in successfully");
+    if (user != null) {
+      // Redirect to parent dashboard
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return AddChildPage();
+      }));
+    } else {
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Login failed'),
+      ));
+    }
+  }
 
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => HomePage(
-                  onLocaleChange: (p0) {},
-                )));
+  void gotohome() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return HomePage(onLocaleChange: (p0) {});
+    }));
   }
 }

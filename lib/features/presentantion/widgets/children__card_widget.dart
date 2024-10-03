@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/features/add_child/data/child_model.dart';
 import 'package:student_tawsel/features/add_child/domain/child_repo.dart';
-import 'package:student_tawsel/features/auth/data/subject_model.dart';
-import 'package:student_tawsel/features/auth/domain/repository/subject_repo.dart';
+import 'package:student_tawsel/features/subjects/data/subject_model.dart';
+import 'package:student_tawsel/features/subjects/domain/subject_repo.dart';
 
-import 'package:student_tawsel/features/presentantion/pages/student_subject_page.dart';
+import 'package:student_tawsel/features/subjects/presentation/student_subject_page.dart';
 import 'package:student_tawsel/features/presentantion/widgets/student_card_widget.dart';
 
 class MyChildrenCardWidget extends StatefulWidget {
@@ -21,13 +21,14 @@ class MyChildrenCardWidget extends StatefulWidget {
 
 class _MyChildrenCardWidgetState extends State<MyChildrenCardWidget> {
   final ChildRepository _childRepository = ChildRepository();
-  late Future<List<ChildModel>> _childrenFuture;
+ Future<List<ChildModel>>? childrenFuture;
   void initState() {
     super.initState();
     // Fetch the children when the widget is initialized
-    _childrenFuture = _childRepository.getChildren();
+    childrenFuture = _childRepository.getChildren();
   }
 
+  @override
   int _getCardCount({required List<ChildModel> children}) {
     if (widget.itemssize != null) {
       return widget.itemssize!;
@@ -39,7 +40,7 @@ class _MyChildrenCardWidgetState extends State<MyChildrenCardWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<ChildModel>>(
-      future: _childrenFuture,
+      future: childrenFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -65,13 +66,12 @@ class _MyChildrenCardWidgetState extends State<MyChildrenCardWidget> {
                 final student = children[index];
                 return GestureDetector(
                   onTap: () {
-                    addSubjects();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => StudentSubjectPage(
-                          student: student.name,
-                          subject: '',
+                          name: student.name,
+                          level: student.level,
                         ),
                       ),
                     );
@@ -85,57 +85,5 @@ class _MyChildrenCardWidgetState extends State<MyChildrenCardWidget> {
         }
       },
     );
-  }
-
-  void addSubjects() async {
-    SubjectRepository subjectRepository = SubjectRepository();
-
-    List<SubjectModel> subjects = [
-      SubjectModel(
-        subjectName: 'Science',
-        subjectImg: "assets/science.png",
-      ),
-      SubjectModel(
-        subjectName: 'English',
-        subjectImg: "assets/english.png",
-      ),
-      SubjectModel(
-        subjectName: 'Arabic',
-        subjectImg: "assets/arabic.png",
-      ),
-      SubjectModel(
-        subjectName: 'Math',
-        subjectImg: "assets/math.png",
-      ),
-      SubjectModel(
-        subjectName: 'Drawing',
-        subjectImg: "assets/drawing.png",
-      ),
-      SubjectModel(
-        subjectName: 'Computer',
-        subjectImg: "assets/computer.png",
-      ),
-      SubjectModel(
-        subjectName: 'Accounting',
-        subjectImg: "assets/account.png",
-      ),
-      SubjectModel(
-        subjectName: 'Math2',
-        subjectImg: "assets/math2.png",
-      ),
-      SubjectModel(
-        subjectName: 'French',
-        subjectImg: "assets/french.png",
-      ),
-    ];
-
-    for (var subject in subjects) {
-      bool success = await subjectRepository.addSubject(subject);
-      if (success) {
-        print('${subject.subjectName} added successfully' + subject.subjectImg);
-      } else {
-        print('Failed to add ${subject.subjectName}');
-      }
-    }
   }
 }

@@ -11,7 +11,7 @@ class AttendancePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
-          flexibleSpace: const AppBarBackGroundWidget(),
+          // flexibleSpace: const AppBarBackGroundWidget(),
           title: Text(
             S.of(context).attendance,
           )),
