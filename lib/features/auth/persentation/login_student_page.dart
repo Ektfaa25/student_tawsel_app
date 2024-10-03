@@ -77,7 +77,7 @@ class _LoginStudentPageState extends State<LoginStudentPage> {
                   onPressed: () {
                     loginAsStudent(
                       usernameController.text,
-                    
+                      "moahmed@gmail.com",
                       passwordController.text,
                     );
                   },
@@ -123,58 +123,71 @@ class _LoginStudentPageState extends State<LoginStudentPage> {
   }
 
   Future<void> loginAsStudent(
-      String username, String password) async {
+    String childUsername,
+    String parentEmail,
+    String parentPassword,
+  ) async {
     try {
-      // Step 1: Authenticate using the parent's email and password
+      // Authenticate using the parent's email and password
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: username,
-        password: password,
+        email: parentEmail,
+        password: parentPassword,
       );
 
-      // Step 2: Get parent data from Firestore
+      // Fetch the parent's document from Firestore
       DocumentSnapshot parentDoc = await FirebaseFirestore.instance
           .collection('users')
           .doc(userCredential.user!.uid)
           .get();
 
-      if (parentDoc.exists) {
-        Map<String, dynamic> parentData =
-            parentDoc.data() as Map<String, dynamic>;
+      // Check if the childUsername matches one of the parent's children
+      List children = parentDoc['children'];
+      var childData = children.firstWhere(
+        (child) => child['username'] == childUsername,
+        orElse: () => null,
+      );
 
-        // Step 3: Check if the username matches one of the parent's children
-        List children = parentData['children'];
-        var childData = children.firstWhere(
-          (child) => child['username'] == username,
-          orElse: () => null,
+      if (childData != null) {
+        // If the child is found, navigate to the student dashboard
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => StudentHomePage(childData: childData),
+          ),
         );
-
-        if (childData != null) {
-          // Step 4: Child (student) found, redirect to student page
-          print('Login successful! Child username: $username');
-
-          // Navigate to the student-specific page
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => (childData: childData),
-          //   ),
-          // );
-        } else {
-          // Child username not found
-          print('No child with username $username found for this parent.');
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Invalid username.'),
-          ));
-        }
       } else {
-        print('No parent data found.');
+        print('No child with username $childUsername found.');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Invalid child username.'),
+        ));
       }
     } catch (e) {
-      print('Failed to log in as student: $e');
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      print('Login failed: $e');
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Login failed. Please check your credentials.'),
       ));
     }
+  }
+}
+
+class StudentHomePage extends StatelessWidget {
+  final Map<String, dynamic> childData;
+  const StudentHomePage({super.key, required this.childData});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('${childData['username']}'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Name: ${childData['username']}'),
+          Text('Grade: ${childData['grade']}'),
+          Text('Subjects: ${childData['subjects'] ?? 'No subjects found'}'),
+        ],
+      ),
+    );
   }
 }

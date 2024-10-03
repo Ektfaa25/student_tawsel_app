@@ -6,7 +6,7 @@ class ChildModel {
   final String gender;
   final String level;
   final DateTime dateOfBirth;
-  final String? phone; // Make phone nullable if it’s optional
+  final String? phone;
 
   ChildModel({
     this.id,
@@ -14,24 +14,20 @@ class ChildModel {
     required this.gender,
     required this.level,
     required this.dateOfBirth,
-    this.phone, // Nullable phone
+    this.phone,
   });
 
-  // Factory to create ChildModel from Map (for Firestore or JSON)
   factory ChildModel.fromMap(Map<String, dynamic> map) {
     return ChildModel(
-      id: map['id'], // Nullable ID
-      name: map['name'] ?? '', // Provide default empty string if null
+      id: map['id'],
+      name: map['name'] ?? '',
       gender: map['gender'] ?? '',
       level: map['level'] ?? '',
-      dateOfBirth: map['dateOfBirth'] != null // Improved date parsing
-          ? DateTime.parse(map['dateOfBirth'])
-          : DateTime.now(), // Fallback if null
-      phone: map['phone'], // No need for fallback for nullable field
+      dateOfBirth: DateTime.now(),
+      phone: map['phone'],
     );
   }
 
-  // Convert ChildModel to Map (for Firestore or JSON encoding)
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -43,11 +39,9 @@ class ChildModel {
     };
   }
 
-  // Convert JSON string to ChildModel
   factory ChildModel.fromJson(String source) =>
       ChildModel.fromMap(json.decode(source));
 
-  // Convert ChildModel to JSON string
   String toJson() => json.encode(toMap());
 
   @override

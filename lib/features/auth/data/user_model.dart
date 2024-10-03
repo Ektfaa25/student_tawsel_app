@@ -9,7 +9,7 @@ class UserModel {
   final String image;
   final String? phone;
   final String? address;
-  final String role; // New field to specify the user role (parent, student)
+  final String role;
 
   UserModel({
     this.id,
@@ -18,22 +18,20 @@ class UserModel {
     required this.image,
     this.phone,
     this.address,
-    required this.role, // Required to ensure role is always provided
+    required this.role,
   });
 
-  // Creating a UserModel from Firebase Auth User
   factory UserModel.fromFirebaseAuthUser(User user, String role) {
     return UserModel(
       id: user.uid,
       username: user.displayName ?? '',
       email: user.email ?? '',
       image: user.photoURL ?? '',
-      phone: user.phoneNumber ?? '', // Include phone number if available
-      role: role, // Assign the role (parent or student) during creation
+      phone: user.phoneNumber ?? '',
+      role: role,
     );
   }
 
-  // Convert UserModel to a Map (for Firestore or JSON encoding)
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -42,11 +40,10 @@ class UserModel {
       'image': image,
       'phone': phone,
       'address': address,
-      'role': role, // Include role in the map
+      'role': role,
     };
   }
 
-  // Create a UserModel from a Map (from Firestore or JSON decoding)
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'],
@@ -55,8 +52,7 @@ class UserModel {
       image: map['image'] ?? '',
       phone: map['phone'],
       address: map['address'],
-      role: map['role'] ??
-          'student', // Default to 'student' if no role is specified
+      role: map['role'] ?? 'student',
     );
   }
 

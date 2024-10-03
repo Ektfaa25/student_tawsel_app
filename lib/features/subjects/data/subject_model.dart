@@ -29,11 +29,11 @@ class SubjectModel {
 List<SubjectModel> subjects = [
   SubjectModel(
     subjectName: 'Science',
-    subjectImg: "",
+    subjectImg: " assets/science.png",
   ),
   SubjectModel(
     subjectName: 'English',
-    subjectImg: "",
+    subjectImg: " assets/english.png",
   ),
   SubjectModel(
     subjectName: 'Arabic',

@@ -5,6 +5,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:student_tawsel/features/add_child/data/child_model.dart';
+import 'package:student_tawsel/features/add_child/domain/child_repo.dart';
 
 import 'package:student_tawsel/features/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/button_selection_widget.dart';
@@ -39,6 +41,7 @@ class _StudentSubjectPageState extends State<StudentSubjectPage> {
     // createTask(subjects);
     // addSubjectsForStudent(subjects);
     //  uploadImage();
+    childrenToStudentsWithSubjects(subjects);
   }
 
   bool uploadDone = false, startProgress = false;
@@ -128,11 +131,34 @@ class _StudentSubjectPageState extends State<StudentSubjectPage> {
         }
       });
 
-  Future createTask(List<SubjectModel> task) async {
-    for (var subject in task) {
+  Future createSubjet(List<SubjectModel> subjects) async {
+    for (var subject in subjects) {
       final taskData = FirebaseFirestore.instance.collection('Subjects').doc();
       final json = subject.toMap();
       await taskData.set(json);
+    }
+  }
+
+  Future<void> childrenToStudentsWithSubjects(
+      List<SubjectModel> subjects) async {
+    List<ChildModel> children = await ChildRepository().getChildren();
+
+    for (ChildModel child in children) {
+      List<Map<String, dynamic>> subjectList =
+          subjects.map((subject) => subject.toMap()).toList();
+
+      DocumentReference studentRef =
+          FirebaseFirestore.instance.collection('students').doc(child.id);
+
+      await studentRef.set({
+        'childId': child.id,
+        'name': child.name,
+        'gender': child.gender,
+        'level': child.level,
+        'dateOfBirth': child.dateOfBirth.toIso8601String(),
+        'phone': child.phone,
+        'subjects': subjectList,
+      });
     }
   }
 

@@ -6,7 +6,7 @@ import 'package:student_tawsel/features/subjects/data/subject_model.dart';
 class FirebaseStorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  // Upload a single file and return the download URL
+  // upload return the download URL
   Future<String?> uploadFile(File file, String storagePath) async {
     try {
       final ref =
