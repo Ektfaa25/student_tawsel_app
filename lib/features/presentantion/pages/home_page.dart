@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/core/theme/app_pallete.dart';
+import 'package:student_tawsel/features/add_child/data/child_model.dart';
+import 'package:student_tawsel/features/add_child/domain/child_repo.dart';
+import 'package:student_tawsel/features/chat/presentation/chat_page.dart';
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_user_content_wodget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/carousel_widget.dart';
+import 'package:student_tawsel/features/teacher/data/teacher_model.dart';
+import 'package:student_tawsel/features/teacher/domain/teacher_repository.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/features/presentantion/widgets/latest_notice_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/children__card_widget.dart';
 import 'package:student_tawsel/features/presentantion/pages/settings_page.dart';
-import 'package:student_tawsel/features/presentantion/pages/view_all_notices_page.dart';
+import 'package:student_tawsel/features/teacher/presentation/view_all_notices_page.dart';
 import 'package:student_tawsel/features/presentantion/pages/view_all_children_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,12 +25,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final ChildRepository _childRepository = ChildRepository();
+  final TeacherRepository _teacherRepository = TeacherRepository();
+  late Future<List<ChildModel>> fetchchildren;
+  late Future<List<TeacherModel>> fetchTeachers;
+  @override
+  void initState() {
+    super.initState();
+
+    fetchchildren = _childRepository.getChildren();
+    fetchTeachers = _teacherRepository.getAllTeachers();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        // flexibleSpace: const AppBarBackGroundWidget(),
+        flexibleSpace: const AppBarBackGroundWidget(
+          isloginparent: false,
+        ),
         title: const AppBarUserContentWidget(),
         actions: [
           IconButton(
@@ -49,14 +68,51 @@ class _HomePageState extends State<HomePage> {
               onLocaleChange: widget.onLocaleChange,
             ),
             //this widget is for the children cards
-            const MyChildrenCardWidget(
-              itemssize: 2,
-            ),
+            FutureBuilder<List<ChildModel>>(
+                future: fetchchildren,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                        child: CircularProgressIndicator()); // Loading spinner
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(child: Text('No children found.'));
+                  } else {
+                    // The data is available and we can build the list
+                    final children = snapshot.data!;
+
+                    return MyChildrenCardWidget(
+                      itemssize: 2,
+                      children: children,
+                    );
+                  }
+                }),
+
             LatestNoticesLine(
               onLocaleChange: widget.onLocaleChange,
             ),
             //this widget is for the latest notices list
-            const LatestNoticesCardWidget(itemssize: 2),
+            FutureBuilder<List<TeacherModel>>(
+                future: fetchTeachers,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                        child: CircularProgressIndicator()); // Loading spinner
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(child: Text('No children found.'));
+                  } else {
+                    // The data is available and we can build the list
+                    final teachers = snapshot.data!;
+
+                    return LatestNoticesCardWidget(
+                      itemssize: 2,
+                      teachers: teachers,
+                    );
+                  }
+                }),
           ],
         ),
       ),
@@ -64,7 +120,14 @@ class _HomePageState extends State<HomePage> {
       //Floating Chat Button
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppPallete.primaryColor,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return  ChatPage(
+              
+          fetchTeachers:fetchTeachers
+            );
+          }));
+        },
         child: Image.asset("assets/icon _chat_lines_.png",
             width: 32, height: 35, fit: BoxFit.cover),
       ),

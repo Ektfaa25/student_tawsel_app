@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/core/theme/app_pallete.dart';
+import 'package:student_tawsel/features/auth/firebase_auth.dart';
 import 'package:student_tawsel/features/auth/persentation/login_page.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/features/add_child/presentation/add_child_page.dart';
@@ -46,15 +47,14 @@ class _SettingsPageState extends State<SettingsPage> {
               },
             ),
             settingsoptionlist(
-                icon: "assets/icongroup.png",
-                title: S.of(context).addchild,
-                
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return  AddChildPage();
-                  }));
-                },
-                ),
+              icon: "assets/icongroup.png",
+              title: S.of(context).addchild,
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return AddChildPage();
+                }));
+              },
+            ),
             settingsoptionlist(
               icon: "assets/iconcreditcard.png",
               title: S.of(context).paymentMethods,
@@ -83,7 +83,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 icon: "assets/logouticon.png",
                 title: S.of(context).logOut,
                 onTap: () {
-                  FirebaseAuth.instance.signOut();
+                  FirebaseAuthService().signOut();
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return const LoginPage();
                   }));

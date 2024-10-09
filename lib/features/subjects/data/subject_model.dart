@@ -1,7 +1,7 @@
 class SubjectModel {
   final String? id;
   final String subjectName;
-  final String subjectImg;
+  String subjectImg;
 
   SubjectModel({
     this.id,

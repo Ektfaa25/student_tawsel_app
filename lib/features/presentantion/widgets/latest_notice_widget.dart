@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/features/presentantion/widgets/latest_notices_card_content_widget.dart';
+import 'package:student_tawsel/features/teacher/data/teacher_model.dart';
 
 import 'package:student_tawsel/tacher_class.dart';
 
 class LatestNoticesCardWidget extends StatelessWidget {
-  const LatestNoticesCardWidget({super.key, this.itemssize});
+  final List<TeacherModel> teachers;
+  const LatestNoticesCardWidget(
+      {super.key, this.itemssize, required this.teachers});
   final int? itemssize;
 
   _getCardcount() {
     if (itemssize != null) {
       return itemssize;
     } else {
-      return teacherData.length;
+      return teachers.length;
     }
   }
 
@@ -25,10 +28,7 @@ class LatestNoticesCardWidget extends StatelessWidget {
           itemCount: _getCardcount(),
           itemBuilder: (context, index) {
             return LatestNoticesCardContentWidget(
-              name: teacherData[index].name,
-              profession: teacherData[index].profession,
-              message: teacherData[index].message,
-              additionalInfo: teacherData[index].additionalInfo,
+           
             );
           },
         ),

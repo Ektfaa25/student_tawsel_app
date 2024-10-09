@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
 
-    // Delay of 2 seconds before showing the bottom sheet
+    // Show the persistent bottom sheet after a delay
     Future.delayed(const Duration(milliseconds: 1500), () {
       _showPersistentBottomSheet(context);
     });
@@ -45,7 +45,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       backgroundColor: const Color(0xff182243),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(height: 60),
           Center(
             child: Image.asset(
-              'assets/loginlogo.png', // Replace with actual image path
+              'assets/loginlogo.png',
               height: 322,
               width: 277,
               fit: BoxFit.cover,
@@ -107,10 +106,8 @@ class LoginSheetContent extends StatelessWidget {
           controller: TextEditingController(),
           label: "LOGIN AS PARENT",
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>  LoginParentPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LoginParentPage()));
           },
         )
       ],

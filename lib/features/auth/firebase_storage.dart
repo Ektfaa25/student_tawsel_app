@@ -5,12 +5,16 @@ import 'package:student_tawsel/features/subjects/data/subject_model.dart';
 
 class FirebaseStorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
+  final storageRef = FirebaseStorage.instance.ref();
 
   // upload return the download URL
-  Future<String?> uploadFile(File file, String storagePath) async {
+  Future<String?> uploadFile(
+    File file,
+  ) async {
     try {
       final ref =
-          _storage.ref().child(storagePath); // Reference in Firebase Storage
+          storageRef.child('images/${DateTime.now().millisecondsSinceEpoch}');
+
       final uploadTask = ref.putFile(file);
 
       // Wait for the upload to complete

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:student_tawsel/features/auth/domain/repository/firebase_auth.dart';
+import 'package:student_tawsel/features/auth/firebase_auth.dart';
 import 'package:student_tawsel/generated/l10n.dart';
 import 'package:student_tawsel/features/presentantion/widgets/avatar_widget.dart';
 

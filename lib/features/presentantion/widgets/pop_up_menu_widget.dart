@@ -4,7 +4,7 @@ import 'package:student_tawsel/features/presentantion/pages/attendance_page.dart
 import 'package:student_tawsel/features/presentantion/pages/exams_online_page.dart';
 import 'package:student_tawsel/features/presentantion/pages/results_page.dart';
 import 'package:student_tawsel/features/subjects/presentation/student_subject_page.dart';
-import 'package:student_tawsel/features/presentantion/pages/teachers_page.dart';
+import 'package:student_tawsel/features/teacher/presentation/teachers_page.dart';
 import 'package:student_tawsel/features/presentantion/pages/time_table_page.dart';
 
 class PopUpMenuWidget extends StatelessWidget {
