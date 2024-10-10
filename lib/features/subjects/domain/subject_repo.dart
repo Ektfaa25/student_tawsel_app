@@ -20,14 +20,4 @@ class SubjectRepository {
       rethrow;
     }
   }
-
-  // Fetch subjects by list of IDs
-  Future<List<SubjectModel>> getSubjectsById(List<String> ids) async {
-    final queryResult =
-        await _db.collection("Subjects").where('id', whereIn: ids).get();
-
-    final subjectsList =
-        queryResult.docs.map((e) => SubjectModel.fromMap(e.data())).toList();
-    return subjectsList;
-  }
 }

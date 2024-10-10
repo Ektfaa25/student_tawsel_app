@@ -132,6 +132,7 @@ class _StudentSubjectChaptersPageState
       body: Column(
         children: [
           ButtonSelectionWidget(
+              studentname: widget.student!,
               subject: widget.subject.toString(),
               btnSelectone: "Chapters",
               btnSelecttwo: "Announcements",

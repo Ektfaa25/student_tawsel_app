@@ -13,14 +13,15 @@ import 'package:student_tawsel/features/subjects/presentation/p_d_f_view_page.da
 
 class ChapterDetailsCardsWidget extends StatelessWidget {
   final bool isannouncement;
-  final List<PDFModel>? pdfs;
+  String? pdfurl;
   final bool isicon;
-  const ChapterDetailsCardsWidget({
-    super.key,
-    required this.isannouncement,
-    required this.isicon,
-    this.pdfs,
-  });
+  String? pdfname;
+  ChapterDetailsCardsWidget(
+      {super.key,
+      required this.isannouncement,
+      required this.isicon,
+      this.pdfurl,
+      this.pdfname});
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -78,12 +79,12 @@ class ChapterDetailsCardsWidget extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => PDFViewPage(
-                                        pdfUrl: pdfs![index].downloadURL)),
+                                    builder: (context) =>
+                                        PDFViewPage(pdfUrl: pdfurl!)),
                               );
                             },
                             child: Text(
-                              chapters[index].chapterDescription,
+                              pdfname!,
                               style: const TextStyle(
                                   fontFamily: "Inter",
                                   fontSize: 20,

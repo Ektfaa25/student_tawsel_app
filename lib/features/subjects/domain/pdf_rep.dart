@@ -6,7 +6,7 @@ class PDFRepository {
 
 
 
-  // Fetch all PDFs once
+  // Fetch all PDFs 
   Future<List<PDFModel>> getAllPDFs() async {
     try {
       QuerySnapshot snapshot = await _db.collection('pdfs').get();

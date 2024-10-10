@@ -44,6 +44,7 @@ class AnnouncementsPage extends StatelessWidget {
         body: Column(
           children: [
             ButtonSelectionWidget(
+                studentname: student,
                 btnSelectone: "Chapters",
                 btnSelecttwo: "Announcement",
                 isSelectedfirst: false,
@@ -51,7 +52,7 @@ class AnnouncementsPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const ChapterDetailsCardsWidget(
+             ChapterDetailsCardsWidget(
               isannouncement: true,
               isicon: true,
             ),

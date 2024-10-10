@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/chapter_data.dart';
 import 'package:student_tawsel/features/presentantion/pages/video_play_page.dart';
+import 'package:student_tawsel/features/subjects/data/video_model.dart';
 
 class VideoCardWidget extends StatelessWidget {
   final String student;
+  final List<VideoModel> video;
 
-  const VideoCardWidget({super.key, required this.student});
+  const VideoCardWidget(
+      {super.key, required this.student, required this.video});
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,8 @@ class VideoCardWidget extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => VideoPlayPage(
+                                      videourl: video[index].downloadURL,
+                                      videoname: video[index].fileName,
                                       student: student,
                                       chapterImage:
                                           chapters[index].chapterImage,

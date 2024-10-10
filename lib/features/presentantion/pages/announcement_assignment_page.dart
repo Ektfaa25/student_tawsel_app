@@ -42,12 +42,11 @@ class AnnouncementAssignmentPage extends StatelessWidget {
               PopUpMenuWidget(
                   menuItems: menuItems(context), menuImgs: menuImgs),
             ]),
-        body: const Padding(
+        body: Padding(
           padding: EdgeInsets.all(8.0),
           child: Column(
             children: [
-              ChapterDetailsCardsWidget(
-                  isannouncement: true, isicon: false),
+              ChapterDetailsCardsWidget(isannouncement: true, isicon: false),
             ],
           ),
         ),

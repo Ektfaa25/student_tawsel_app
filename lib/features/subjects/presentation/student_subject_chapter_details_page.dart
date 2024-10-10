@@ -1,25 +1,19 @@
-import 'dart:io';
-
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:student_tawsel/features/subjects/data/pdf_model.dart';
-import 'package:student_tawsel/features/subjects/presentation/student_subject_chapters_page.dart';
-
 import 'package:student_tawsel/popup_menu_data.dart';
-
 import 'package:student_tawsel/features/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/button_selection_widget.dart';
-
 import 'package:student_tawsel/features/presentantion/widgets/chapter_details_cards_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/pop_up_menu_widget.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class StudentSubjectChapterDetailsPage extends StatefulWidget {
-  List<PDFModel> pdfs;
-  String student;
-  StudentSubjectChapterDetailsPage(
-      {super.key, required this.pdfs, required this.student});
+  final String? pdfurl;
+  final String student;
+  final String pdfname;
+  const StudentSubjectChapterDetailsPage(
+      {super.key,
+      required this.pdfurl,
+      required this.student,
+      required this.pdfname});
 
   @override
   State<StudentSubjectChapterDetailsPage> createState() =>
@@ -61,7 +55,8 @@ class _StudentSubjectChapterDetailsPageState
       ),
       body: Column(
         children: [
-          const ButtonSelectionWidget(
+          ButtonSelectionWidget(
+              studentname: widget.student,
               btnSelectone: "Files",
               btnSelecttwo: "Videos",
               isSelectedfirst: true),
@@ -69,7 +64,8 @@ class _StudentSubjectChapterDetailsPageState
             height: 26,
           ),
           ChapterDetailsCardsWidget(
-            pdfs: widget.pdfs,
+            pdfurl: widget.pdfurl,
+            pdfname: widget.pdfname,
             isicon: true,
             isannouncement: false,
           ),

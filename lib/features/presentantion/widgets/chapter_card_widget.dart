@@ -8,7 +8,7 @@ import 'package:student_tawsel/features/subjects/presentation/student_subject_ch
 import 'package:student_tawsel/generated/l10n.dart';
 
 class ChapterCardWidget extends StatelessWidget {
-  List<PDFModel> pdfs;
+  final List<PDFModel> pdfs;
   final String student;
   ChapterCardWidget({
     super.key,
@@ -18,26 +18,27 @@ class ChapterCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => StudentSubjectChapterDetailsPage(
-              student: student,
-              pdfs: pdfs,
-            ),
-          ),
-        );
-      },
-      child: ListView.builder(
-        padding: const EdgeInsets.all(17),
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: pdfs.length,
-        itemBuilder: (context, index) {
-          final pdf = pdfs[index];
-          return SizedBox(
+    return ListView.builder(
+      padding: const EdgeInsets.all(17),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: pdfs.length,
+      itemBuilder: (context, index) {
+        final pdf = pdfs[index];
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => StudentSubjectChapterDetailsPage(
+                  student: student,
+                  pdfurl: pdfs[index].downloadURL,
+                  pdfname: pdfs[index].fileName,
+                ),
+              ),
+            );
+          },
+          child: SizedBox(
             height: 117,
             child: Card(
                 elevation: 4,
@@ -95,9 +96,9 @@ class ChapterCardWidget extends StatelessWidget {
                     ],
                   ),
                 )),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
