@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/features/subjects/data/pdf_model.dart';
+import 'package:student_tawsel/features/subjects/presentation/student_subject_chapters_page.dart';
 
 import 'package:student_tawsel/popup_menu_data.dart';
 
@@ -7,14 +12,26 @@ import 'package:student_tawsel/features/presentantion/widgets/button_selection_w
 
 import 'package:student_tawsel/features/presentantion/widgets/chapter_details_cards_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/pop_up_menu_widget.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-class StudentSubjectChapterDetailsPage extends StatelessWidget {
-  final String student;
+class StudentSubjectChapterDetailsPage extends StatefulWidget {
+  List<PDFModel> pdfs;
+  String student;
+  StudentSubjectChapterDetailsPage(
+      {super.key, required this.pdfs, required this.student});
 
-  final String subject;
+  @override
+  State<StudentSubjectChapterDetailsPage> createState() =>
+      _StudentSubjectChapterDetailsPageState();
+}
 
-  const StudentSubjectChapterDetailsPage(
-      {super.key, required this.student, required this.subject});
+class _StudentSubjectChapterDetailsPageState
+    extends State<StudentSubjectChapterDetailsPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +44,7 @@ class StudentSubjectChapterDetailsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                student,
+                widget.student,
                 style: const TextStyle(
                   fontFamily: "Inter",
                   fontWeight: FontWeight.bold,
@@ -44,15 +61,15 @@ class StudentSubjectChapterDetailsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ButtonSelectionWidget(
-              subject: subject,
+          const ButtonSelectionWidget(
               btnSelectone: "Files",
               btnSelecttwo: "Videos",
               isSelectedfirst: true),
           const SizedBox(
             height: 26,
           ),
-          const ChapterDetailsCardsWidget(
+          ChapterDetailsCardsWidget(
+            pdfs: widget.pdfs,
             isicon: true,
             isannouncement: false,
           ),

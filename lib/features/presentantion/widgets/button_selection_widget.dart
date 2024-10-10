@@ -67,7 +67,7 @@ class ButtonSelectionWidget extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) =>
                               StudentSubjectChapterDetailsPage(
-                                subject: subject!,
+                                pdfs: [],
                                 student: studentname!,
                               )));
                   break;
@@ -144,7 +144,6 @@ class ButtonSelectionWidget extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => TrackingPage(
-                              
                               student: studentname!,
                             )));
                 break;

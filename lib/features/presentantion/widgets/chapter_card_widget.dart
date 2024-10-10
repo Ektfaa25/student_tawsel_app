@@ -1,14 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:student_tawsel/chapter_data.dart';
+import 'package:student_tawsel/features/subjects/data/pdf_model.dart';
+import 'package:student_tawsel/features/subjects/domain/pdf_rep.dart';
 import 'package:student_tawsel/features/subjects/presentation/student_subject_chapter_details_page.dart';
+import 'package:student_tawsel/generated/l10n.dart';
 
 class ChapterCardWidget extends StatelessWidget {
+  List<PDFModel> pdfs;
   final String student;
-
-  final String subject;
-
-  const ChapterCardWidget(
-      {super.key, required this.subject, required this.student});
+  ChapterCardWidget({
+    super.key,
+    required this.pdfs,
+    required this.student,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +24,8 @@ class ChapterCardWidget extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => StudentSubjectChapterDetailsPage(
-              subject: subject,
               student: student,
+              pdfs: pdfs,
             ),
           ),
         );
@@ -28,8 +34,9 @@ class ChapterCardWidget extends StatelessWidget {
         padding: const EdgeInsets.all(17),
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
-        itemCount: chapters.length,
+        itemCount: pdfs.length,
         itemBuilder: (context, index) {
+          final pdf = pdfs[index];
           return SizedBox(
             height: 117,
             child: Card(
@@ -69,7 +76,7 @@ class ChapterCardWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              chapters[index].chapterName,
+                              pdf.fileName,
                               style: const TextStyle(
                                   fontFamily: "Inter",
                                   fontSize: 16,
@@ -77,7 +84,7 @@ class ChapterCardWidget extends StatelessWidget {
                                   color: Colors.black),
                             ),
                             Text(
-                              chapters[index].chapterDescription,
+                              pdf.fileDescription,
                               style: const TextStyle(
                                   fontFamily: "Inter",
                                   fontSize: 16,

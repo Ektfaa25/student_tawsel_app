@@ -47,12 +47,14 @@ class AnnouncementsPage extends StatelessWidget {
                 btnSelectone: "Chapters",
                 btnSelecttwo: "Announcement",
                 isSelectedfirst: false,
-               
                 subject: subject),
             const SizedBox(
               height: 20,
             ),
-            const ChapterDetailsCardsWidget(isannouncement: true, isicon: true),
+            const ChapterDetailsCardsWidget(
+              isannouncement: true,
+              isicon: true,
+            ),
           ],
         ));
   }

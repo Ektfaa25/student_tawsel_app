@@ -18,7 +18,9 @@ class AnnouncementAssignmentPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             automaticallyImplyLeading: false,
-            // flexibleSpace: const AppBarBackGroundWidget(),
+            flexibleSpace: const AppBarBackGroundWidget(
+              isloginparent: false,
+            ),
             title: Row(
               children: [
                 const AvatarWidget(),
@@ -44,7 +46,8 @@ class AnnouncementAssignmentPage extends StatelessWidget {
           padding: EdgeInsets.all(8.0),
           child: Column(
             children: [
-              ChapterDetailsCardsWidget(isannouncement: true, isicon: false),
+              ChapterDetailsCardsWidget(
+                  isannouncement: true, isicon: false),
             ],
           ),
         ),

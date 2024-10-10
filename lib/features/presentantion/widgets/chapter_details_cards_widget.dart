@@ -1,13 +1,26 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:student_tawsel/chapter_data.dart';
 import 'package:student_tawsel/features/presentantion/pages/announcement_assignment_page.dart';
 
+import 'package:student_tawsel/features/presentantion/widgets/chapter_card_widget.dart';
+import 'package:student_tawsel/features/subjects/data/pdf_model.dart';
+import 'package:student_tawsel/features/subjects/presentation/p_d_f_view_page.dart';
+
 class ChapterDetailsCardsWidget extends StatelessWidget {
   final bool isannouncement;
-
+  final List<PDFModel>? pdfs;
   final bool isicon;
-  const ChapterDetailsCardsWidget(
-      {super.key, required this.isannouncement, required this.isicon});
+  const ChapterDetailsCardsWidget({
+    super.key,
+    required this.isannouncement,
+    required this.isicon,
+    this.pdfs,
+  });
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -60,13 +73,23 @@ class ChapterDetailsCardsWidget extends StatelessWidget {
                               ),
                             ],
                           )
-                        : Text(
-                            chapters[index].chapterDescription,
-                            style: const TextStyle(
-                                fontFamily: "Inter",
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black),
+                        : GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PDFViewPage(
+                                        pdfUrl: pdfs![index].downloadURL)),
+                              );
+                            },
+                            child: Text(
+                              chapters[index].chapterDescription,
+                              style: const TextStyle(
+                                  fontFamily: "Inter",
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black),
+                            ),
                           ),
                     trailing:
                         isicon ? Image.asset("assets/iconfolder.png") : null,

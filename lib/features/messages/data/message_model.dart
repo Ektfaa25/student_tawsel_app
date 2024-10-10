@@ -30,7 +30,7 @@ class MessageModel {
         orElse: () => MessageType.text,
       ),
       timestamp: (map['timestamp'] as Timestamp).toDate(),
-      isSentByMe: map['isRead'] ?? false,
+      isSentByMe: map['isSentByMe'] ?? false,
     );
   }
 
