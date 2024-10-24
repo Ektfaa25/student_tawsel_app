@@ -64,12 +64,4 @@ class TeacherRepository {
         .toList();
     return teacherList;
   }
-
-  Future<TeacherModel?> getTeacherById(String id) async {
-    final docSnapshot = await _db.collection("Teachers").doc(id).get();
-    if (docSnapshot.exists) {
-      return TeacherModel.fromFirestore(docSnapshot.data()!, docSnapshot.id);
-    }
-    return null;
-  }
 }

@@ -19,25 +19,39 @@ class ParentModel {
     this.address = '',
   });
 
-  factory ParentModel.fromFirestore(DocumentSnapshot doc) {
+  // factory ParentModel.fromFirestore(DocumentSnapshot doc) {
+  //   Map data = doc.data() as Map<String, dynamic>;
+  //   return ParentModel(
+  //     id: doc.id,
+  //     name: data['name'] ?? '',
+  //     email: data['email'] ?? '',
+  //     role: data['role'] ?? '',
+  //     children: List<String>.from(data['children'] ?? []),
+  //     phone: data['phone'] ?? '',
+  //     address: data['address'] ?? '',
+  //   );
+  // }
+
+  factory ParentModel.fromMap(DocumentSnapshot doc) {
     Map data = doc.data() as Map<String, dynamic>;
     return ParentModel(
-      id: doc.id,
+      id: data['id'],
       name: data['name'] ?? '',
       email: data['email'] ?? '',
       role: data['role'] ?? '',
       children: List<String>.from(data['children'] ?? []),
-      phone: data['phone'] ?? '',
-      address: data['address'] ?? '',
+      phone: data['phone'],
+      address: data['address'],
     );
   }
 
-  Map<String, dynamic> toFirestore() {
+  Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'name': name,
       'email': email,
       'role': role,
-      'children': children,
+      "children": children,
       'phone': phone,
       'address': address,
     };

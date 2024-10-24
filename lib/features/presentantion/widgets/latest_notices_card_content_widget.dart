@@ -11,17 +11,17 @@ class LatestNoticesCardContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TeacherRepository _teacherRepository = TeacherRepository();
+    final TeacherRepository teacherRepository = TeacherRepository();
 
     Future<List<TeacherModel>> fetchTeachers() async {
-      return await _teacherRepository.getAllTeachers();
+      return await teacherRepository.getAllTeachers();
     }
 
     return FutureBuilder<List<TeacherModel>>(
         future: fetchTeachers(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: const CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {
@@ -78,9 +78,7 @@ class LatestNoticesCardContentWidget extends StatelessWidget {
                                       )),
                               const SizedBox(height: 8),
                               Text(
-                                  '${teacherData[index].profession}' +
-                                      '\n'
-                                          '${teacherData[index].additionalInfo}',
+                                  '${teacherData[index].profession}\n${teacherData[index].additionalInfo}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodySmall

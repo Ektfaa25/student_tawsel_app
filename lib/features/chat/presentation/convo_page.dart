@@ -149,21 +149,19 @@ class _ConversationPageState extends State<ConversationPage> {
     );
   }
 
-  Future<void> sendMessageToTeacher(
+  sendMessageToTeacher(
       String currentUserId, String chatId, String messageContent) async {
     final messageRepo = MessageRepository();
 
     final message = MessageModel(
       id: '',
       senderId: currentUserId,
-      chatId: chatId,
-      message: messageContent,
+      content: messageContent,
       messageType: MessageType.text,
       timestamp: DateTime.now(),
-      isSentByMe: true,
     );
 
-    await messageRepo.sendMessage(message);
+    await messageRepo.sendMessage(chatId, message);
 
     _controller.clear();
   }

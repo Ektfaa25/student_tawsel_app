@@ -39,7 +39,7 @@ class TeacherModel {
     };
   }
 
-  factory TeacherModel.fromMap(Map<String, dynamic> map) {
+  factory TeacherModel.fromMap(Map<String, String> map) {
     return TeacherModel(
       id: map['id'],
       name: map['name'] ?? '',

@@ -58,8 +58,7 @@ class _MyAppState extends State<MyApp> {
         themeMode: ThemeMode.system,
         supportedLocales: S.delegate.supportedLocales,
         home:
-            // LoginPage());
-            //
+           
             HomePage(onLocaleChange: _changeLocale));
   }
 }

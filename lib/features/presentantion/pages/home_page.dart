@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
-                        child: CircularProgressIndicator()); // Loading spinner
+                        child: CircularProgressIndicator()); // Loading
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -122,10 +122,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: AppPallete.primaryColor,
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return  ChatPage(
-              
-          fetchTeachers:fetchTeachers
-            );
+            return ChatPage(fetchTeachers: fetchTeachers);
           }));
         },
         child: Image.asset("assets/icon _chat_lines_.png",

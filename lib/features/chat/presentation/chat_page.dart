@@ -59,8 +59,8 @@ class _ChatPageState extends State<ChatPage> {
                   itemCount: teachers.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () {
-                        startChatWithTeacher(
+                      onTap: () async {
+                        final chatId = await startChatWithTeacher(
                           FirebaseAuthService().getCurrentUserid(),
                           teachers[index].id!,
                         );
@@ -68,7 +68,7 @@ class _ChatPageState extends State<ChatPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ConversationPage(
-                                  teacherId: teachers[index].id!,
+                                  teacherId: chatId,
                                   name: teachers[index].name,
                                   profession: teachers[index].profession),
                             ));
@@ -170,14 +170,15 @@ class _ChatPageState extends State<ChatPage> {
             }));
   }
 
-  Future<void> startChatWithTeacher(
+  Future<String> startChatWithTeacher(
     String currentUserId,
     String teacherId,
   ) async {
     final chatRepo = ChatRepository();
 
-    final chat = await chatRepo.createChat([currentUserId, teacherId]);
+    final chat = await chatRepo.getOrCreateChat(teacherId);
 
-    print('Chat started with ID: ${chat.id}');
+    print('Chat started with ID: ${chat}');
+    return chat;
   }
 }

@@ -1,50 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:student_tawsel/features/messages/data/message_model.dart';
 
 class ChatModel {
-  String? id;
-  List<String> participantIds;
-  DateTime createdAt;
-  String? lastMessage;
-  DateTime? lastMessageTimestamp;
-  List<MessageModel> messages; // Add this line
+  String id;
+  List<String> participants; // List of user IDs
+  String lastMessage;
+  DateTime lastMessageTime;
 
   ChatModel({
-    this.id,
-    required this.participantIds,
-    required this.createdAt,
-    this.lastMessage,
-    this.lastMessageTimestamp,
-    required this.messages, // And this line
+    required this.id,
+    required this.participants,
+    required this.lastMessage,
+    required this.lastMessageTime,
   });
 
   factory ChatModel.fromMap(Map<String, dynamic> map) {
     return ChatModel(
-      id: map['id'],
-      participantIds: List<String>.from(map['participantIds']),
-      createdAt: (map['createdAt'] as Timestamp).toDate(),
-      lastMessage: map['lastMessage'],
-      lastMessageTimestamp: map['lastMessageTimestamp'] != null
-          ? (map['lastMessageTimestamp'] as Timestamp).toDate()
-          : null,
-      messages: map['messages'] != null
-          ? List<Map<String, dynamic>>.from(map['messages'])
-              .map((msgMap) => MessageModel.fromMap(msgMap))
-              .toList()
-          : [],
+      id: map['id'] ?? '',
+      participants: List<String>.from(map['participants'] ?? []),
+      lastMessage: map['lastMessage'] ?? '',
+      lastMessageTime: (map['lastMessageTime'] as Timestamp).toDate(),
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'participantIds': participantIds,
-      'createdAt': Timestamp.fromDate(createdAt),
+      'participants': participants,
       'lastMessage': lastMessage,
-      'lastMessageTimestamp': lastMessageTimestamp != null
-          ? Timestamp.fromDate(lastMessageTimestamp!)
-          : null,
-      'messages': messages.map((msg) => msg.toMap()).toList(), // And this line
+      'lastMessageTime': Timestamp.fromDate(lastMessageTime),
     };
   }
 }

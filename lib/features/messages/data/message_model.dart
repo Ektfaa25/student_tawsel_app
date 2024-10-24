@@ -1,54 +1,42 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+enum MessageType { text, image, audio }
+
 class MessageModel {
   String? id;
+  String content;
   String senderId;
-  String chatId;
-  String message;
   MessageType messageType;
   DateTime timestamp;
-  bool isSentByMe;
 
   MessageModel({
-    required this.id,
+    this.id,
+    required this.content,
     required this.senderId,
-    required this.chatId,
-    required this.message,
-    required this.messageType,
     required this.timestamp,
-    required this.isSentByMe,
+    this.messageType = MessageType.text,
   });
 
   factory MessageModel.fromMap(Map<String, dynamic> map) {
     return MessageModel(
       id: map['id'] ?? '',
+      content: map['content'] ?? '',
       senderId: map['senderId'] ?? '',
-      chatId: map['chatId'] ?? '',
-      message: map['content'] ?? '',
       messageType: MessageType.values.firstWhere(
         (e) => e.toString() == 'MessageType.${map['messageType']}',
         orElse: () => MessageType.text,
       ),
       timestamp: (map['timestamp'] as Timestamp).toDate(),
-      isSentByMe: map['isSentByMe'] ?? false,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'content': content,
       'senderId': senderId,
-      'chatId': chatId,
-      'content': message,
       'messageType': messageType.toString().split('.').last,
       'timestamp': Timestamp.fromDate(timestamp),
-      'isRead': isSentByMe,
     };
   }
-}
-
-enum MessageType {
-  text, // text message
-  image, // Image message
-  audio, // Audio message
 }

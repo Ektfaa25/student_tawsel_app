@@ -19,15 +19,14 @@ class FirebaseAuthService {
         password: password,
       );
 
-      ParentModel? parent =
-          await _parentRepo.getParentById(userCredential.user!.uid);
+      // ParentModel? parent =
+      //     await _parentRepo.getParentById(userCredential.user!.uid);
 
-      if (parent != null && parent.role == 'parent') {
-        return userCredential.user;
-      } else {
-        await signOut();
-        return null;
-      }
+      // if (parent != null && parent.role == 'parent') {
+
+      // } else {
+      //   await signOut();
+      return userCredential.user;
     } catch (e) {
       print("Error signing in parent: $e");
       return null;
@@ -89,11 +88,11 @@ class FirebaseAuthService {
   }
 
   String getCurrentUserName() {
-    return _auth.currentUser!.displayName ?? "guest";
+    return _auth.currentUser?.displayName ?? "guest";
   }
 
   String getCurrentUserEmail() {
-    return _auth.currentUser!.email ?? "guest@example.com";
+    return _auth.currentUser?.email ?? "guest@example.com";
   }
 
   String getCurrentUserid() {

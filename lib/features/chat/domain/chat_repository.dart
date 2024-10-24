@@ -1,40 +1,49 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:student_tawsel/features/auth/firebase_auth.dart';
 import 'package:student_tawsel/features/chat/data/chat_model.dart';
 
 class ChatRepository {
-  final _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  Future<String> getOrCreateChat(String reciever) async {
+    var currentUserid = FirebaseAuthService().getCurrentUserid();
+    List<String> users = [reciever, currentUserid];
+    users.sort(); // Ensure consistent chatId
+    String chatId = users.join('_');
+    
 
- 
-  /// Creates a new chat between two users
-  Future<ChatModel> createChat(List<String> participantIds) async {
-    try {
-      // Check if a chat already exists between these users
-      final existingChats = await _firestore
-          .collection('chats')
-          .where('participantIds', arrayContains: participantIds[0])
-          .get();
+    DocumentReference chatDoc = _db.collection('chats').doc(chatId)
+      ..collection('messages');
 
-      for (var doc in existingChats.docs) {
-        final chat = ChatModel.fromMap(doc.data());
-        if (chat.participantIds.toSet().containsAll(participantIds)) {
-          // Chat already exists
-          return chat;
-        }
-      }
+    DocumentSnapshot chatSnapshot = await chatDoc.get();
 
-      // Create a new chat document
-      final docRef = _firestore.collection('chats').doc();
-      final chat = ChatModel(
-        id: docRef.id,
-        participantIds: participantIds,
-        createdAt: DateTime.now(),
-        messages: [], // Initialize the messages list
-      );
-
-      await docRef.set(chat.toMap());
-      return chat;
-    } catch (e) {
-      throw Exception('Failed to create chat: $e');
+    if (!chatSnapshot.exists) {
+      // Create new chat
+      await chatDoc.set({
+        'participants': users,
+        'lastMessage': '',
+        'lastMessageTime': Timestamp.now(),
+      });
     }
+
+    return chatId;
   }
+
+  // Get list of chats for a user
+  Stream<List<ChatModel>> getUserChats(String userId) {
+    return _db
+        .collection('chats')
+        .where('participants', arrayContains: userId)
+        .orderBy('lastMessageTime', descending: true)
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) {
+              var data = doc.data();
+              data['id'] = doc.id;
+
+              final chat = ChatModel.fromMap(data);
+
+              return chat;
+            }).toList());
+  }
+
+  
 }

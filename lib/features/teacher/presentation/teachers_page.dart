@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/features/chat/presentation/convo_page.dart';
 import 'package:student_tawsel/features/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/features/teacher/data/teacher_model.dart';
 import 'package:student_tawsel/features/teacher/domain/teacher_repository.dart';
@@ -71,9 +72,20 @@ class _TeachersPageState extends State<TeachersPage> {
                           children: [
                             AvatarWidget(),
                             SizedBox(height: 30),
-                            Image.asset(
-                              "assets/icon _chat_lines_.png",
-                              color: const Color(0xff3A3A3A),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return ConversationPage(
+                                      name: teacher.name,
+                                      profession: teacher.profession,
+                                      teacherId: teacher.id!);
+                                }));
+                              },
+                              child: Image.asset(
+                                "assets/icon _chat_lines_.png",
+                                color: const Color(0xff3A3A3A),
+                              ),
                             ),
 
                             // Text(

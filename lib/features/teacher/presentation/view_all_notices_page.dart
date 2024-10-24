@@ -29,6 +29,8 @@ class _ViewAllNoticesPageState extends State<ViewAllNoticesPage> {
   Future<List<TeacherModel>> fetchTeachers() async {
     return await _teacherRepository.getAllTeachers();
   }
+ 
+  
 
   @override
   Widget build(BuildContext context) {

@@ -50,9 +50,13 @@ class _ListOfMessagesWidgetState extends State<ListOfMessagesWidget> {
             var isSender =
                 message.senderId == FirebaseAuthService().getCurrentUserid();
             return BubbleSpecialThree(
-              text: message.message,
+              textStyle: TextStyle(
+                color: isSender ? Colors.black : Colors.white,
+              ),
+              text: message.content,
               color:
                   isSender ? const Color(0xFFE8E8EE) : AppPallete.primaryColor,
+              tail: true,
               isSender: isSender,
             );
           },

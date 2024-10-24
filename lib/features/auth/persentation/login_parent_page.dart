@@ -140,8 +140,8 @@ class _LoginStudentPageState extends State<LoginParentPage> {
     String password = passwordController.text;
     User? user = await _auth.signInParent(email, password);
 
-    print("user signed in successfully");
     if (user != null) {
+      print("user signed in successfully");
       // Redirect to parent dashboard
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return HomePage(
