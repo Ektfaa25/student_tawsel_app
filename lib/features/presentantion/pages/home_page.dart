@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:student_tawsel/core/theme/app_pallete.dart';
 import 'package:student_tawsel/features/add_child/data/child_model.dart';
 import 'package:student_tawsel/features/add_child/domain/child_repo.dart';
+import 'package:student_tawsel/features/auth/firebase_auth.dart';
+import 'package:student_tawsel/features/chat/data/chat_model.dart';
+import 'package:student_tawsel/features/chat/domain/chat_repository.dart';
 import 'package:student_tawsel/features/chat/presentation/chat_page.dart';
+import 'package:student_tawsel/features/latest_notices/data/latest_notices_model.dart';
+import 'package:student_tawsel/features/latest_notices/domain/latest_notice_repository.dart';
+import 'package:student_tawsel/features/messages/data/message_model.dart';
+import 'package:student_tawsel/features/messages/domain/messge_repository.dart';
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_user_content_wodget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/carousel_widget.dart';
@@ -27,14 +34,27 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final ChildRepository _childRepository = ChildRepository();
   final TeacherRepository _teacherRepository = TeacherRepository();
+  final ChatRepository chatpRepository = ChatRepository();
+  final LatestNoticeRepository latestNoticeRepository =
+      LatestNoticeRepository();
   late Future<List<ChildModel>> fetchchildren;
   late Future<List<TeacherModel>> fetchTeachers;
+  late Stream<List<MessageModel>> fetchmsgs;
+  late Stream<List<ChatModel>> fetchuserchat;
+  late Future<List<LatestNoticeModel>> fetchlatestnotice;
   @override
+
+  //  final chatId = await startChatWithTeacher(
+  //                         FirebaseAuthService().getCurrentUserid(),
+  //                         teachers[index].id!,
+  //                       );
   void initState() {
     super.initState();
-
+    fetchlatestnotice = latestNoticeRepository.getAllLatestNotices();
     fetchchildren = _childRepository.getChildren();
     fetchTeachers = _teacherRepository.getAllTeachers();
+    fetchuserchat =
+        chatpRepository.getUserChats(FirebaseAuthService().getCurrentUserid()!);
   }
 
   @override
@@ -92,9 +112,9 @@ class _HomePageState extends State<HomePage> {
             LatestNoticesLine(
               onLocaleChange: widget.onLocaleChange,
             ),
-            //this widget is for the latest notices list
-            FutureBuilder<List<TeacherModel>>(
-                future: fetchTeachers,
+            // this widget is for the latest notices list
+            FutureBuilder<List<LatestNoticeModel>>(
+                future: fetchlatestnotice,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
@@ -102,14 +122,14 @@ class _HomePageState extends State<HomePage> {
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return const Center(child: Text('No children found.'));
+                    return const Center(child: Text('No messages found.'));
                   } else {
                     // The data is available and we can build the list
-                    final teachers = snapshot.data!;
+                    final latestnotices = snapshot.data!;
 
                     return LatestNoticesCardWidget(
                       itemssize: 2,
-                      teachers: teachers,
+                      latestnotices: latestnotices,
                     );
                   }
                 }),

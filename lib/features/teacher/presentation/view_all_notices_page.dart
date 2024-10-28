@@ -70,7 +70,10 @@ class _ViewAllNoticesPageState extends State<ViewAllNoticesPage> {
                             Theme.of(context).textTheme.bodyLarge?.fontSize,
                         color: Theme.of(context).textTheme.bodyLarge?.color)),
               ),
-              LatestNoticesCardContentWidget()
+              LatestNoticesCardContentWidget(
+                
+
+              )
             ],
           ),
         ));

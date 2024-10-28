@@ -68,8 +68,9 @@ class _ChatPageState extends State<ChatPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ConversationPage(
-                                  teacherId: chatId,
+                                  chatid: chatId,
                                   name: teachers[index].name,
+                                  teacherId: teachers[index].id,
                                   profession: teachers[index].profession),
                             ));
                       },
@@ -109,13 +110,11 @@ class _ChatPageState extends State<ChatPage> {
                                       ClipOval(
                                         child: Container(
                                           color: Colors.grey[300],
-                                          child: GestureDetector(
-                                            child: Image.asset(
-                                                "assets/smiling-face-of-a-child-2 1.png",
-                                                width: 75,
-                                                height: 77,
-                                                fit: BoxFit.contain),
-                                          ),
+                                          child: Image.asset(
+                                              "assets/smiling-face-of-a-child-2 1.png",
+                                              width: 75,
+                                              height: 77,
+                                              fit: BoxFit.contain),
                                         ),
                                       ),
                                     ],

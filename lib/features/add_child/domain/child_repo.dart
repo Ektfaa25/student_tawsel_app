@@ -63,7 +63,7 @@ class ChildRepository {
     DocumentSnapshot userDoc = await _db.collection('children').doc('id').get();
 
     if (userDoc.exists) {
-      return userDoc['name']; 
+      return userDoc['name'];
     } else {
       return 'Unknown User';
     }

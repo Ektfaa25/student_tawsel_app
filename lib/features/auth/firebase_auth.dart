@@ -95,8 +95,8 @@ class FirebaseAuthService {
     return _auth.currentUser?.email ?? "guest@example.com";
   }
 
-  String getCurrentUserid() {
-    return _auth.currentUser!.uid;
+  getCurrentUserid() {
+    return _auth.currentUser?.uid;
   }
 
   Stream<User?> authState() {

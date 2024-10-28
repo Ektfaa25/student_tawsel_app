@@ -6,7 +6,7 @@ class MessageRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Future<String> getOrCreateChat(String reciever) async {
     var currentUserid = FirebaseAuthService().getCurrentUserid();
-    List<String> users = [reciever, currentUserid];
+    List<String> users = [reciever, currentUserid!];
     users.sort(); // Ensure consistent chatId
     String chatId = users.join('_');
 
@@ -27,52 +27,83 @@ class MessageRepository {
     return chatId;
   }
 
- 
-
-  Future<void> sendMessage(String chatId, MessageModel message) async {
-    // Reference to the messages collection within the chat
+  Future<void> sendMessage(
+      String chatId, MessageModel message, String teacherId) async {
     CollectionReference messagesRef =
         _firestore.collection('chats').doc(chatId).collection('messages');
 
-// Check if the message has an ID
     if (message.id != null && message.id!.isNotEmpty) {
-      // If the message has an ID, it means it already exists
       DocumentReference messageDoc = messagesRef.doc(message.id);
-
-      // Update the existing message document
       await messageDoc.update(message.toMap());
     } else {
-      // If the message doesn't have an ID, it is a new message
-      // Add the message and get the reference of the new document
       DocumentReference messageDoc = await messagesRef.add(message.toMap());
-
-      // Set the ID for the newly created message document
       message.id = messageDoc.id;
-
-      // Update the message document with its own ID
       await messageDoc.update({'id': message.id});
     }
 
-// Update the chat document with the latest message info
+    // Update the chat document
     await _firestore.collection('chats').doc(chatId).update({
       'lastMessage': message.content,
       'lastMessageTime': Timestamp.fromDate(message.timestamp),
     });
+    await updateLatestNotice(teacherId, message.content, message.timestamp);
+    print("Sending to updateLatestNotice");
   }
-  // Future<void> sendMessage(MessageModel message) async {
-  //   try {
-  //     final docRef = _firestore
-  //         .collection('chats')
-  //         .doc(message.chatId)
-  //         .collection('messages')
-  //         .doc();
-  //     message.id = docRef.id;
 
-  //     await docRef.set(message.toMap());
-  //   } catch (e) {
-  //     throw Exception('Failed to send message: $e');
-  //   }
-  // }
+  Future<void> updateLatestNotice(
+      String teacherId, String messageContent, DateTime timestamp) async {
+    try {
+      print("Fetching teacher data for teacherId: $teacherId");
+      DocumentSnapshot teacherSnapshot =
+          await _firestore.collection('Teachers').doc(teacherId).get();
+
+      if (teacherSnapshot.exists) {
+        final teacherData = teacherSnapshot.data() as Map<String, dynamic>?;
+        if (teacherData == null) {
+          print("No data found in teacher document.");
+          return;
+        }
+
+        print(
+            "Creating/updating latest_notices for teacher: ${teacherData['name']}");
+        await _firestore.collection('latest_notices').doc(teacherId).set({
+          'teacherId': teacherId,
+          'teacherName': teacherData['name'],
+          'profession': teacherData['profession'],
+          'additionalInfo': teacherData['additionalInfo'],
+          'lastMessageContent': messageContent,
+          'lastMessageTimestamp': Timestamp.fromDate(timestamp),
+        }, SetOptions(merge: true));
+
+        print("Successfully updated latest_notices for $teacherId");
+      } else {
+        print("Teacher document with ID $teacherId does not exist.");
+      }
+    } catch (e) {
+      print("Error updating latest_notices: $e");
+    }
+  }
+
+  Future<Map<String, dynamic>?> getLatestNoticeByTeacherId(
+      String teacherId) async {
+    try {
+      // Fetch the document for the specific teacher ID from latest_notices collection
+      DocumentSnapshot noticeSnapshot =
+          await _firestore.collection('latest_notices').doc(teacherId).get();
+
+      // Check if the document exists
+      if (noticeSnapshot.exists) {
+        // Return the data as a map
+        return noticeSnapshot.data() as Map<String, dynamic>?;
+      } else {
+        print("No latest notice found for teacher ID: $teacherId");
+        return null; // No data found for the provided teacher ID
+      }
+    } catch (e) {
+      print("Error fetching latest notice for teacher ID $teacherId: $e");
+      return null; // Return null in case of an error
+    }
+  }
 
   Stream<List<MessageModel>> getMessages(String chatId) {
     try {
@@ -110,8 +141,6 @@ class MessageRepository {
       throw Exception('Failed to get message: $e');
     }
   }
-
- 
 
   Future<void> deleteMessage(String chatId, String messageId) async {
     try {

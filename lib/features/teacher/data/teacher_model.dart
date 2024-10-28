@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class TeacherModel {
-  final String? id;
+  final String id;
   final String name;
   final String profession;
   final String message;
@@ -9,7 +9,7 @@ class TeacherModel {
   final String phonenumer;
 
   TeacherModel({
-    this.id,
+    required this.id,
     required this.name,
     required this.profession,
     required this.message,
@@ -41,7 +41,7 @@ class TeacherModel {
 
   factory TeacherModel.fromMap(Map<String, String> map) {
     return TeacherModel(
-      id: map['id'],
+      id: map['id'] ?? "",
       name: map['name'] ?? '',
       profession: map['profession'] ?? '',
       message: map['message'] ?? '',

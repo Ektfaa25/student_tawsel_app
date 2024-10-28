@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/features/chat/data/chat_model.dart';
+import 'package:student_tawsel/features/latest_notices/data/latest_notices_model.dart';
+import 'package:student_tawsel/features/latest_notices/domain/latest_notice_repository.dart';
+import 'package:student_tawsel/features/messages/data/message_model.dart';
 import 'package:student_tawsel/features/presentantion/widgets/latest_notices_card_content_widget.dart';
 import 'package:student_tawsel/features/teacher/data/teacher_model.dart';
 import 'package:student_tawsel/features/teacher/domain/teacher_repository.dart';
 
 class LatestNoticesCardWidget extends StatefulWidget {
-  final List<TeacherModel> teachers;
-  const LatestNoticesCardWidget(
-      {super.key, this.itemssize, required this.teachers});
+  List<LatestNoticeModel> latestnotices;
+  LatestNoticesCardWidget(
+      {super.key, this.itemssize, required this.latestnotices});
   final int? itemssize;
 
   @override
@@ -15,7 +19,8 @@ class LatestNoticesCardWidget extends StatefulWidget {
 }
 
 class _LatestNoticesCardWidgetState extends State<LatestNoticesCardWidget> {
-  final _teacherRepository = TeacherRepository();
+  final LatestNoticeRepository _latestNoticeRepository =
+      LatestNoticeRepository();
 
   late Future<List<TeacherModel>> fetchteachers;
 
@@ -23,14 +28,14 @@ class _LatestNoticesCardWidgetState extends State<LatestNoticesCardWidget> {
   void initState() {
     super.initState();
 
-    fetchteachers = _teacherRepository.getAllTeachers();
+    // fetchteachers = _teacherRepository.getAllTeachers();
   }
 
-  int _getCardCount({required List<TeacherModel> teacher}) {
+  int _getCardCount({required List<LatestNoticeModel> messages}) {
     if (widget.itemssize != null) {
       return widget.itemssize!;
     } else {
-      return teacher.length;
+      return messages.length;
     }
   }
 
@@ -41,9 +46,11 @@ class _LatestNoticesCardWidgetState extends State<LatestNoticesCardWidget> {
         ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: _getCardCount(teacher: widget.teachers),
+          itemCount: _getCardCount(messages: widget.latestnotices),
           itemBuilder: (context, index) {
-            return const LatestNoticesCardContentWidget();
+            return LatestNoticesCardContentWidget(
+              latestnotice: widget.latestnotices,
+            );
           },
         ),
       ],

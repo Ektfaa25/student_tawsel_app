@@ -13,14 +13,14 @@ import 'package:student_tawsel/features/presentantion/widgets/avatar_widget.dart
 class ConversationPage extends StatefulWidget {
   final String name;
   final String profession;
+String teacherId;
+  final String chatid;
 
-  final String teacherId;
-
-  const ConversationPage({
+   ConversationPage({
     super.key,
     required this.name,
     required this.profession,
-    required this.teacherId,
+    required this.chatid, required this.teacherId,
   });
 
   @override
@@ -87,7 +87,7 @@ class _ConversationPageState extends State<ConversationPage> {
           ),
           Expanded(
               child: ListOfMessagesWidget(
-            chatId: widget.teacherId,
+            chatId: widget.chatid,
             currentUserId: FirebaseAuthService().getCurrentUserid(),
           )),
           // Expanded(
@@ -134,8 +134,11 @@ class _ConversationPageState extends State<ConversationPage> {
                           onPressed: () {
                             sendMessageToTeacher(
                               FirebaseAuthService().getCurrentUserid(),
+                              widget.chatid,
+                               _controller.text,
                               widget.teacherId,
-                              _controller.text,
+                              
+                             
                             );
                           },
                           icon: const Icon(Icons.send,
@@ -150,7 +153,7 @@ class _ConversationPageState extends State<ConversationPage> {
   }
 
   sendMessageToTeacher(
-      String currentUserId, String chatId, String messageContent) async {
+      String currentUserId, String chatId, String messageContent,  String teacherId) async {
     final messageRepo = MessageRepository();
 
     final message = MessageModel(
@@ -161,8 +164,10 @@ class _ConversationPageState extends State<ConversationPage> {
       timestamp: DateTime.now(),
     );
 
-    await messageRepo.sendMessage(chatId, message);
+    await messageRepo.sendMessage(chatId, message, widget.teacherId);
 
     _controller.clear();
   }
+  
 }
+  

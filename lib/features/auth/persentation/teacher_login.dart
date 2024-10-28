@@ -5,24 +5,23 @@ import 'package:student_tawsel/features/add_child/presentation/add_child_page.da
 import 'package:student_tawsel/features/auth/firebase_auth.dart';
 import 'package:student_tawsel/features/auth/persentation/login_student_page.dart';
 import 'package:student_tawsel/features/auth/persentation/signup_page.dart';
-import 'package:student_tawsel/features/auth/persentation/teacher_login.dart';
 import 'package:student_tawsel/features/presentantion/pages/home_page.dart';
 import 'package:student_tawsel/features/presentantion/widgets/app_bar_back_ground_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/button_widget.dart';
 import 'package:student_tawsel/features/presentantion/widgets/form_field_widget.dart';
 
-class LoginParentPage extends StatefulWidget {
+class TeacherLogin extends StatefulWidget {
   final User? user;
-  const LoginParentPage({
+  const TeacherLogin({
     super.key,
     this.user,
   });
 
   @override
-  State<LoginParentPage> createState() => _LoginStudentPageState();
+  State<TeacherLogin> createState() => _TeacherLoginState();
 }
 
-class _LoginStudentPageState extends State<LoginParentPage> {
+class _TeacherLoginState extends State<TeacherLogin> {
   final FirebaseAuthService _auth = FirebaseAuthService();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -95,7 +94,7 @@ class _LoginStudentPageState extends State<LoginParentPage> {
             ),
             ButtonWidget(
               onPressed: () {
-                signIn();
+                signIn(emailController.text, passwordController.text);
               },
               label: "LOGIN",
             ),
@@ -114,7 +113,7 @@ class _LoginStudentPageState extends State<LoginParentPage> {
                           color: Color(0xff09206A)),
                       children: [
                         TextSpan(
-                          text: "teacher?",
+                          text: "Parent?",
                           style: TextStyle(
                               fontSize: 26,
                               fontWeight: FontWeight.bold,
@@ -136,9 +135,9 @@ class _LoginStudentPageState extends State<LoginParentPage> {
     );
   }
 
-  void signIn() async {
-    String email = emailController.text;
-    String password = passwordController.text;
+  void signIn(String email, String password) async {
+    // String email = emailController.text;
+    // String password = passwordController.text;
     User? user = await _auth.signInParent(email, password);
 
     if (user != null) {

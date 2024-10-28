@@ -4,12 +4,28 @@ import 'package:student_tawsel/features/chat/data/chat_model.dart';
 
 class ChatRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  // Future<String> createChat(String teacherId) async {
+  //   var currentUserid = FirebaseAuthService().getCurrentUserid();
+  //   List<String> users = [teacherId, currentUserid];
+  //   users.sort(); // Ensure consistent chatId
+  //   String chatId = users.join('_');
+  //   final chatRef = FirebaseFirestore.instance.collection('chats').doc();
+  //   await chatRef.set({
+  //     'chatId': chatId,
+  //     'userId': currentUserid,
+  //     'teacherId': teacherId,
+  //     'lastMessage': {
+  //       'content': '',
+  //       'timestamp': FieldValue.serverTimestamp(),
+  //     }
+  //   });
+  //   return chatId;
+  // }
   Future<String> getOrCreateChat(String reciever) async {
     var currentUserid = FirebaseAuthService().getCurrentUserid();
     List<String> users = [reciever, currentUserid];
     users.sort(); // Ensure consistent chatId
     String chatId = users.join('_');
-    
 
     DocumentReference chatDoc = _db.collection('chats').doc(chatId)
       ..collection('messages');
@@ -23,9 +39,37 @@ class ChatRepository {
         'lastMessage': '',
         'lastMessageTime': Timestamp.now(),
       });
+      // Initialize latest notice for this chat
+      await updateLatestNotice(reciever, '');
     }
 
     return chatId;
+  }
+
+  Future<void> updateLatestNotice(
+      String teacherId, String messageContent) async {
+    // Fetch teacher info from `teachers` collection
+    DocumentSnapshot teacherSnapshot = await FirebaseFirestore.instance
+        .collection('teachers')
+        .doc(teacherId)
+        .get();
+
+    if (teacherSnapshot.exists) {
+      final teacherData = teacherSnapshot.data() as Map<String, dynamic>;
+
+      // Update or create a document in `latest_notices` with the latest message
+      await FirebaseFirestore.instance
+          .collection('latest_notices')
+          .doc(teacherId)
+          .set({
+        'teacherId': teacherId,
+        'teacherName': teacherData['name'],
+        'profession': teacherData['profession'],
+        'additionalInfo': teacherData['additionalInfo'],
+        'lastMessageContent': messageContent,
+        'lastMessageTimestamp': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true)); // Merge with existing data if present
+    }
   }
 
   // Get list of chats for a user
@@ -44,6 +88,4 @@ class ChatRepository {
               return chat;
             }).toList());
   }
-
-  
 }

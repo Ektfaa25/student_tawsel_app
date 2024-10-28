@@ -6,6 +6,7 @@ class TeacherRepository {
 
   final List<TeacherModel> teacherData = [
     TeacherModel(
+      id: "adel12345",
       name: 'MR : Adel',
       profession: 'Science Teacher',
       message: 'Management Education Serves\nAnd Buses At Your Home',
@@ -13,6 +14,7 @@ class TeacherRepository {
       phonenumer: '0123456789',
     ),
     TeacherModel(
+      id: "jasim12345",
       name: 'MR : Jasim',
       profession: 'Math Teacher',
       message: 'Management Education Serves\nAnd Buses At Your Home',
@@ -20,6 +22,7 @@ class TeacherRepository {
       phonenumer: '0123456789',
     ),
     TeacherModel(
+      id: "ahmed12345",
       name: 'MR : Ahmed',
       profession: 'Science Teacher',
       message: 'Management Education Serves\nAnd Buses At Your Home',
@@ -27,6 +30,7 @@ class TeacherRepository {
       phonenumer: '0123456789',
     ),
     TeacherModel(
+      id: "ali12345",
       name: 'MR : Ali',
       profession: 'Math Teacher',
       message: 'Management Education Serves\nAnd Buses At Your Home',
@@ -36,7 +40,18 @@ class TeacherRepository {
   ];
 
   Future<void> addTeacher(TeacherModel teacher) async {
-    await _db.collection("Teachers").add(teacher.toMap());
+    // Add the teacher to Firestore and let Firebase generate the document ID
+    DocumentReference docRef =
+        await _db.collection("Teachers").add(teacher.toMap());
+
+    // Get the generated document ID
+    String teacherId = docRef.id;
+
+    // Update the document to include both the generated ID and the custom ID
+    await docRef.update({
+      'id': teacherId, // Store the custom ID within the document
+      // Store the auto-generated ID as well
+    });
   }
 
   Future<void> addAllTeachersToFirestore() async {

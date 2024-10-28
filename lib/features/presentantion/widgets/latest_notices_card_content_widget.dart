@@ -1,24 +1,40 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:student_tawsel/core/theme/app_pallete.dart';
+import 'package:student_tawsel/features/auth/firebase_auth.dart';
+import 'package:student_tawsel/features/chat/data/chat_model.dart';
+import 'package:student_tawsel/features/chat/domain/chat_repository.dart';
 import 'package:student_tawsel/features/chat/presentation/chat_page.dart';
+import 'package:student_tawsel/features/latest_notices/data/latest_notices_model.dart';
+import 'package:student_tawsel/features/latest_notices/domain/latest_notice_repository.dart';
+import 'package:student_tawsel/features/messages/data/message_model.dart';
 import 'package:student_tawsel/features/teacher/data/teacher_model.dart';
 import 'package:student_tawsel/features/teacher/domain/teacher_repository.dart';
 
 class LatestNoticesCardContentWidget extends StatelessWidget {
-  const LatestNoticesCardContentWidget({
+  List<LatestNoticeModel>? latestnotice;
+  LatestNoticesCardContentWidget({
     super.key,
+    this.latestnotice,
   });
 
   @override
   Widget build(BuildContext context) {
     final TeacherRepository teacherRepository = TeacherRepository();
+    final LatestNoticeRepository latestNoticeRepository =
+        LatestNoticeRepository();
+    // final ChatRepository chatRepository = ChatRepository();
 
     Future<List<TeacherModel>> fetchTeachers() async {
       return await teacherRepository.getAllTeachers();
     }
 
-    return FutureBuilder<List<TeacherModel>>(
-        future: fetchTeachers(),
+    Future<List<LatestNoticeModel>> fetchlatestnotice() async {
+      return await latestNoticeRepository.getAllLatestNotices();
+    }
+
+    return FutureBuilder<List<LatestNoticeModel>>(
+        future: fetchlatestnotice(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -32,12 +48,11 @@ class LatestNoticesCardContentWidget extends StatelessWidget {
             return const Center(child: Text('No data available'));
           }
 
-          // List of teachers from Firestore
-          final teacherData = snapshot.data!;
+          final Chatdata = snapshot.data!;
           return ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: teacherData.length,
+              itemCount: Chatdata.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
@@ -68,7 +83,7 @@ class LatestNoticesCardContentWidget extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(teacherData[index].name,
+                              Text(Chatdata[index].teacherName,
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -78,7 +93,7 @@ class LatestNoticesCardContentWidget extends StatelessWidget {
                                       )),
                               const SizedBox(height: 8),
                               Text(
-                                  '${teacherData[index].profession}\n${teacherData[index].additionalInfo}',
+                                  '${Chatdata[index].profession}\n${Chatdata[index].additionalInfo}',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodySmall
@@ -91,18 +106,19 @@ class LatestNoticesCardContentWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Message',
+                                "Message",
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium
                                     ?.copyWith(
-                                        fontWeight: FontWeight.w300,
-                                        decoration: TextDecoration.underline,
-                                        color: const Color(0xff2D2828)),
+                                      fontWeight: FontWeight.w300,
+                                      decoration: TextDecoration.underline,
+                                      color: const Color(0xff2D2828),
+                                    ),
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                teacherData[index].message,
+                                Chatdata[index].lastMessageContent,
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium

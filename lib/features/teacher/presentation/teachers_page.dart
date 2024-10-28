@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:student_tawsel/features/auth/firebase_auth.dart';
+import 'package:student_tawsel/features/chat/domain/chat_repository.dart';
 import 'package:student_tawsel/features/chat/presentation/convo_page.dart';
 import 'package:student_tawsel/features/presentantion/widgets/avatar_widget.dart';
 import 'package:student_tawsel/features/teacher/data/teacher_model.dart';
@@ -21,7 +23,7 @@ class _TeachersPageState extends State<TeachersPage> {
   @override
   void initState() {
     super.initState();
-    // TeacherRepository().addAllTeachersToFirestore();
+    //  TeacherRepository().addAllTeachersToFirestore();
     teacher = teachersRepo.getAllTeachers();
   }
 
@@ -70,16 +72,21 @@ class _TeachersPageState extends State<TeachersPage> {
                       children: [
                         Column(
                           children: [
-                            AvatarWidget(),
-                            SizedBox(height: 30),
+                            const AvatarWidget(),
+                            const SizedBox(height: 30),
                             GestureDetector(
-                              onTap: () {
+                              onTap: () async {
+                                final chatId = await startChatWithTeacher(
+                                  FirebaseAuthService().getCurrentUserid(),
+                                  teachers[index].id,
+                                );
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
                                   return ConversationPage(
+                                      teacherId: teachers[index].id,
                                       name: teacher.name,
                                       profession: teacher.profession,
-                                      teacherId: teacher.id!);
+                                      chatid: chatId);
                                 }));
                               },
                               child: Image.asset(
@@ -118,10 +125,10 @@ class _TeachersPageState extends State<TeachersPage> {
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xff2D2D2D)),
                             ),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 40),
                             Row(
                               children: [
-                                Icon(Icons.call),
+                                const Icon(Icons.call),
                                 Text(
                                   " ${teacher.phonenumer}",
                                   style: const TextStyle(
@@ -144,5 +151,17 @@ class _TeachersPageState extends State<TeachersPage> {
         },
       ),
     );
+  }
+
+  Future<String> startChatWithTeacher(
+    String currentUserId,
+    String teacherId,
+  ) async {
+    final chatRepo = ChatRepository();
+
+    final chat = await chatRepo.getOrCreateChat(teacherId);
+
+    print('Chat started with ID: ${chat}');
+    return chat;
   }
 }
